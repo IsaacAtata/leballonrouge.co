@@ -1,4 +1,10 @@
-// assets/js/home.js
+// legacy.js
+// (Full updated file: removes duplicate toggles, makes language switch URL-based (/en/ prefix),
+// keeps your I18N/applyTranslations system, keeps DynamicCards, keeps active-nav logic.)
+
+/* -----------------------------
+   I18N DICTIONARIES
+----------------------------- */
 const I18N = {
   fr: {
     "meta.title": "Le Ballon Rouge — Accueil",
@@ -21,7 +27,8 @@ const I18N = {
     "chips.french": "Programme en français",
 
     "hero.title": "Une garderie francophone chaleureuse et sécuritaire",
-    "hero.subtitle": "Apprentissage par le jeu, exploration, routines sécurisantes et français au quotidien.",
+    "hero.subtitle":
+      "Apprentissage par le jeu, exploration, routines sécurisantes et français au quotidien.",
     "hero.image": "Image / illustration",
 
     "story.title": "Le ciel est la limite.",
@@ -70,7 +77,7 @@ const I18N = {
     "footer.links": "Liens",
     "footer.contact": "Contact",
     "footer.emailLabel": "Courriel:",
-    "footer.note": "Pour une demande de place, utilisez le formulaire d’inscription."
+    "footer.note": "Pour une demande de place, utilisez le formulaire d’inscription.",
   },
 
   en: {
@@ -143,8 +150,8 @@ const I18N = {
     "footer.links": "Links",
     "footer.contact": "Contact",
     "footer.emailLabel": "Email:",
-    "footer.note": "To request a spot, use the registration form."
-  }
+    "footer.note": "To request a spot, use the registration form.",
+  },
 };
 
 const INFO_CARDS = {
@@ -152,36 +159,36 @@ const INFO_CARDS = {
     {
       tag: "Immersion en français",
       title: "Langue au quotidien",
-      body: "Un environnement où le français est la langue principale de communication."
+      body: "Un environnement où le français est la langue principale de communication.",
     },
     {
       tag: "Petits groupes",
       title: "Attention individualisée",
-      body: "Des groupes adaptés pour soutenir le rythme et les besoins de chaque enfant."
+      body: "Des groupes adaptés pour soutenir le rythme et les besoins de chaque enfant.",
     },
     {
       tag: "Repas & collations",
       title: "Habitudes de vie",
-      body: "Des repas équilibrés et des routines qui favorisent le bien-être."
-    }
+      body: "Des repas équilibrés et des routines qui favorisent le bien-être.",
+    },
   ],
   en: [
     {
       tag: "French immersion",
       title: "French every day",
-      body: "An environment where French is the main language of communication."
+      body: "An environment where French is the main language of communication.",
     },
     {
       tag: "Small groups",
       title: "Individual support",
-      body: "Groups designed to support each child’s pace and needs."
+      body: "Groups designed to support each child’s pace and needs.",
     },
     {
       tag: "Meals & snacks",
       title: "Healthy routines",
-      body: "Balanced meals and routines that support children’s well-being."
-    }
-  ]
+      body: "Balanced meals and routines that support children’s well-being.",
+    },
+  ],
 };
 
 function renderInfoCards(lang) {
@@ -189,7 +196,9 @@ function renderInfoCards(lang) {
   if (!wrap) return;
 
   const cards = INFO_CARDS[lang] || INFO_CARDS.fr;
-  wrap.innerHTML = cards.map(c => `
+  wrap.innerHTML = cards
+    .map(
+      (c) => `
     <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
       <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
         ${c.tag}
@@ -197,7 +206,9 @@ function renderInfoCards(lang) {
       <h3 class="mt-3 text-lg font-black">${c.title}</h3>
       <p class="mt-2 leading-7 text-slate-600">${c.body}</p>
     </article>
-  `).join("");
+  `
+    )
+    .join("");
 }
 
 function applyTranslations(lang) {
@@ -205,61 +216,24 @@ function applyTranslations(lang) {
   document.documentElement.dataset.lang = lang;
 
   const dict = I18N[lang] || I18N.fr;
-  document.querySelectorAll("[data-i18n]").forEach(el => {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (!key || !(key in dict)) return;
     el.textContent = dict[key];
   });
 
-  // Update <title> safely
   const titleEl = document.querySelector("title[data-i18n='meta.title']");
   if (titleEl && dict["meta.title"]) titleEl.textContent = dict["meta.title"];
 
-  // Toggle button label: show the OTHER language
   const btn = document.getElementById("langToggle");
-  if (btn) btn.textContent = (lang === "fr") ? "EN" : "FR";
+  if (btn) btn.textContent = lang === "fr" ? "EN" : "FR";
 
   renderInfoCards(lang);
 }
 
-function getLang() {
-  return localStorage.getItem("site_lang") || "fr";
-}
-
-function setLang(lang) {
-  localStorage.setItem("site_lang", lang);
-  applyTranslations(lang);
-}
-
-(function init() {
-  // footer year
-  const y = document.getElementById("year");
-  if (y) y.textContent = String(new Date().getFullYear());
-
-  // mobile menu
-  const menuBtn = document.getElementById("menuBtn");
-  const mobileMenu = document.getElementById("mobileMenu");
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener("click", () => {
-      const open = mobileMenu.classList.toggle("hidden") === false;
-      menuBtn.setAttribute("aria-expanded", String(open));
-    });
-  }
-
-  // language
-  const btn = document.getElementById("langToggle");
-  const initial = getLang();
-  applyTranslations(initial);
-
-  btn?.addEventListener("click", () => {
-    const next = (getLang() === "fr") ? "en" : "fr";
-    setLang(next);
-  });
-})();
-
-/*>-------------------------------------------------------------------------------------------------------------------------------------------<*/
-
-//Enhanced JS, Enhanced dynamic cards + mouse movement
+/* -----------------------------
+   Dynamic cards data + class
+----------------------------- */
 const CARDS_DATA = {
   fr: [
     {
@@ -267,22 +241,22 @@ const CARDS_DATA = {
       tag: "Immersion française",
       title: "Langue au quotidien",
       body: "Français comme langue principale à travers chansons, histoires, jeux et activités créatives.",
-      link: { href: "/programmes.html", text: "Voir programmes" }
+      link: { href: "/programmes.html", text: "Voir programmes" },
     },
     {
       icon: "👨‍👩‍👧‍👦",
       tag: "Petits groupes",
       title: "Attention personnalisée",
       body: "Groupes adaptés au rythme de chaque enfant avec ratios respectés par le Ministère.",
-      link: { href: "/centres.html", text: "Nos centres" }
+      link: { href: "/centres.html", text: "Nos centres" },
     },
     {
       icon: "🍎",
       tag: "Habitudes saines",
       title: "Repas & activités",
       body: "Guide alimentaire canadien, activités physiques quotidiennes et repos structuré.",
-      link: { href: "/espace-parents.html", text: "Espace parents" }
-    }
+      link: { href: "/espace-parents.html", text: "Espace parents" },
+    },
   ],
   en: [
     {
@@ -290,23 +264,23 @@ const CARDS_DATA = {
       tag: "French immersion",
       title: "French every day",
       body: "French as main language through songs, stories, games and creative activities.",
-      link: { href: "/en/programs.html", text: "View programs" }
+      link: { href: "/en/programs.html", text: "View programs" },
     },
     {
       icon: "👨‍👩‍👧‍👦",
       tag: "Small groups",
       title: "Personalized attention",
       body: "Groups adapted to each child's pace with Ministry-compliant ratios.",
-      link: { href: "/en/centres.html", text: "Our centres" }
+      link: { href: "/en/centres.html", text: "Our centres" },
     },
     {
       icon: "🍎",
       tag: "Healthy habits",
       title: "Meals & activities",
       body: "Canada's food guide, daily physical activities and structured rest.",
-      link: { href: "/en/parents.html", text: "Parents area" }
-    }
-  ]
+      link: { href: "/en/parents.html", text: "Parents area" },
+    },
+  ],
 };
 
 class DynamicCards {
@@ -319,10 +293,7 @@ class DynamicCards {
   }
 
   init() {
-    // Render returns true/false depending on if the container exists
     this.enabled = this.renderCards();
-
-    // If this page doesn't have #infoCards, stop here (no errors)
     if (!this.enabled) return;
 
     this.bindEvents();
@@ -330,12 +301,10 @@ class DynamicCards {
   }
 
   renderCards() {
-    const lang = document.documentElement.dataset.lang || 'fr';
-    const data = (window.CARDS_DATA && (CARDS_DATA[lang] || CARDS_DATA.fr)) || null;
+    const lang = document.documentElement.dataset.lang || "fr";
+    const data = CARDS_DATA[lang] || CARDS_DATA.fr;
+    const container = document.getElementById("infoCards");
 
-    const container = document.getElementById('infoCards');
-
-    // ✅ Fix: if container or data doesn't exist, don't run
     if (!container || !data) return false;
 
     container.innerHTML = data
@@ -358,53 +327,49 @@ class DynamicCards {
         </article>
       `
       )
-      .join('');
+      .join("");
 
-    this.cards = Array.from(container.querySelectorAll('.dynamic-card'));
+    this.cards = Array.from(container.querySelectorAll(".dynamic-card"));
     return this.cards.length > 0;
   }
 
   bindEvents() {
-    // Mouse move
     this.onMouseMove = (e) => {
       this.mouse.x = e.clientX / window.innerWidth;
       this.mouse.y = e.clientY / window.innerHeight;
     };
-    document.addEventListener('mousemove', this.onMouseMove);
+    document.addEventListener("mousemove", this.onMouseMove);
 
-    // Hover pairing effect
     this.cards.forEach((card, i) => {
-      card.addEventListener('mouseenter', () => this.onCardHover(i));
-      card.addEventListener('mouseleave', () => this.onCardLeave(i));
+      card.addEventListener("mouseenter", () => this.onCardHover(i));
+      card.addEventListener("mouseleave", () => this.onCardLeave());
     });
 
-    // Mobile touch (keep your behavior, but only on the card tapped)
     this.cards.forEach((card) => {
       card.addEventListener(
-        'touchstart',
+        "touchstart",
         (e) => {
           e.preventDefault();
-          card.classList.add('scale-105');
+          card.classList.add("scale-105");
         },
         { passive: false }
       );
 
-      card.addEventListener('touchend', () => {
-        card.classList.remove('scale-105');
+      card.addEventListener("touchend", () => {
+        card.classList.remove("scale-105");
       });
     });
 
-    // Stop animation when leaving page (optional, but clean)
-    window.addEventListener('beforeunload', () => {
+    window.addEventListener("beforeunload", () => {
       if (this.rafId) cancelAnimationFrame(this.rafId);
-      document.removeEventListener('mousemove', this.onMouseMove);
+      document.removeEventListener("mousemove", this.onMouseMove);
     });
   }
 
   onCardHover(index) {
     if (!this.cards[index]) return;
 
-    this.cards[index].classList.add('paired');
+    this.cards[index].classList.add("paired");
 
     const len = this.cards.length;
     if (len < 2) return;
@@ -416,20 +381,19 @@ class DynamicCards {
 
     neighbors.forEach((neighbor) => {
       if (!neighbor) return;
-      neighbor.classList.add('paired');
-      neighbor.style.setProperty('--neighbor-glow', '1');
+      neighbor.classList.add("paired");
+      neighbor.style.setProperty("--neighbor-glow", "1");
     });
   }
 
   onCardLeave() {
     this.cards.forEach((card) => {
-      card.classList.remove('paired');
-      card.style.removeProperty('--neighbor-glow');
+      card.classList.remove("paired");
+      card.style.removeProperty("--neighbor-glow");
     });
   }
 
   animateLoop() {
-    // ✅ If nothing to animate, don't schedule RAF
     if (!this.cards.length) return;
 
     this.cards.forEach((card) => {
@@ -448,75 +412,157 @@ class DynamicCards {
 
       const distance = Math.hypot(this.mouse.x - centerX, this.mouse.y - centerY);
       const glow = Math.max(0, 1 - distance * 2);
-      card.style.setProperty('--mouse-glow', glow);
+      card.style.setProperty("--mouse-glow", glow);
     });
 
     this.rafId = requestAnimationFrame(() => this.animateLoop());
   }
 }
 
+/* -----------------------------
+   Active nav helpers
+----------------------------- */
+function cleanPath(p) {
+  if (!p) return "/";
+  p = String(p).split("?")[0].split("#")[0].trim();
 
-// Language switch + other init
-function initLanguage() {
-  const btn = document.getElementById('langToggle');
-  if (!btn) return;
+  try {
+    if (p.startsWith("http://") || p.startsWith("https://")) p = new URL(p).pathname;
+  } catch {}
 
-  const path = window.location.pathname;
-  const isEn = path.includes('/en/');
-  btn.textContent = isEn ? 'FR' : 'EN';
+  if (!p.startsWith("/")) p = "/" + p;
 
-  btn.addEventListener('click', () => {
-    const next = isEn ? path.replace('/en/', '/') : path.replace(/(\/[^\/]+)$/, '/en$1');
-    window.location.pathname = next;
+  p = p.replace(/index\.html$/i, "");
+  p = p.replace(/\.html$/i, "");
+
+  if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+
+  return p || "/";
+}
+
+function pathsMatch(current, href) {
+  if (href === current) return true;
+  if (href !== "/" && current.startsWith(href + "/")) return true;
+  return false;
+}
+
+function initActiveNav() {
+  const nav = document.querySelector('nav[aria-label="Navigation"]');
+  if (!nav) return;
+
+  const current = cleanPath(window.location.pathname);
+
+  nav.querySelectorAll(".nav-active").forEach((el) => el.classList.remove("nav-active"));
+  nav
+    .querySelectorAll(".nav-group.nav-active")
+    .forEach((el) => el.classList.remove("nav-active"));
+
+  nav.querySelectorAll('a[href]:not(.dropdown-item)').forEach((a) => {
+    const href = cleanPath(a.getAttribute("href"));
+    if (pathsMatch(current, href)) a.classList.add("nav-active");
+  });
+
+  nav.querySelectorAll(".nav-group").forEach((group) => {
+    const items = group.querySelectorAll(".nav-dropdown a.dropdown-item[href]");
+    let active = false;
+
+    items.forEach((item) => {
+      const href = cleanPath(item.getAttribute("href"));
+      if (pathsMatch(current, href)) active = true;
+    });
+
+    if (active) group.classList.add("nav-active");
   });
 }
 
-// Mobile menu
+/* -----------------------------
+   Language toggle (URL-based /en/ prefix)
+----------------------------- */
+function langFromPath(pathname) {
+  return pathname.startsWith("/en/") ? "en" : "fr";
+}
+
+function toggleLangUrl() {
+  const url = new URL(window.location.href);
+
+  let p = url.pathname;
+  if (!p.endsWith("/")) p += "/";
+
+  if (p.startsWith("/en/")) p = p.replace(/^\/en\//, "/");
+  else p = "/en" + p;
+
+  url.pathname = p;
+  return url.toString();
+}
+
+function initLanguageToggleAndTranslations() {
+  const btn = document.getElementById("langToggle");
+
+  const lang = langFromPath(window.location.pathname);
+  applyTranslations(lang);
+
+  if (btn) {
+    btn.textContent = lang === "fr" ? "EN" : "FR";
+    btn.addEventListener("click", () => {
+      window.location.href = toggleLangUrl();
+    });
+  }
+}
+
+/* -----------------------------
+   Mobile menu (single handler)
+----------------------------- */
 function initMobileMenu() {
-  const btn = document.getElementById('menuBtn');
-  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById("menuBtn");
+  const menu = document.getElementById("mobileMenu");
   if (!btn || !menu) return;
 
-  btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(open));
-    btn.textContent = open ? '✕' : '☰';
+  btn.addEventListener("click", () => {
+    const isHidden = menu.classList.toggle("hidden");
+    const isOpen = !isHidden;
+
+    btn.setAttribute("aria-expanded", String(isOpen));
+    btn.textContent = isOpen ? "✕" : "☰";
   });
 }
 
-// Init everything
-document.addEventListener('DOMContentLoaded', () => {
-  new DynamicCards();
-  initLanguage();
-  initMobileMenu();
-  
-  // Footer year
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* -----------------------------
+   Footer year
+----------------------------- */
+function initFooterYear() {
+  const y = document.getElementById("year");
+  if (y) y.textContent = String(new Date().getFullYear());
+}
+
+/* -----------------------------
+   App init (single entry point)
+----------------------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("langToggle");
+  if (!btn) {
+    console.warn("[langToggle] button not found");
+    return;
+  }
+
+  const lang = window.location.pathname.startsWith("/en/") ? "en" : "fr";
+  btn.textContent = lang === "fr" ? "EN" : "FR";
+
+  btn.addEventListener("click", () => {
+    const url = new URL(window.location.href);
+    let p = url.pathname;
+
+    // normalize trailing slash
+    if (!p.endsWith("/")) p += "/";
+
+    // toggle /en/ prefix
+    if (p.startsWith("/en/")) p = p.replace(/^\/en\//, "/");
+    else p = "/en" + p;
+
+    url.pathname = p;
+
+    console.log("[langToggle] go to:", url.toString());
+    window.location.href = url.toString();
+  });
+
+  console.log("[langToggle] ready on:", window.location.pathname);
 });
-
-(function() {
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      menuBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-    });
-  }
-
-  // Language toggle (your existing logic)
-  const langToggle = document.getElementById('langToggle');
-  if (langToggle) {
-    const path = window.location.pathname;
-    const isEn = path.includes('/en/');
-    langToggle.textContent = isEn ? 'FR' : 'EN';
-    
-    langToggle.addEventListener('click', () => {
-      const next = isEn ? path.replace('/en/', '/') : path.replace(/\/(?!en\/)/, '/en/');
-      window.location.pathname = next;
-    });
-  }
-})();
