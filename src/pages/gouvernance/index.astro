@@ -1,0 +1,218 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"; // adjust if needed
+
+const exec = [
+  { role: "Président", name: "Mathieu Berlaud" },
+  { role: "Vice-président", name: "Cindy Fierbiger" },
+  { role: "Trésorier", name: "Chantal Giroux-Podstawka" },
+  { role: "Secrétaire", name: "Jose Guimond" },
+  { role: "Administrateur", name: "Andrew Zadarnowski" },
+  { role: "Administratrice", name: "Aurlélien Assonna" },
+  { role: "Administratrice", name: "Dorothe Petit-Pas" },
+  { role: "Administrateur", name: "Robert Brown" },
+  { role: "Président sortant", name: "Angela Wright" },
+];
+
+const sectors = [
+  "Éducation",
+  "Organisme communautaire francophone",
+  "Communautés ethnoculturelles",
+  "Droit",
+  "Secteur financier et comptable",
+  "Communications",
+  "Technologies de l’information",
+  "Ressources humaines",
+  "Autre (préciser)",
+];
+---
+
+<BaseLayout title="Gouvernance — Le Ballon Rouge">
+  <main id="main">
+    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Gouvernance</h1>
+      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+        Nous accordons une grande importance à l’engagement des parents dans nos programmes, notamment par leur participation au sein du conseil d’administration.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="/inscription/"
+          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+        >
+          Comment s’inscrire
+        </a>
+        <a
+          href="#joindre"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+        >
+          Se joindre au CA
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-12">
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Pourquoi un conseil d’administration?</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Leur implication bénévole est essentielle au bon fonctionnement de notre organisme. Faire partie du conseil d’administration, c’est s’engager concrètement dans la vie du centre que fréquente son enfant.
+          </p>
+          <p class="mt-3 leading-7 text-slate-600">
+            Cet engagement comprend notamment la mise en œuvre du plan stratégique, l’approbation des politiques et procédures, l’analyse du budget de fonctionnement ainsi que l’évaluation du rendement de la direction générale.
+          </p>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Mandat et fonctionnement</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            En tant que voix de la communauté, le conseil d’administration joue un rôle essentiel dans l’atteinte des objectifs du Ballon Rouge. Son mandat fiduciaire assure une gouvernance rigoureuse et une orientation stratégique efficace.
+          </p>
+          <p class="mt-3 leading-7 text-slate-600">
+            Le conseil se réunit dix fois par année, en présentiel, en alternant dans les deux centres.
+          </p>
+          <p class="mt-3 leading-7 text-slate-600">
+            Nous remercions sincèrement nos membres actuels et anciens pour leur engagement et leur précieuse contribution à notre mission.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-12">
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">Membres de l’exécutif (2024–2025)</h2>
+        <div class="mt-5 grid gap-3 md:grid-cols-2">
+          {exec.map((m) => (
+            <div class="rounded-2xl border border-black/10 bg-white/70 p-4">
+              <p class="text-xs font-extrabold uppercase tracking-wide text-slate-500">{m.role}</p>
+              <p class="mt-1 text-lg font-black text-slate-900">{m.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="joindre" class="mx-auto max-w-6xl px-4 pb-12">
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">Se joindre au conseil d’administration</h2>
+        <p class="mt-3 leading-7 text-slate-600">
+          Remplissez ce formulaire pour soumettre votre candidature. Si votre candidature est retenue, une vérification judiciaire peut être demandée.
+        </p>
+
+        <!-- NOTE: This is a front-end form for now.
+             If you later use Netlify Forms/Formspree, we’ll wire the action + enctype properly. -->
+        <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">Nom complet</label>
+            <input
+              name="fullName"
+              required
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="text-sm font-extrabold text-slate-700">Adresse courriel</label>
+              <input
+                type="email"
+                name="email"
+                required
+                class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+            </div>
+
+            <div>
+              <label class="text-sm font-extrabold text-slate-700">Numéro de téléphone</label>
+              <input
+                name="phone"
+                required
+                class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">Statut</label>
+            <select
+              name="status"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+              <option>Parent</option>
+              <option>Membre de la communauté</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">
+              Secteur(s) d’implication (choisissez le principal)
+            </label>
+            <select
+              name="sector"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+              {sectors.map((s) => <option value={s}>{s}</option>)}
+            </select>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">
+              Expérience / connaissance des services de garde en Ontario
+            </label>
+            <select
+              name="childcareExperience"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+              <option>Non</option>
+              <option>Débutant</option>
+              <option>Intermédiaire</option>
+              <option>Avancé</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">
+              CV + motivation (PDF, DOCX, XLSX — 2MB max)
+            </label>
+            <input
+              type="file"
+              name="cv"
+              accept=".pdf,.doc,.docx,.xls,.xlsx"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm"
+            />
+            <p class="mt-2 text-xs font-semibold text-slate-500">
+              Ajoutez votre CV et indiquez vos motivations (vous pouvez aussi les décrire dans le message ci-dessous).
+            </p>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">Message / motivations</label>
+            <textarea
+              name="message"
+              class="mt-2 min-h-[140px] w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              placeholder="Pourquoi souhaitez-vous vous joindre au conseil d’administration?"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">
+              Vérification judiciaire (si la candidature est retenue)
+            </label>
+            <select
+              name="policeCheck"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+            >
+              <option>Oui, j’accepte</option>
+              <option>Non, je refuse</option>
+            </select>
+          </div>
+
+          <button
+            class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800"
+          >
+            Soumettre ma candidature
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

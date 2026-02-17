@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro"; // adjust if needed
+---
+
+<BaseLayout title="Inscription — Hamilton">
+  <main id="main">
+    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Inscription — Hamilton</h1>
+      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+        Exemple de page d’inscription pour le centre de Hamilton. (Contenu temporaire)
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="/inscription/brantford/"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+        >
+          Voir Brantford
+        </a>
+
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+        >
+          Nous contacter
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-12">
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Informations (exemple)</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Ajoutez ici l’adresse, les heures, l’âge des groupes, et les documents requis.
+          </p>
+          <ul class="mt-4 space-y-2 font-bold text-slate-700">
+            <li>Heures: Lun–Ven (exemple).</li>
+            <li>Âges: poupons à préscolaire (exemple).</li>
+            <li>Langue: français au quotidien.</li>
+          </ul>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Formulaire (placeholder)</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Tu pourras remplacer ceci par ton vrai formulaire (Google Form, Typeform, ou un formulaire Astro).
+          </p>
+
+          <form class="mt-5 grid gap-3" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
+            <label class="text-sm font-extrabold text-slate-700">Nom du parent</label>
+            <input class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" />
+
+            <label class="text-sm font-extrabold text-slate-700">Courriel</label>
+            <input type="email" class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" />
+
+            <button class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800">
+              Envoyer la demande
+            </button>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
