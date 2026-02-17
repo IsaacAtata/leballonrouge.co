@@ -11,6 +11,142 @@ import BaseLayout from "../../layouts/BaseLayout.astro"; // adjust if needed
       </p>
     </section>
 
+    <!-- Comment s’inscrire -->
+    <section id="comment-sinscrire" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+                <h2 class="text-xl font-black tracking-tight md:text-2xl">Comment s’inscrire</h2>
+                <p class="mt-2 max-w-prose leading-7 text-slate-600">
+                Vous êtes un parent qui cherche des services de garde, ou vous êtes intéressé aux services proposés par Le Ballon Rouge?
+                Voici les étapes pour compléter une demande et vous placer sur la liste d’attente.
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-8 grid gap-5 md:grid-cols-2">
+
+        <!-- Brantford -->
+        <article class="relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-red-50/60 p-6 shadow-lg shadow-black/5">
+            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-red-700/10 blur-2xl"></div>
+
+            <div class="flex items-start gap-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-700/20 bg-white shadow-sm">
+                <span aria-hidden="true" class="text-xl">🏫</span>
+            </div>
+            <div>
+                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Centre</p>
+                <h3 class="text-lg font-black text-slate-900">Le Ballon Rouge Brantford</h3>
+            </div>
+            </div>
+
+            <ol class="mt-5 space-y-3 font-semibold text-slate-700">
+            <li>
+                1) Inscrivez votre enfant sur la liste d’attente centralisée municipale via:
+                <a class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900" href="https://brantford.onehsn.com" target="_blank" rel="noopener">
+                brantford.onehsn.com
+                </a>
+            </li>
+            <li>2) La liste d’attente inscrit les enfants en ordre chronologique (date et heure de réception).</li>
+            <li>3) Pour vérifier le rang sur la liste, contactez la superviseure.</li>
+            <li>4) Une fois le nom sur la liste, la superviseure confirmera la réception par courriel ou téléphone.</li>
+            </ol>
+
+            <div class="mt-5 flex flex-wrap gap-3">
+            <a
+                href="/inscription/brantford/"
+                class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+            >
+                Formulaire Brantford
+            </a>
+            <a
+                href="mailto:inscription@ballonrouge.ca"  
+                class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+            >
+                Écrire à inscription@ballonrouge.ca
+            </a>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
+            <p class="text-sm font-extrabold text-slate-900">Contact Brantford</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">Téléphone: 519-753-6541</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+                Courriel:
+                <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:leballonrougebrantford@cscmonavenir.ca">
+                leballonrougebrantford@cscmonavenir.ca
+                </a>
+            </p>
+            </div>
+        </article>
+
+        <!-- Hamilton -->
+        <article class="relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-orange-50/60 p-6 shadow-lg shadow-black/5">
+            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-orange-500/10 blur-2xl"></div>
+
+            <div class="flex items-start gap-3">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-orange-500/20 bg-white shadow-sm">
+                <span aria-hidden="true" class="text-xl">📝</span>
+            </div>
+            <div>
+                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Centre</p>
+                <h3 class="text-lg font-black text-slate-900">Le Ballon Rouge Hamilton</h3>
+            </div>
+            </div>
+
+            <ol class="mt-5 space-y-3 font-semibold text-slate-700">
+            <li>
+                1) Remplissez le formulaire d’inscription (liste d’attente centralisée) pour Hamilton.
+                <span class="font-bold text-slate-600">(Le formulaire sera envoyé à)</span>
+                <a class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:inscription@ballonrouge.ca">
+                inscription@ballonrouge.ca
+                </a>
+            </li>
+            <li>2) La liste d’attente inscrit les enfants en ordre chronologique (date et heure de réception).</li>
+            <li>3) Pour vérifier le rang sur la liste, contactez la superviseure.</li>
+            <li>4) Une fois le nom sur la liste, la superviseure confirmera la réception par courriel ou téléphone.</li>
+            </ol>
+
+            <div class="mt-5 flex flex-wrap gap-3">
+            <a
+                href="/inscription/hamilton/"
+                class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+            >
+                Formulaire Hamilton
+            </a>
+            <a
+                href="mailto:inscription@ballonrouge.ca"
+                class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+            >
+                Écrire à inscription@ballonrouge.ca
+            </a>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
+            <p class="text-sm font-extrabold text-slate-900">Contact Hamilton</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">Téléphone: 905-383-8371</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+                Courriel:
+                <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:leballonrouge@cscmonavenir.ca">
+                leballonrouge@cscmonavenir.ca
+                </a>
+            </p>
+            </div>
+        </article>
+        </div>
+
+        <!-- 48h rule -->
+        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+        <h3 class="text-lg font-black text-slate-900">Offre de place disponible (règle des 48 heures)</h3>
+        <ul class="mt-3 space-y-2 font-semibold text-slate-700">
+            <li>Les familles sur la liste d’attente sont avisées par téléphone et courriel lorsqu’une place se libère dans le programme demandé.</li>
+            <li>Les parents doivent répondre dans un délai de 48 heures; sinon la place est offerte au prochain enfant sur la liste d’attente.</li>
+            <li>Si aucun retour n’est reçu dans le délai prescrit, la superviseure (ou la personne désignée) communiquera avec la famille suivante.</li>
+        </ul>
+        </div>
+    </div>
+    </section>
+
+
     <section class="mx-auto max-w-6xl px-4 pb-12">
       <div class="grid gap-5 md:grid-cols-2">
         <!-- Hamilton card -->
