@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SolidInfoCards from "../components/SolidInfoCards.astro";
+import StoryBlock from "../components/StoryBlock.astro";
+import CentresPreview from "../components/CentresPreview.astro";
+import PartnersTeaser from "../components/PartnersTeaser.astro";
+import TrustStats from "../components/TrustStats.astro";
 ---
 
 <BaseLayout title="Accueil – Le Ballon Rouge">
@@ -53,4 +58,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </div>
     </div>
   </section>
+
+    <SolidInfoCards />
+  <StoryBlock />
+  <CentresPreview />
+  <PartnersTeaser />
+  <TrustStats />
 </BaseLayout>
