@@ -1,0 +1,37 @@
+---
+const {
+  title = "Prêt(e) à faire une demande de place?",
+  body = "Dites-nous quel centre vous intéresse, et on vous guidera pour la suite.",
+  primaryHref = "/inscription/",
+  primaryText = "Demander une place",
+  secondaryHref = "/centres/",
+  secondaryText = "Voir nos centres",
+} = Astro.props;
+---
+
+<section class="mx-auto max-w-6xl px-4 pb-12">
+  <div class="rounded-[28px] border border-black/10 bg-gradient-to-r from-red-50 to-orange-50 p-6 shadow-xl shadow-black/5 md:p-8">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div class="max-w-3xl">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">{title}</h2>
+        <p class="mt-2 leading-7 text-slate-600">{body}</p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={primaryHref}
+          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+        >
+          {primaryText}
+        </a>
+
+        <a
+          href={secondaryHref}
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+        >
+          {secondaryText}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
