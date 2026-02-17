@@ -133,3 +133,43 @@
   0%, 100% { box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
   50% { box-shadow: 0 25px 60px rgba(181,28,28,0.15); }
 }
+
+/* FAQ accordion (cards with spacing) */
+.faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-accordion summary {
+  cursor: pointer;
+}
+
+/* Make the chevron rotate when opened */
+.faq-accordion details[open] .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-accordion .faq-icon {
+  transition: transform 200ms ease;
+}
+
+/* Slight hover polish on the FAQ card itself */
+.faq-accordion .faq-item {
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.faq-accordion .faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.10);
+}
+
+/* Strong keyboard focus */
+.faq-accordion summary:focus-visible {
+  outline: 2px solid rgba(185, 28, 28, 0.55);
+  outline-offset: 6px;
+  border-radius: 1rem;
+}
+
+/* Keep selection consistent with your old theme */
+::selection {
+  background: rgba(185, 28, 28, 0.20);
+}
