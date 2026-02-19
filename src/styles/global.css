@@ -178,6 +178,9 @@
       visibility 0s linear 160ms;
 
     z-index: 1000;
+
+    margin-top: 0;
+    transform: translateY(-2px);
   }
 
   /* Little caret/pointer */
@@ -235,8 +238,6 @@
       min-width: 300px;
     }
   }
-
-
 
   /* Keyframes must be top-level (not inside a selector) */
   @keyframes card-float {
