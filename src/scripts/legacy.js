@@ -479,34 +479,26 @@ function initActiveNav() {
    Language toggle (URL-based /en/ prefix)
 ----------------------------- */
 function langFromPath(pathname) {
-  return pathname.startsWith("/en/") ? "en" : "fr";
+  return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "fr";
 }
 
 function toggleLangUrl() {
   const url = new URL(window.location.href);
-
   let p = url.pathname;
+
   if (!p.endsWith("/")) p += "/";
 
-  if (p.startsWith("/en/")) p = p.replace(/^\/en\//, "/");
-  else p = "/en" + p;
+  const isEn = p === "/en/" || p.startsWith("/en/");
+
+  if (isEn) {
+    p = p.replace(/^\/en\//, "/");
+    if (p === "/en/") p = "/";
+  } else {
+    p = "/en" + p;
+  }
 
   url.pathname = p;
   return url.toString();
-}
-
-function initLanguageToggleAndTranslations() {
-  const btn = document.getElementById("langToggle");
-
-  const lang = langFromPath(window.location.pathname);
-  applyTranslations(lang);
-
-  if (btn) {
-    btn.textContent = lang === "fr" ? "EN" : "FR";
-    btn.addEventListener("click", () => {
-      window.location.href = toggleLangUrl();
-    });
-  }
 }
 
 /* -----------------------------
@@ -538,30 +530,25 @@ function initFooterYear() {
    App init (single entry point)
 ----------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  initFooterYear();
+  initMobileMenu();
+  initActiveNav();
+
+  const lang = langFromPath(window.location.pathname);
+  applyTranslations(lang);
+
   const btn = document.getElementById("langToggle");
   if (!btn) {
     console.warn("[langToggle] button not found");
     return;
   }
 
-  const lang = window.location.pathname.startsWith("/en/") ? "en" : "fr";
   btn.textContent = lang === "fr" ? "EN" : "FR";
 
   btn.addEventListener("click", () => {
-    const url = new URL(window.location.href);
-    let p = url.pathname;
-
-    // normalize trailing slash
-    if (!p.endsWith("/")) p += "/";
-
-    // toggle /en/ prefix
-    if (p.startsWith("/en/")) p = p.replace(/^\/en\//, "/");
-    else p = "/en" + p;
-
-    url.pathname = p;
-
-    console.log("[langToggle] go to:", url.toString());
-    window.location.href = url.toString();
+    const nextUrl = toggleLangUrl();
+    console.log("[langToggle] go to:", nextUrl);
+    window.location.href = nextUrl;
   });
 
   console.log("[langToggle] ready on:", window.location.pathname);

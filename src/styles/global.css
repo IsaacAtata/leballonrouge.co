@@ -322,4 +322,7 @@
   header nav[aria-label="Navigation"] a.nav-active:hover {
     background: rgba(185, 28, 28, 0.14);
   }
+
+  #langToggle { cursor: pointer; }
+
 }

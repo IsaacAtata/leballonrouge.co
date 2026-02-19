@@ -1,0 +1,237 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"; // adjust if needed
+
+const recognitions = [
+  {
+    title: "Développement professionnel continu",
+    body:
+      "Chaque membre du personnel suit un plan d’apprentissage professionnel continu fondé sur l’autoréflexion. Le centre requiert un minimum de quatre événements de développement professionnel par année (janvier à décembre), et le personnel se familiarise avec « Comment apprend-on? Pédagogie de l’Ontario pour la petite enfance ».",
+    icon: "📚",
+  },
+  {
+    title: "Milieu francophone et bienveillant",
+    body:
+      "Notre équipe soutient le développement global des enfants dans un environnement accueillant, sécuritaire et francophone, en valorisant l’exploration et le jeu.",
+    icon: "🤝",
+  },
+  {
+    title: "Partenariats et ressources",
+    body:
+      "Nous collaborons avec des ressources communautaires afin de soutenir les enfants, les familles et le personnel lorsque requis.",
+    icon: "🧩",
+  },
+];
+---
+
+<BaseLayout title="Personnel — Le Ballon Rouge">
+  <main id="main">
+    <!-- Hero -->
+    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Personnel</h1>
+      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+        Une équipe chaleureuse et qualifiée, engagée envers le bien-être, la sécurité et l’apprentissage des enfants.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+        href="/personnel/#reconnaissances"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+        >
+        Reconnaissances des employés
+        </a>
+        <a
+          href="#emplois"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+        >
+          Offres d’emploi
+        </a>
+        <a
+          href="#rejoignez"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+        >
+          Rejoignez notre équipe
+        </a>
+      </div>
+    </section>
+
+    <!-- Intro / who we hire -->
+    <section class="mx-auto max-w-6xl px-4 pb-12">
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">Une équipe qualifiée</h2>
+        <p class="mt-3 leading-7 text-slate-600">
+          Le Ballon Rouge embauche des éducatrices qualifiées ainsi que des assistantes éducatrices, en fonction du nombre d’inscriptions et des exigences du
+          Ministère en matière de ratios éducatrice-enfants.
+        </p>
+        <p class="mt-3 leading-7 text-slate-600">
+          À l’occasion, nous accueillons des étudiantes du programme Éducation en services à l’enfance (collège) pour effectuer un stage au sein de la garderie,
+          afin d’enrichir leur expérience professionnelle. Avant d’intégrer nos programmes, elles se familiarisent avec nos politiques internes et fournissent les
+          documents exigés.
+        </p>
+
+        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Parents: vous êtes les bienvenus</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            La participation des parents est toujours bienvenue, et l’invitation s’étend aussi aux autres membres de la famille. Venez jouer avec nous, assister aux
+            activités, participer à une célébration spéciale, transmettre vos commentaires ou siéger sur le conseil d’administration.
+          </p>
+          <a
+            href="/gouvernance/#joindre"
+            class="mt-4 inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
+          >
+            Se joindre au conseil d’administration
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reconnaissances -->
+    <section id="reconnaissances" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-xl font-black tracking-tight md:text-2xl">Reconnaissances des employés</h2>
+            <p class="mt-2 max-w-prose leading-7 text-slate-600">
+              Nous valorisons l’engagement de notre équipe et le développement professionnel continu.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          {recognitions.map((r) => (
+            <article class="group rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-lg shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
+              <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
+                <span aria-hidden="true" class="text-xl">{r.icon}</span>
+              </div>
+              <h3 class="mt-4 text-lg font-black text-slate-900">{r.title}</h3>
+              <p class="mt-2 leading-7 text-slate-600">{r.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <!-- Optional: if you later add real names/awards -->
+        <div class="mt-8 rounded-2xl border border-dashed border-black/15 bg-white/50 p-5">
+          <p class="font-extrabold text-slate-900">À ajouter (optionnel)</p>
+          <p class="mt-2 leading-7 text-slate-600">
+            Tu peux afficher ici: années de service, remerciements, formations complétées, et messages de reconnaissance (sans données personnelles sensibles).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Offres d’emploi -->
+    <section id="emplois" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">Offres d’emploi</h2>
+        <p class="mt-3 leading-7 text-slate-600">
+          Les postes affichés varient selon les besoins des centres et les exigences de ratios. Pour postuler, veuillez consulter les offres ci-dessous ou nous
+          contacter.
+        </p>
+
+        <!-- If you don’t have postings yet, keep this “empty state” -->
+        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+          <p class="font-extrabold text-slate-900">Aucune offre affichée pour le moment</p>
+          <p class="mt-2 leading-7 text-slate-600">
+            Vous pouvez tout de même nous envoyer votre candidature spontanée via le formulaire ci-dessous.
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href="#rejoignez"
+            class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          >
+            Candidature spontanée
+          </a>
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+          >
+            Nous contacter
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rejoignez notre équipe -->
+    <section id="rejoignez" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">Rejoignez notre équipe</h2>
+        <p class="mt-3 leading-7 text-slate-600">
+          Envoyez votre candidature. Nous vous contacterons si un poste correspondant à votre profil est disponible.
+        </p>
+
+        <!-- front-end form placeholder -->
+        <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="text-sm font-extrabold text-slate-700">Nom complet</label>
+              <input
+                name="fullName"
+                required
+                class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+            </div>
+            <div>
+              <label class="text-sm font-extrabold text-slate-700">Courriel</label>
+              <input
+                type="email"
+                name="email"
+                required
+                class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="text-sm font-extrabold text-slate-700">Téléphone</label>
+              <input
+                name="phone"
+                class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              />
+            </div>
+            <div>
+              <label class="text-sm font-extrabold text-slate-700">Centre préféré (optionnel)</label>
+              <select
+                name="preferredCentre"
+                class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              >
+                <option value="">Aucune préférence</option>
+                <option>Hamilton</option>
+                <option>Brantford</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">Message</label>
+            <textarea
+              name="message"
+              class="mt-2 min-h-[140px] w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+              placeholder="Présentez-vous et indiquez le type de poste recherché (éducatrice, assistante, stage, etc.)."
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="text-sm font-extrabold text-slate-700">CV (optionnel)</label>
+            <input
+              type="file"
+              name="cv"
+              accept=".pdf,.doc,.docx"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm"
+            />
+            <p class="mt-2 text-xs font-semibold text-slate-500">
+              (Le fichier ne sera envoyé que lorsque le formulaire sera connecté à un service de soumission.)
+            </p>
+          </div>
+
+          <button
+            class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800"
+          >
+            Envoyer ma candidature
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
