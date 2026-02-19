@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
-/* ===== Base ===== */
+/* =========================================================
+   Base
+   - Global typography + background
+   - Sensible defaults for readability (still works with Tailwind classes)
+========================================================= */
 @layer base {
   html {
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -8,12 +12,20 @@
       #fef7ee 0%,
       #fdf2e8 30%,
       #fcefe3 60%,
-      #f9e8d9 100%);
+      #f9e8d9 100%
+    );
     min-height: 100vh;
     scroll-behavior: smooth;
   }
 
-  body { min-height: 100vh; }
+  body {
+    min-height: 100vh;
+    color: #0f172a;   /* slate-900 default text */
+    line-height: 1.6; /* improves general readability */
+  }
+
+  /* Optional: default paragraph tone (Tailwind text-* still overrides) */
+  p { color: rgb(51 65 85); } /* slate-700-ish */
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -23,28 +35,38 @@
   .font-heading { font-family: 'Poppins', sans-serif; }
   .font-body { font-family: 'Quicksand', sans-serif; }
 
-  ::selection { background: rgba(185, 28, 28, .20); }
+  ::selection { background: rgba(185, 28, 28, 0.20); }
 }
 
-/* ===== Utilities ===== */
+/* =========================================================
+   Utilities
+========================================================= */
 @layer utilities {
   .logo-gradient {
     background: linear-gradient(180deg, #e33 0%, #b5121b 60%, #8f0f16 100%);
   }
 }
 
-/* ===== Components ===== */
+/* =========================================================
+   Components
+========================================================= */
 @layer components {
+  /* ---------- Cards ---------- */
   .solid-card {
     background-color: white;
     border: 1px solid rgb(226 232 240);
-    box-shadow: 0 20px 25px -5px rgb(226 232 240 / 0.5), 0 8px 10px -6px rgb(226 232 240 / 0.5);
+    box-shadow:
+      0 20px 25px -5px rgb(226 232 240 / 0.5),
+      0 8px 10px -6px rgb(226 232 240 / 0.5);
     border-radius: 1.5rem;
     padding: 2rem;
     transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+
   .solid-card:hover {
-    box-shadow: 0 25px 50px -12px rgb(203 213 225 / 0.6), 0 12px 24px -8px rgb(203 213 225 / 0.6);
+    box-shadow:
+      0 25px 50px -12px rgb(203 213 225 / 0.6),
+      0 12px 24px -8px rgb(203 213 225 / 0.6);
     transform: scale(1.02) translateY(-4px);
   }
 
@@ -74,22 +96,22 @@
     overflow-wrap: anywhere;
   }
 
-  /* ================================
-    NAVBAR (polished)
-    Works with your existing HTML:
-    .nav-group > .nav-trigger + .nav-dropdown
-  ================================ */
+  /* =========================================================
+     NAVBAR (polished)
+     Works with your existing HTML structure:
+     .nav-group > .nav-trigger + .nav-dropdown
+  ========================================================= */
 
   /* Optional: tune overall header spacing if you want */
   header .nav-shell {
     height: 72px;
   }
 
-  /* Desktop nav row spacing */
+  /* Desktop nav row spacing (single definitive rule; no duplicates) */
   header nav[aria-label="Navigation"] > div {
     display: flex;
     align-items: center;
-    gap: 0.35rem; /* slightly tighter + cleaner */
+    gap: 0.25rem; /* final value (you had 0.35 then 0.25) */
   }
 
   /* Group wrapper */
@@ -104,10 +126,11 @@
     align-items: center;
     gap: 0.45rem;
 
-    padding: 0.55rem 0.85rem;
+    /* final sizing (smaller) */
+    padding: 0.48rem 0.70rem;
     border-radius: 9999px;
 
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 800;
     letter-spacing: 0.01em;
     line-height: 1;
@@ -170,6 +193,8 @@
 
     opacity: 0;
     visibility: hidden;
+
+    /* FIX: keep ONE transform; don't override it later */
     transform: translateY(-8px) scale(0.98);
 
     transition:
@@ -178,9 +203,6 @@
       visibility 0s linear 160ms;
 
     z-index: 1000;
-
-    margin-top: 0;
-    transform: translateY(-2px);
   }
 
   /* Little caret/pointer */
@@ -232,42 +254,45 @@
     color: #991b1b;
   }
 
-  /* Optional: make dropdown feel “roomier” on big screens */
   @media (min-width: 1024px) {
-    .nav-dropdown {
-      min-width: 300px;
-    }
+    .nav-dropdown { min-width: 300px; }
   }
 
-  /* Keyframes must be top-level (not inside a selector) */
+  /* Active page styling */
+  .nav-active,
+  .nav-group.nav-active > .nav-trigger,
+  a.nav-active {
+    background: rgba(185, 28, 28, 0.10);
+    color: #991b1b;
+    box-shadow: 0 0 0 1px rgba(185, 28, 28, 0.15) inset;
+  }
+
+  .nav-group.nav-active > .nav-trigger:hover,
+  header nav[aria-label="Navigation"] a.nav-active:hover {
+    background: rgba(185, 28, 28, 0.14);
+  }
+
+  /* Language toggle */
+  #langToggle { cursor: pointer; }
+
+  /* ---------- Keyframes (top-level) ---------- */
   @keyframes card-float {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-8px) rotate(1deg); }
   }
+
   @keyframes card-glow {
     0%, 100% { box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
     50% { box-shadow: 0 25px 60px rgba(181,28,28,0.15); }
   }
 
-  /* FAQ accordion (cards with spacing) */
-  .faq-accordion summary::-webkit-details-marker {
-    display: none;
-  }
+  /* ---------- FAQ accordion ---------- */
+  .faq-accordion summary::-webkit-details-marker { display: none; }
+  .faq-accordion summary { cursor: pointer; }
 
-  .faq-accordion summary {
-    cursor: pointer;
-  }
+  .faq-accordion details[open] .faq-icon { transform: rotate(180deg); }
+  .faq-accordion .faq-icon { transition: transform 200ms ease; }
 
-  /* Make the chevron rotate when opened */
-  .faq-accordion details[open] .faq-icon {
-    transform: rotate(180deg);
-  }
-
-  .faq-accordion .faq-icon {
-    transition: transform 200ms ease;
-  }
-
-  /* Slight hover polish on the FAQ card itself */
   .faq-accordion .faq-item {
     transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
   }
@@ -277,52 +302,26 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.10);
   }
 
-  /* Strong keyboard focus */
   .faq-accordion summary:focus-visible {
     outline: 2px solid rgba(185, 28, 28, 0.55);
     outline-offset: 6px;
     border-radius: 1rem;
   }
 
-  /* Keep selection consistent with your old theme */
-  ::selection {
-    background: rgba(185, 28, 28, 0.20);
+  /* ---------- Reduced motion (accessibility polish) ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    .solid-card,
+    .faq-accordion .faq-item,
+    .nav-dropdown,
+    .arrow {
+      transition: none !important;
+    }
+
+    .solid-card:hover,
+    .faq-accordion .faq-item:hover {
+      transform: none !important;
+    }
   }
-
-  /* --- Smaller top nav items (more breathing room) --- */
-  header nav[aria-label="Navigation"] > div {
-    gap: 0.25rem;
-  }
-
-  .nav-trigger,
-  header nav[aria-label="Navigation"] a:not(.dropdown-item) {
-    padding: 0.48rem 0.70rem;  /* smaller */
-    font-size: 0.9rem;         /* smaller */
-    font-weight: 800;
-    letter-spacing: 0.01em;
-  }
-
-  /* Keep dropdown item size readable */
-  .dropdown-item {
-    font-size: 0.95rem;
-  }
-
-  /* --- Active page styling --- */
-  .nav-active,
-  .nav-group.nav-active > .nav-trigger,
-  a.nav-active {
-    background: rgba(185, 28, 28, 0.10);
-    color: #991b1b;
-    box-shadow: 0 0 0 1px rgba(185, 28, 28, 0.15) inset;
-  }
-
-
-  /* Make active state visible even without hover */
-  .nav-group.nav-active > .nav-trigger:hover,
-  header nav[aria-label="Navigation"] a.nav-active:hover {
-    background: rgba(185, 28, 28, 0.14);
-  }
-
-  #langToggle { cursor: pointer; }
-
 }
