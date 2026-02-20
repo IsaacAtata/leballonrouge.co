@@ -2,40 +2,59 @@
 
 /* =========================================================
    Base
-   - Global typography + background
-   - Sensible defaults for readability (still works with Tailwind classes)
+   - Typography + background
+   - Sensible defaults for readability
 ========================================================= */
 @layer base {
   html {
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg,
-      #fef7ee 0%,
-      #fdf2e8 30%,
-      #fcefe3 60%,
-      #f9e8d9 100%
-    );
     min-height: 100vh;
     scroll-behavior: smooth;
+
+    /* Light rendering polish (safe) */
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     min-height: 100vh;
-    color: #0f172a;   /* slate-900 default text */
-    line-height: 1.6; /* improves general readability */
+
+    /* Default text */
+    color: #0f172a;   /* slate-900 */
+    line-height: 1.6;
+
+    /* Background (apply to body so it always shows) */
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(153,27,27,0.07) 1px, transparent 0),
+      radial-gradient(circle at 1px 1px, rgba(15,23,42,0.04) 1px, transparent 0),
+      linear-gradient(135deg, #fef7ee 0%, #fdf2e8 30%, #fcefe3 60%, #f9e8d9 100%);
+    background-size: 34px 34px, 44px 44px, cover;
+    background-position: 0 0, 10px 12px, center;
+    background-repeat: repeat, repeat, no-repeat;
+    background-attachment: fixed; /* optional: comment out if you dislike it */
   }
 
-  /* Optional: default paragraph tone (Tailwind text-* still overrides) */
-  p { color: rgb(51 65 85); } /* slate-700-ish */
+  /* Paragraph default: readable on light background (NOT white) */
+  p { color: rgb(255, 255, 255); } /* slate-700 */
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 700;
+    color: #0f172a;
   }
 
   .font-heading { font-family: 'Poppins', sans-serif; }
   .font-body { font-family: 'Quicksand', sans-serif; }
 
   ::selection { background: rgba(185, 28, 28, 0.20); }
+
+  /* Focus style fallback (helps if some elements don't have Tailwind focus classes) */
+  :where(a, button, summary, input, select, textarea):focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
+  }
 }
 
 /* =========================================================
@@ -60,14 +79,15 @@
       0 8px 10px -6px rgb(226 232 240 / 0.5);
     border-radius: 1.5rem;
     padding: 2rem;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .solid-card:hover {
     box-shadow:
       0 25px 50px -12px rgb(203 213 225 / 0.6),
       0 12px 24px -8px rgb(203 213 225 / 0.6);
-    transform: scale(1.02) translateY(-4px);
+    transform: translateY(-4px) scale(1.02);
   }
 
   .tag-badge {
@@ -98,35 +118,24 @@
 
   /* =========================================================
      NAVBAR (polished)
-     Works with your existing HTML structure:
+     Structure:
      .nav-group > .nav-trigger + .nav-dropdown
   ========================================================= */
 
-  /* Optional: tune overall header spacing if you want */
-  header .nav-shell {
-    height: 72px;
-  }
-
-  /* Desktop nav row spacing (single definitive rule; no duplicates) */
   header nav[aria-label="Navigation"] > div {
     display: flex;
     align-items: center;
-    gap: 0.25rem; /* final value (you had 0.35 then 0.25) */
+    gap: 0.25rem;
   }
 
-  /* Group wrapper */
-  .nav-group {
-    position: relative;
-  }
+  .nav-group { position: relative; }
 
-  /* Top-level items (buttons + links) */
   .nav-trigger,
   header nav[aria-label="Navigation"] a:not(.dropdown-item) {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
 
-    /* final sizing (smaller) */
     padding: 0.48rem 0.70rem;
     border-radius: 9999px;
 
@@ -135,31 +144,18 @@
     letter-spacing: 0.01em;
     line-height: 1;
 
-    color: #0f172a; /* slate-900 */
+    color: #0f172a;
     background: transparent;
 
-    transition:
-      background-color 150ms ease,
-      color 150ms ease,
-      box-shadow 150ms ease;
+    transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
   }
 
-  /* Hover */
   .nav-trigger:hover,
   header nav[aria-label="Navigation"] a:not(.dropdown-item):hover {
     background: rgba(185, 28, 28, 0.07);
-    color: #991b1b; /* red-800 */
+    color: #991b1b;
   }
 
-  /* Keyboard focus (important) */
-  .nav-trigger:focus-visible,
-  header nav[aria-label="Navigation"] a:not(.dropdown-item):focus-visible,
-  .dropdown-item:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
-  }
-
-  /* Arrow */
   .arrow {
     font-size: 0.75rem;
     line-height: 1;
@@ -173,7 +169,6 @@
     opacity: 1;
   }
 
-  /* Dropdown */
   .nav-dropdown {
     position: absolute;
     top: calc(100% + 12px);
@@ -194,18 +189,13 @@
     opacity: 0;
     visibility: hidden;
 
-    /* FIX: keep ONE transform; don't override it later */
+    /* FIXED: single transform (no overwrite) */
     transform: translateY(-8px) scale(0.98);
 
-    transition:
-      opacity 160ms ease,
-      transform 160ms ease,
-      visibility 0s linear 160ms;
-
+    transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
     z-index: 1000;
   }
 
-  /* Little caret/pointer */
   .nav-dropdown::before {
     content: "";
     position: absolute;
@@ -221,7 +211,6 @@
     transform: rotate(45deg);
   }
 
-  /* Show dropdown */
   .nav-group:hover .nav-dropdown,
   .nav-group:focus-within .nav-dropdown {
     opacity: 1;
@@ -230,7 +219,6 @@
     transition-delay: 0s;
   }
 
-  /* Dropdown items */
   .dropdown-item {
     display: flex;
     align-items: center;
@@ -258,7 +246,6 @@
     .nav-dropdown { min-width: 300px; }
   }
 
-  /* Active page styling */
   .nav-active,
   .nav-group.nav-active > .nav-trigger,
   a.nav-active {
@@ -267,24 +254,7 @@
     box-shadow: 0 0 0 1px rgba(185, 28, 28, 0.15) inset;
   }
 
-  .nav-group.nav-active > .nav-trigger:hover,
-  header nav[aria-label="Navigation"] a.nav-active:hover {
-    background: rgba(185, 28, 28, 0.14);
-  }
-
-  /* Language toggle */
   #langToggle { cursor: pointer; }
-
-  /* ---------- Keyframes (top-level) ---------- */
-  @keyframes card-float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(1deg); }
-  }
-
-  @keyframes card-glow {
-    0%, 100% { box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-    50% { box-shadow: 0 25px 60px rgba(181,28,28,0.15); }
-  }
 
   /* ---------- FAQ accordion ---------- */
   .faq-accordion summary::-webkit-details-marker { display: none; }
