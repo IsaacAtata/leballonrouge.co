@@ -1,197 +1,203 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"; // adjust if needed
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Espace parents — Le Ballon Rouge">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Espace parents</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        Guide, frais, menu et ressources utiles pour accompagner votre enfant au Ballon Rouge.
+<BaseLayout
+  lang="fr"
+  title="Espace parents — Le Ballon Rouge"
+  description="Guide des parents, frais, subventions, menu et ressources utiles pour les familles du Ballon Rouge."
+>
+  <!-- Page intro -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Espace parents</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Guide, frais, menu et ressources utiles pour accompagner votre enfant au Ballon Rouge.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/inscription/"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Comment s'inscrire
+      </a>
+      <a
+        href="#guide"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Guide des parents
+      </a>
+      <a
+        href="#frais"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Frais & subventions
+      </a>
+      <a
+        href="#menu"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Menu
+      </a>
+      <a
+        href="#ressources"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Ressources
+      </a>
+    </div>
+  </section>
+
+  <!-- Guide des parents -->
+  <section id="guide" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Guide des parents</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Le centre de garde fournit aux familles un guide contenant de l'information utile (inscription et retrait, arrivées/départs, personnes autorisées,
+        biens personnels, jours fériés, vacances, maladies, administration des médicaments, supervision, etc.).
       </p>
 
       <div class="mt-6 flex flex-wrap gap-3">
         <a
-          href="/inscription/"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          href="/docs/guide-des-parents.pdf"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
         >
-          Comment s’inscrire
+          Télécharger le guide (PDF)
         </a>
         <a
-          href="#guide"
+          href="/contact/"
           class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
         >
-          Guide des parents
-        </a>
-        <a
-          href="#frais"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Frais & subventions
-        </a>
-        <a
-          href="#menu"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Menu
-        </a>
-        <a
-          href="#ressources"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Ressources
+          Une question? Contactez-nous
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="guide" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Guide des parents</h2>
-        <p class="mt-3 leading-7 text-slate-600">
-          Le centre de garde fournit aux familles un guide contenant de l’information utile (inscription et retrait, arrivées/départs, personnes autorisées,
-          biens personnels, jours fériés, vacances, maladies, administration des médicaments, supervision, etc.). 
+  <!-- Frais et subventions -->
+  <section id="frais" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Frais et subventions</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Le Ballon Rouge est inscrit au système pancanadien d'apprentissage et de garde des jeunes enfants; notez que ceci ne s'applique pas aux frais divers
+        (excursions, frais de retard, insuffisance de fonds, etc.).
+      </p>
+
+      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+        <h3 class="text-lg font-black">Frais de base (2025)</h3>
+        <p class="mt-2 leading-7 text-slate-600">
+          Contactez-nous ou consultez le guide des parents pour obtenir le tableau complet des frais pour Hamilton et Brantford.
         </p>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a
-            href="/docs/guide-des-parents.pdf"
-            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
-          >
-            Télécharger le guide (PDF)
-          </a>
-          <a
-            href="/contact/"
-            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-          >
-            Une question? Contactez-nous
-          </a>
-        </div>
-
-        <p class="mt-4 text-sm font-semibold text-slate-500">
-          Astuce: si le PDF n’est pas encore prêt, laisse le bouton (placeholder) et on ajoutera le fichier plus tard.
-        </p>
+        <a
+          href="/contact/"
+          class="mt-4 inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
+        >
+          Nous contacter pour les tarifs
+        </a>
       </div>
-    </section>
 
-    <section id="frais" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Frais et subventions</h2>
-
-        <p class="mt-3 leading-7 text-slate-600">
-          Le Ballon Rouge est inscrit au système pancanadien d’apprentissage et de garde des jeunes enfants; notez que ceci ne s’applique pas aux frais divers
-          (excursions, frais de retard, insuffisance de fonds, etc.). 
-        </p>
-
-        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-          <h3 class="text-lg font-black">Frais de base (2025)</h3>
+      <div class="mt-6 grid gap-5 md:grid-cols-2">
+        <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Frais de retard</h3>
           <p class="mt-2 leading-7 text-slate-600">
-            Colle ici le tableau “Frais de base 2025” (Hamilton + Brantford) du document Word.
-          </p>
-          <p class="mt-2 text-sm font-semibold text-slate-500">
-            (Quand tu me colles le tableau brut, je te le reformate en tableau Markdown propre.)
-          </p>
-        </div>
-
-        <div class="mt-6 grid gap-5 md:grid-cols-2">
-          <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
-            <h3 class="text-lg font-black">Frais de retard</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              Une pénalité de retard s’applique. Des frais de 10,00 $ par 15 minutes, par famille, sont payables directement au personnel (argent comptant)
-              lorsque les enfants quittent en retard, selon l’horloge de la garderie. 
-            </p>
-            <ul class="mt-4 space-y-2 font-bold text-slate-700">
-              <li>0 à 15 minutes: 10,00 $ / famille.</li>
-              <li>16 à 30 minutes: 20,00 $ / famille.</li>
-              <li>31 à 45 minutes: 30,00 $ / famille.</li>
-            </ul>
-            <p class="mt-3 text-sm font-semibold text-slate-500">
-              Aucun reçu d’impôt n’est remis pour les frais de retard (pénalité, non frais de garde régulier). 
-            </p>
-          </article>
-
-          <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
-            <h3 class="text-lg font-black">Paiement retourné</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              Dans le cas d’un paiement (chèque, TEF ou DPA) retourné ou non abouti, des frais de 20,00 $ s’ajoutent pour couvrir les frais bancaires et administratifs. 
-            </p>
-
-            <h3 class="mt-5 text-lg font-black">Notes importantes</h3>
-            <ul class="mt-3 space-y-2 font-bold text-slate-700">
-              <li>Les tarifs varient selon le programme et la fréquence.</li>
-              <li>Pas d’ajustement pour absence, maladie ou vacances.</li>
-              <li>Temps partiel: journées stables/non échangeables (ratios exigés).</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-          <h3 class="text-lg font-black">Subventions (Ontario)</h3>
-          <p class="mt-2 leading-7 text-slate-600">
-            Les résidents de l’Ontario peuvent être admissibles à une subvention totale ou partielle selon leur situation financière; l’admissibilité est gérée par la ville. 
+            Une pénalité de retard s'applique. Des frais de 10,00 $ par 15 minutes, par famille, sont payables directement au personnel (argent comptant)
+            lorsque les enfants quittent en retard, selon l'horloge de la garderie.
           </p>
           <ul class="mt-4 space-y-2 font-bold text-slate-700">
-            <li>Brantford (Child Care Services): 519-759-7009, 220 Colborne Street, Brantford. </li>
-            <li>Hamilton (Early Years & Child Care Services): 905-546-4870.</li>
+            <li>0 à 15 minutes: 10,00 $ / famille</li>
+            <li>16 à 30 minutes: 20,00 $ / famille</li>
+            <li>31 à 45 minutes: 30,00 $ / famille</li>
           </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="menu" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Menu</h2>
-        <p class="mt-3 leading-7 text-slate-600">
-          Ajoutez ici le menu (PDF) ou le menu du mois lorsqu’il est disponible.
-        </p>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a
-            href="/docs/menu.pdf"
-            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
-          >
-            Télécharger le menu (PDF)
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="ressources" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Ressources pour les parents</h2>
-        <p class="mt-3 leading-7 text-slate-600">
-          Nous collaborons avec des partenaires et des ressources communautaires afin de soutenir les enfants, les familles et le personnel, au besoin.
-        </p>
-
-        <div class="mt-6 grid gap-4 md:grid-cols-2">
-          <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
-            <h3 class="text-lg font-black">Ressources communautaires</h3>
-            <ul class="mt-3 space-y-2 font-bold text-slate-700">
-              <li>EarlyON Programs.</li>
-              <li>Santé publique (Hamilton / Brantford).</li>
-              <li>Soutien au développement de l’enfant (ex.: Lansdowne Children’s Centre, Community Living).</li>
-            </ul>
-          </article>
-
-          <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
-            <h3 class="text-lg font-black">Communication avec les familles</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              Le personnel échange avec les familles à l’arrivée et au départ, et partage aussi des informations (programmation, journées spéciales,
-              événements et ressources) via des outils de communication et des affichages pour chaque groupe.
-            </p>
-            <p class="mt-3 leading-7 text-slate-600">
-              La participation des parents est toujours bienvenue, y compris lors d’activités spéciales ou via le conseil d’administration.
-            </p>
-          </article>
-        </div>
-
-        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-          <h3 class="text-lg font-black">Accessibilité & inclusion</h3>
-          <p class="mt-2 leading-7 text-slate-600">
-            Les enfants ayant des besoins particuliers peuvent être intégrés au programme avec une attitude positive; nous favorisons le dépistage précoce,
-            la prévention et la collaboration avec les ressources disponibles.
+          <p class="mt-3 text-sm font-semibold text-slate-500">
+            Aucun reçu d'impôt n'est remis pour les frais de retard (pénalité, non frais de garde régulier).
           </p>
-        </div>
+        </article>
+
+        <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Paiement retourné</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            Dans le cas d'un paiement (chèque, TEF ou DPA) retourné ou non abouti, des frais de 20,00 $ s'ajoutent pour couvrir les frais bancaires et administratifs.
+          </p>
+
+          <h3 class="mt-5 text-lg font-black">Notes importantes</h3>
+          <ul class="mt-3 space-y-2 font-bold text-slate-700">
+            <li>Les tarifs varient selon le programme et la fréquence.</li>
+            <li>Pas d'ajustement pour absence, maladie ou vacances.</li>
+            <li>Temps partiel: journées stables/non échangeables (ratios exigés).</li>
+          </ul>
+        </article>
       </div>
-    </section>
-  </main>
+
+      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+        <h3 class="text-lg font-black">Subventions (Ontario)</h3>
+        <p class="mt-2 leading-7 text-slate-600">
+          Les résidents de l'Ontario peuvent être admissibles à une subvention totale ou partielle selon leur situation financière; l'admissibilité est gérée par la ville.
+        </p>
+        <ul class="mt-4 space-y-2 font-bold text-slate-700">
+          <li>Brantford — Child Care Services: 519-759-7009, 220 Colborne Street, Brantford</li>
+          <li>Hamilton — Early Years & Child Care Services: 905-546-4870</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Menu</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Consultez ou téléchargez le menu du mois ci-dessous.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="/docs/menu.pdf"
+          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
+        >
+          Télécharger le menu (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ressources -->
+  <section id="ressources" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Ressources pour les parents</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Nous collaborons avec des partenaires et des ressources communautaires afin de soutenir les enfants, les familles et le personnel, au besoin.
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Ressources communautaires</h3>
+          <ul class="mt-3 space-y-2 font-bold text-slate-700">
+            <li>EarlyON Programs</li>
+            <li>Santé publique (Hamilton / Brantford)</li>
+            <li>Soutien au développement de l'enfant (ex.: Lansdowne Children's Centre, Community Living)</li>
+          </ul>
+        </article>
+
+        <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Communication avec les familles</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            Le personnel échange avec les familles à l'arrivée et au départ, et partage aussi des informations (programmation, journées spéciales,
+            événements et ressources) via des outils de communication et des affichages pour chaque groupe.
+          </p>
+          <p class="mt-3 leading-7 text-slate-600">
+            La participation des parents est toujours bienvenue, y compris lors d'activités spéciales ou via le conseil d'administration.
+          </p>
+        </article>
+      </div>
+
+      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+        <h3 class="text-lg font-black">Accessibilité & inclusion</h3>
+        <p class="mt-2 leading-7 text-slate-600">
+          Les enfants ayant des besoins particuliers peuvent être intégrés au programme avec une attitude positive; nous favorisons le dépistage précoce,
+          la prévention et la collaboration avec les ressources disponibles.
+        </p>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>

@@ -1,293 +1,274 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"; // adjust if needed
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Programmes — Le Ballon Rouge">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Programmes</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        Des programmes agréés, en français, axés sur l’exploration et le jeu.
+<BaseLayout
+  lang="fr"
+  title="Programmes — Le Ballon Rouge"
+  description="Programmes agréés en français pour bambins, préscolaires et parascolaire à Hamilton et Brantford."
+>
+  <!-- Page intro -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Programmes</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Des programmes agréés, en français, axés sur l'exploration et le jeu.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/inscription/"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Comment s'inscrire
+      </a>
+      <a
+        href="#enonce"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Énoncé de programme
+      </a>
+      <a
+        href="#qualite"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Qualité
+      </a>
+      <a
+        href="#evenements"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Événements
+      </a>
+    </div>
+  </section>
+
+  <!-- Programme cards -->
+  <section class="mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Nos programmes</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Tous les programmes de la Garderie Française de Hamilton Inc. sont agréés. Nous détenons un permis reconnu par le Ministère de l'Éducation et
+        nos programmes font l'objet d'inspections (Ministère et unité sanitaire) pour le renouvellement de nos permis d'exploitation.
+      </p>
+      <p class="mt-3 leading-7 text-slate-600">
+        Nous embauchons du personnel formé en éducation de la petite enfance selon les ratios exigés, et nous respectons les ratios enfants/éducatrices
+        prescrits par la Loi dans tous nos programmes.
       </p>
 
-      <div class="mt-6 flex flex-wrap gap-3">
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h3 class="text-lg font-black">Bambin</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            <span class="font-extrabold">Grandir au Ballon Rouge</span> — Prêt ou pas, me voilà! Tous mes sens sont en éveil pour explorer, ressentir,
+            goûter et comprendre le monde qui m'entoure. Au Ballon Rouge, je suis accueilli avec bienveillance et encouragé à découvrir le monde à mon rythme.
+            Je m'exprime de plus en plus, je forme mes premières phrases et j'affirme déjà ma personnalité. Chaque jour, j'ai l'occasion d'apprendre de nouveaux
+            gestes et d'explorer de nouvelles capacités.
+          </p>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h3 class="text-lg font-black">Préscolaire</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            <span class="font-extrabold">Prêt explorer!</span> Je suis encouragé à explorer le monde qui m'entoure. Je développe mes premières compétences en
+            m'exprimant, en manipulant des objets, en imitant des gestes et en observant le monde avec émerveillement. Au Ballon Rouge, je développe des habiletés
+            qui me rendent plus autonome: je m'habille seul; je manipule des outils et matériaux; je m'organise dans des tâches simples.
+          </p>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h3 class="text-lg font-black">Parascolaire (avant / après école)</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            <span class="font-extrabold">Explorer de nouveaux horizons</span> — Je suis curieux de découvrir de nouvelles choses avant et après l'école,
+            d'explorer des activités et de me faire des amis! Dans le programme avant/après école, j'ai l'opportunité de m'engager dans des activités enrichissantes
+            qui élargissent mes horizons.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Énoncé de programme -->
+  <section id="enonce" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Énoncé de programme</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Au Ballon Rouge, toutes les employées sont tenues de prendre connaissance de l'énoncé de programme dès leur embauche, puis de le revoir chaque année.
+        Il s'agit d'un outil de référence qui assure la cohérence des actions au sein du centre, et informe les parents du projet éducatif choisi.
+      </p>
+      <p class="mt-3 leading-7 text-slate-600">
+        L'énoncé de programme encadre notamment les approches appliquées par le personnel (et les pratiques interdites), et précise les mesures prises en cas
+        de non-respect.
+      </p>
+
+      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
+        <p class="font-extrabold">Télécharger l'énoncé de programme:</p>
+        <a
+          href="/docs/enonce-de-programme.pdf"
+          class="mt-4 inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
+        >
+          Télécharger l'énoncé (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualité -->
+  <section id="qualite" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">Qualité</h2>
+      <p class="mt-3 leading-7 text-slate-600">
+        Le centre de garde participe à des programmes/outils de mesure de qualité afin de réfléchir et enrichir nos pratiques de façon continue:
+        <span class="font-extrabold">Fostering Brant's Growth</span> (Brantford) et <span class="font-extrabold">System Priority</span> (Hamilton).
+      </p>
+      <p class="mt-3 leading-7 text-slate-600">
+        Chaque membre du personnel maintient un plan d'apprentissage professionnel continu fondé sur l'autoréflexion; le centre requiert un minimum de
+        quatre événements de développement professionnel par année (janvier à décembre).
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Milieu sain et sécuritaire</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            Nous suivons les normes en santé et sécurité (organismes municipaux, provinciaux et fédéraux), et effectuons des suivis à l'aide de listes de contrôle
+            et d'inspections.
+          </p>
+        </article>
+
+        <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
+          <h3 class="text-lg font-black">Soutien et inclusion</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            Des conseillères en ressources (ex.: Lansdowne Children's Centre, Community Living) peuvent visiter nos centres afin d'offrir du soutien au personnel,
+            aux enfants et aux familles.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Événements -->
+  <section id="evenements" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Événements</h2>
+          <p class="mt-2 max-w-prose leading-7 text-slate-600">
+            Au Ballon Rouge, nous aimons créer des occasions où enfants, familles et membres de l'équipe peuvent se retrouver, célébrer et s'amuser ensemble.
+          </p>
+        </div>
         <a
           href="/inscription/"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          class="mt-3 inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800 md:mt-0"
         >
-          Comment s’inscrire
-        </a>
-        <a
-          href="#enonce"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Énoncé de programme
-        </a>
-        <a
-          href="#qualite"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Qualité
-        </a>
-        <a
-          href="#evenements"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Événements
+          Comment s'inscrire
         </a>
       </div>
-    </section>
 
-    <!-- Programmes (cards) -->
-    <section class="mx-auto max-w-6xl px-4 pb-12">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Nos programmes</h2>
-        <p class="mt-3 leading-7 text-slate-600">
-          Tous les programmes de la Garderie Française de Hamilton Inc. sont agréés. Nous détenons un permis reconnu par le Ministère de l’Éducation et
-          nos programmes font l’objet d’inspections (Ministère et unité sanitaire) pour le renouvellement de nos permis d’exploitation.
-        </p>
-        <p class="mt-3 leading-7 text-slate-600">
-          Nous embauchons du personnel formé en éducation de la petite enfance selon les ratios exigés, et nous respectons les ratios enfants/éducatrices
-          prescrits par la Loi dans tous nos programmes.
-        </p>
+      <div class="mt-8 grid gap-5">
 
-        <div class="mt-8 grid gap-5 md:grid-cols-3">
-          <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
-            <h3 class="text-lg font-black">Bambin</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              <span class="font-extrabold">Grandir au Ballon Rouge</span> — Prêt ou pas, me voilà! Tous mes sens sont en éveil pour explorer, ressentir,
-              goûter et comprendre le monde qui m’entoure. Au Ballon Rouge, je suis accueilli avec bienveillance et encouragé à découvrir le monde à mon rythme.
-              Je m’exprime de plus en plus, je forme mes premières phrases et j’affirme déjà ma personnalité. Chaque jour, j’ai l’occasion d’apprendre de nouveaux
-              gestes et d’explorer de nouvelles capacités. Même si le désordre fait parfois partie du processus, il est toujours accompagné de moments de joie,
-              de création et de croissance. J’ai juste besoin d’un peu de guidance… mais je suis presque sûr que la bonne direction mène au terrain de jeux!
-            </p>
-          </article>
-
-          <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
-            <h3 class="text-lg font-black">Préscolaire</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              <span class="font-extrabold">Prêt explorer!</span> Je suis encouragé à explorer le monde qui m’entoure. Je développe mes premières compétences en
-              m’exprimant, en manipulant des objets, en imitant des gestes et en observant le monde avec émerveillement. Au Ballon Rouge, je développe des habiletés
-              qui me rendent plus autonome: je m’habille seul; je manipule des outils et matériaux (comme des ciseaux); je m’organise dans des tâches simples,
-              ce qui me permet d’évaluer ma confiance et de relever de nouveaux défis. Chaque jour, je me sens prêt à apprendre, me lancer, et je suis guidé par
-              des adultes bienveillants.
-            </p>
-          </article>
-
-          <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
-            <h3 class="text-lg font-black">Parascolaire (avant / après école)</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              <span class="font-extrabold">Explorer de nouveaux horizons</span> — Je suis curieux de découvrir de nouvelles choses avant et après l’école,
-              d’explorer des activités et de me faire des amis! Dans le programme avant/après école, j’ai l’opportunité de m’engager dans des activités enrichissantes
-              qui élargissent mes horizons. Qu’il s’agisse de jeux créatifs, de sports, de musique ou d’art, chaque moment est une chance d’explorer des talents et
-              de renforcer ma confiance. Je suis entouré par des adultes bienveillants qui m’aident à grandir, m’épanouir et découvrir ce qui me passionne.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Énoncé de programme -->
-    <section id="enonce" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Énoncé de programme</h2>
-        <p class="mt-3 leading-7 text-slate-600">
-          Au Ballon Rouge, toutes les employées sont tenues de prendre connaissance de l’énoncé de programme dès leur embauche, puis de le revoir chaque année.
-          Il s’agit d’un outil de référence qui assure la cohérence des actions au sein du centre, et informe les parents du projet éducatif choisi.
-        </p>
-        <p class="mt-3 leading-7 text-slate-600">
-          L’énoncé de programme encadre notamment les approches appliquées par le personnel (et les pratiques interdites), et précise les mesures prises en cas
-          de non-respect.
-        </p>
-
-        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-          <p class="font-extrabold">Option (recommandée):</p>
-          <p class="mt-2 leading-7 text-slate-600">
-            Ajoute un bouton de téléchargement vers une version PDF de l’énoncé (qu’on pourra héberger plus tard), ou colle ici une version web abrégée.
-          </p>
-          <a
-            href="/docs/enonce-de-programme.pdf"
-            class="mt-4 inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
-          >
-            Télécharger l’énoncé (PDF)
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Qualité -->
-    <section id="qualite" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Qualité</h2>
-
-        <p class="mt-3 leading-7 text-slate-600">
-          Le centre de garde participe à des programmes/outils de mesure de qualité afin de réfléchir et enrichir nos pratiques de façon continue:
-          <span class="font-extrabold">Fostering Brant’s Growth</span> (Brantford) et <span class="font-extrabold">System Priority</span> (Hamilton).
-        </p>
-
-        <p class="mt-3 leading-7 text-slate-600">
-          Chaque membre du personnel maintient un plan d’apprentissage professionnel continu fondé sur l’autoréflexion; le centre requiert un minimum de
-          quatre événements de développement professionnel par année (janvier à décembre). Le personnel se familiarise aussi avec le document
-          « Comment apprend-on? Pédagogie de l’Ontario pour la petite enfance ».
-        </p>
-
-        <div class="mt-6 grid gap-4 md:grid-cols-2">
-          <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
-            <h3 class="text-lg font-black">Milieu sain et sécuritaire</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              Nous suivons les normes en santé et sécurité (organismes municipaux, provinciaux et fédéraux), et effectuons des suivis à l’aide de listes de contrôle
-              et d’inspections.
-            </p>
-          </article>
-
-          <article class="rounded-2xl border border-black/10 bg-white/70 p-5">
-            <h3 class="text-lg font-black">Soutien et inclusion</h3>
-            <p class="mt-2 leading-7 text-slate-600">
-              Des conseillères en ressources (ex.: Lansdowne Children’s Centre, Community Living) peuvent visiter nos centres afin d’offrir du soutien au personnel,
-              aux enfants et aux familles; les enfants ayant des besoins spéciaux peuvent être intégrés au programme avec une attitude positive.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Événements (timeline cards) -->
-    <section id="evenements" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-        <div>
-            <h2 class="text-xl font-black tracking-tight md:text-2xl">Événements</h2>
-            <p class="mt-2 max-w-prose leading-7 text-slate-600">
-            Au Ballon Rouge, nous aimons créer des occasions où enfants, familles et membres de l’équipe peuvent se retrouver, célébrer et s’amuser ensemble.
-            Tout au long de l’année, nous organisons une variété d’événements (fêtes saisonnières, journées thématiques, spectacles, ateliers créatifs, etc.).
-            </p>
-        </div>
-
-        <a
-            href="/inscription/"
-            class="mt-3 inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800 md:mt-0"
-        >
-            Comment s’inscrire
-        </a>
-        </div>
-
-        <!-- timeline -->
-        <div class="mt-8 grid gap-5">
         <!-- Event 1 -->
         <article class="group relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-red-50/60 p-6 shadow-lg shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
-            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-red-700/10 blur-2xl"></div>
-
-            <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+          <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-red-700/10 blur-2xl"></div>
+          <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
             <div class="flex items-center gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-700/20 bg-white shadow-sm">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-700/20 bg-white shadow-sm">
                 <span aria-hidden="true" class="text-xl">🎈</span>
-                </div>
-                <div>
-                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Début d’année</p>
+              </div>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Début d'année</p>
                 <h3 class="text-lg font-black text-slate-900">Bienvenue au Ballon Rouge</h3>
-                </div>
+              </div>
             </div>
-
             <div class="flex-1">
-                <p class="leading-7 text-slate-600">
-                Une activité d’accueil pour faciliter la transition, créer un premier lien avec l’équipe et découvrir le quotidien du centre dans une ambiance
+              <p class="leading-7 text-slate-600">
+                Une activité d'accueil pour faciliter la transition, créer un premier lien avec l'équipe et découvrir le quotidien du centre dans une ambiance
                 rassurante et francophone.
-                </p>
-
-                <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Pour: familles & enfants</span>
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Objectif: créer le lien</span>
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Style: convivial</span>
-                </div>
-
-                <ul class="mt-4 space-y-2 font-semibold text-slate-700">
-                <li>Rencontre avec l’équipe et visite des espaces.</li>
+              </div>
+              <ul class="mt-4 space-y-2 font-semibold text-slate-700">
+                <li>Rencontre avec l'équipe et visite des espaces.</li>
                 <li>Mini-activités de jeux/coins découverte pour les enfants.</li>
                 <li>Info pratique: routines, communications, partenariats.</li>
-                </ul>
+              </ul>
             </div>
-            </div>
+          </div>
         </article>
 
         <!-- Event 2 -->
         <article class="group relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-orange-50/70 p-6 shadow-lg shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
-            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-orange-500/10 blur-2xl"></div>
-
-            <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+          <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-orange-500/10 blur-2xl"></div>
+          <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
             <div class="flex items-center gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-orange-500/20 bg-white shadow-sm">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-orange-500/20 bg-white shadow-sm">
                 <span aria-hidden="true" class="text-xl">👨‍👩‍👧‍👦</span>
-                </div>
-                <div>
+              </div>
+              <div>
                 <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Saisonnier</p>
                 <h3 class="text-lg font-black text-slate-900">Célébration de la Famille</h3>
-                </div>
+              </div>
             </div>
-
             <div class="flex-1">
-                <p class="leading-7 text-slate-600">
-                Un moment pour souligner l’importance du partenariat avec les parents, renforcer le sentiment d’appartenance et créer des souvenirs en communauté.
-                </p>
-
-                <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
+              <p class="leading-7 text-slate-600">
+                Un moment pour souligner l'importance du partenariat avec les parents, renforcer le sentiment d'appartenance et créer des souvenirs en communauté.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Pour: familles élargies</span>
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Activités: créatives & ludiques</span>
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Ambiance: festive</span>
-                </div>
-
-                <ul class="mt-4 space-y-2 font-semibold text-slate-700">
+              </div>
+              <ul class="mt-4 space-y-2 font-semibold text-slate-700">
                 <li>Ateliers créatifs (bricolage, peinture, collages).</li>
                 <li>Jeux coopératifs et activités extérieures (selon la météo).</li>
-                <li>Espace “souvenir”: photos/œuvres des enfants (selon la programmation).</li>
-                </ul>
+                <li>Espace "souvenir": photos/œuvres des enfants.</li>
+              </ul>
             </div>
-            </div>
+          </div>
         </article>
 
         <!-- Event 3 -->
         <article class="group relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-slate-50 p-6 shadow-lg shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/10">
-            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-slate-500/10 blur-2xl"></div>
-
-            <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
+          <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-slate-500/10 blur-2xl"></div>
+          <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
             <div class="flex items-center gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-400/20 bg-white shadow-sm">
+              <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-400/20 bg-white shadow-sm">
                 <span aria-hidden="true" class="text-xl">🎓</span>
-                </div>
-                <div>
-                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Fin d’année</p>
+              </div>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Fin d'année</p>
                 <h3 class="text-lg font-black text-slate-900">Graduation des Préscolaires</h3>
-                </div>
+              </div>
             </div>
-
             <div class="flex-1">
-                <p class="leading-7 text-slate-600">
+              <p class="leading-7 text-slate-600">
                 Une célébration qui souligne le parcours des enfants du préscolaire, met en valeur leurs apprentissages et marque une transition positive vers
                 la prochaine étape.
-                </p>
-
-                <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Pour: préscolaires</span>
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Focus: fierté & confiance</span>
                 <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">Souvenirs: photos & moments</span>
-                </div>
-
-                <ul class="mt-4 space-y-2 font-semibold text-slate-700">
+              </div>
+              <ul class="mt-4 space-y-2 font-semibold text-slate-700">
                 <li>Petite cérémonie et mise en valeur des enfants.</li>
                 <li>Chansons, histoires ou présentation (selon le groupe).</li>
                 <li>Moment de célébration avec les familles.</li>
-                </ul>
+              </ul>
             </div>
-            </div>
+          </div>
         </article>
-        </div>
 
-        <div class="mt-8 rounded-2xl border border-black/10 bg-white/70 p-5">
+      </div>
+
+      <div class="mt-8 rounded-2xl border border-black/10 bg-white/70 p-5">
         <p class="font-extrabold text-slate-900">Note</p>
         <p class="mt-2 leading-7 text-slate-600">
-            Les événements varient selon les centres, les groupes et la période de l’année. Les détails (date/heure) sont communiqués aux familles au fur et à mesure.
+          Les événements varient selon les centres, les groupes et la période de l'année. Les détails (date/heure) sont communiqués aux familles au fur et à mesure.
         </p>
-        </div>
+      </div>
     </div>
-    </section>
-  </main>
+  </section>
+
 </BaseLayout>

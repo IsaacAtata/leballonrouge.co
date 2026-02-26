@@ -1,9 +1,22 @@
+---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "fr" } = Astro.props;
+const t = useTranslations(lang).nav;
+const base = lang === "en" ? "/en" : "";
+---
+
 <header class="sticky top-0 z-50 border-b border-black/10 bg-white/95 backdrop-blur-xl">
   <div class="mx-auto max-w-screen-2xl px-2 py-4">
     <div class="flex items-center justify-between">
-      
+
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3">
+      <a href={`${base}/`} class="flex items-center gap-3">
         <img
           src="/assets/images/LBR_No_Name.png"
           alt="Le Ballon Rouge"
@@ -13,105 +26,152 @@
         />
         <div>
           <p class="text-base font-black text-slate-900">Le Ballon Rouge</p>
-          <p class="text-xs font-semibold text-slate-600">Garderie francophone</p>
+          <p class="text-xs font-semibold text-slate-600">{t.tagline}</p>
         </div>
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden lg:block" aria-label="Navigation">
+      <nav class="hidden lg:block" aria-label={t.ariaNav}>
         <div class="flex items-center gap-2">
+
+          <!-- About -->
           <div class="nav-group">
-            <a href="/qui-sommes-nous/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Qui sommes-nous?
+            <a href={`${base}/qui-sommes-nous/`} class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
+              {t.about}
               <span class="arrow" aria-hidden="true">▾</span>
             </a>
             <div class="nav-dropdown">
-              <a href="/qui-sommes-nous/#vmv" class="dropdown-item">Vision, Mission, Valeurs</a>
-              <a href="/qui-sommes-nous/#partenariats" class="dropdown-item">Partenariats</a>
-              <a href="/qui-sommes-nous/#temoignages" class="dropdown-item">Témoignages</a>
+              <a href={`${base}/qui-sommes-nous/#vmv`} class="dropdown-item">{t.aboutDropdown.vmv}</a>
+              <a href={`${base}/qui-sommes-nous/#partenariats`} class="dropdown-item">{t.aboutDropdown.partnerships}</a>
+              <a href={`${base}/qui-sommes-nous/#temoignages`} class="dropdown-item">{t.aboutDropdown.testimonials}</a>
             </div>
           </div>
 
+          <!-- Inscription -->
           <div class="nav-group">
-            <a href="/inscription/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Inscription <span class="arrow" aria-hidden="true">▾</span>
+            <a href={`${base}/inscription/`} class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
+              {t.inscription}
+              <span class="arrow" aria-hidden="true">▾</span>
             </a>
-
             <div class="nav-dropdown">
-              <a href="/inscription/hamilton/" class="dropdown-item">Le Ballon Rouge — Hamilton</a>
-              <a href="/inscription/brantford/" class="dropdown-item">Le Ballon Rouge — Brantford</a>
+              <a href={`${base}/inscription/hamilton/`} class="dropdown-item">Le Ballon Rouge — Hamilton</a>
+              <a href={`${base}/inscription/brantford/`} class="dropdown-item">Le Ballon Rouge — Brantford</a>
             </div>
           </div>
 
+          <!-- Parents -->
           <div class="nav-group">
             <button type="button" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Espace Parents <span class="arrow" aria-hidden="true">▾</span>
+              {t.parents}
+              <span class="arrow" aria-hidden="true">▾</span>
             </button>
-
             <div class="nav-dropdown">
-              <a href="/espace-parents/#guide" class="dropdown-item">Guide des parents</a>
-              <a href="/espace-parents/#frais" class="dropdown-item">Frais et subventions</a>
-              <a href="/espace-parents/#menu" class="dropdown-item">Menu</a>
-              <a href="/espace-parents/#ressources" class="dropdown-item">Ressources pour les parents</a>
+              <a href={`${base}/espace-parents/#guide`} class="dropdown-item">{t.parentsDropdown.guide}</a>
+              <a href={`${base}/espace-parents/#frais`} class="dropdown-item">{t.parentsDropdown.fees}</a>
+              <a href={`${base}/espace-parents/#menu`} class="dropdown-item">{t.parentsDropdown.menu}</a>
+              <a href={`${base}/espace-parents/#ressources`} class="dropdown-item">{t.parentsDropdown.resources}</a>
             </div>
           </div>
 
+          <!-- Programmes -->
           <div class="nav-group">
-            <a href="/programmes/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Programmes <span class="arrow" aria-hidden="true">▾</span>
-            </a>
-              <div class="nav-dropdown">
-                <a href="/programmes/#enonce" class="dropdown-item">Énoncé de programme</a>
-                <a href="/programmes/#qualite" class="dropdown-item">Qualité</a>
-                <a href="/programmes/#evenements" class="dropdown-item">Événements</a>
-              </div>
-          </div>
-
-          <div class="nav-group">
-            <a href="/personnel/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Personnel <span class="arrow" aria-hidden="true">▾</span>
+            <a href={`${base}/programmes/`} class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
+              {t.programmes}
+              <span class="arrow" aria-hidden="true">▾</span>
             </a>
             <div class="nav-dropdown">
-              <a href="/personnel/#reconnaissances" class="dropdown-item">Reconnaissances des employés</a>
-              <a href="/personnel/#emplois" class="dropdown-item">Offres d’emploi</a>
-              <a href="/personnel/#rejoignez" class="dropdown-item">Rejoignez notre équipe</a>
+              <a href={`${base}/programmes/#enonce`} class="dropdown-item">{t.programmesDropdown.statement}</a>
+              <a href={`${base}/programmes/#qualite`} class="dropdown-item">{t.programmesDropdown.quality}</a>
+              <a href={`${base}/programmes/#evenements`} class="dropdown-item">{t.programmesDropdown.events}</a>
             </div>
           </div>
 
-          <a href="/gouvernance/" class="px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-            Gouvernance
-          </a>
-
+          <!-- Personnel -->
           <div class="nav-group">
-          <a href="/centres/" class="px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-            Centres
-          </a>
-
+            <a href={`${base}/personnel/`} class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
+              {t.personnel}
+              <span class="arrow" aria-hidden="true">▾</span>
+            </a>
             <div class="nav-dropdown">
-              <a href="/centres/brantford/" class="dropdown-item">Le Ballon Rouge Brantford</a>
-              <a href="/centres/hamilton/" class="dropdown-item">Le Ballon Rouge Hamilton</a>
+              <a href={`${base}/personnel/#reconnaissances`} class="dropdown-item">{t.personnelDropdown.recognition}</a>
+              <a href={`${base}/personnel/#emplois`} class="dropdown-item">{t.personnelDropdown.jobs}</a>
+              <a href={`${base}/personnel/#rejoignez`} class="dropdown-item">{t.personnelDropdown.join}</a>
             </div>
           </div>
+
+          <!-- Gouvernance -->
+          <a href={`${base}/gouvernance/`} class="px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
+            {t.gouvernance}
+          </a>
+
+          <!-- Centres -->
+          <div class="nav-group">
+            <a href={`${base}/centres/`} class="px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
+              {t.centres}
+              <span class="arrow" aria-hidden="true">▾</span>
+            </a>
+            <div class="nav-dropdown">
+              <a href={`${base}/centres/brantford/`} class="dropdown-item">Le Ballon Rouge Brantford</a>
+              <a href={`${base}/centres/hamilton/`} class="dropdown-item">Le Ballon Rouge Hamilton</a>
+            </div>
+          </div>
+
         </div>
       </nav>
 
       <!-- Right side -->
       <div class="flex items-center gap-4">
-        <button id="langToggle" type="button"
-          class="relative z-[9999] rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold hover:bg-slate-50">
-          EN
-        </button>
 
-        <a href="/inscription/"
-          class="hidden md:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25">
-          Inscription <span aria-hidden="true">→</span>
+        <!-- Language switcher -->
+        <div class="nav-group">
+          <button
+            type="button"
+            class="nav-trigger lang-trigger"
+            id="langToggle"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label={t.ariaLang}
+          >
+            <span class="lang-current" data-lang={lang}>
+              <img src={`/assets/flags/${lang}.svg`} alt={t.langLabel} class="w-5 h-4 mr-1 rounded-sm" />
+              <span>{t.langLabel}</span>
+            </span>
+            <span class="arrow" aria-hidden="true">▾</span>
+          </button>
+
+          <div class="nav-dropdown lang-dropdown">
+            {/* hrefs are set dynamically by the script below */}
+            <a id="lang-opt-fr" href="/" class="dropdown-item lang-option" data-lang="fr">
+              <img src="/assets/flags/fr.svg" alt="Français" class="w-5 h-4 mr-2 rounded-sm" />
+              Français
+            </a>
+            <a id="lang-opt-en" href="/en/" class="dropdown-item lang-option" data-lang="en">
+              <img src="/assets/flags/en.svg" alt="English" class="w-5 h-4 mr-2 rounded-sm" />
+              English
+            </a>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <a
+          href={`${base}/inscription/`}
+          class="hidden md:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25"
+        >
+          {t.cta}
+          <span aria-hidden="true">→</span>
         </a>
 
-        <button id="menuBtn" type="button"
+        <!-- Mobile toggle -->
+        <button
+          id="menuBtn"
+          type="button"
           class="lg:hidden rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold hover:bg-slate-50"
-          aria-expanded="false" aria-controls="mobileMenu">
-          Menu
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          {t.menu}
         </button>
+
       </div>
     </div>
   </div>
@@ -120,15 +180,48 @@
   <div id="mobileMenu" class="hidden border-t border-slate-200 bg-white">
     <div class="mx-auto max-w-7xl px-4 py-4">
       <nav class="grid grid-cols-2 gap-2">
-        <a href="/qui-sommes-nous/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Qui sommes-nous?</a>
-        <a href="/inscription/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Inscription</a>
-        <a href="/espace-parents/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Espace parents</a>
-        <a href="/centres/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Centres</a>
-        <a href="/programmes/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Programmes</a>
-        <a href="/personnel/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Personnel</a>
-        <a href="/gouvernance/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Gouvernance</a>
-        <a href="/contact/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Contact</a>
+        <a href={`${base}/qui-sommes-nous/`} class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.about}</a>
+        <a href={`${base}/inscription/`}     class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.inscription}</a>
+        <a href={`${base}/espace-parents/`}  class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.parents}</a>
+        <a href={`${base}/centres/`}         class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.centres}</a>
+        <a href={`${base}/programmes/`}      class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.programmes}</a>
+        <a href={`${base}/personnel/`}       class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.personnel}</a>
+        <a href={`${base}/gouvernance/`}     class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">{t.gouvernance}</a>
+        <a href={`${base}/contact/`}         class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Contact</a>
       </nav>
     </div>
   </div>
+
 </header>
+
+<script>
+  // ── Language switcher: stay on the same page ───────────────────
+  (function () {
+    const path  = window.location.pathname;
+    const hash  = window.location.hash;
+    const isEN  = path.startsWith("/en/") || path === "/en";
+
+    const frPath = isEN
+      ? (path.replace(/^\/en/, "") || "/") + hash
+      : path + hash;
+
+    const enPath = isEN
+      ? path + hash
+      : "/en" + path + hash;
+
+    const optFR = document.getElementById("lang-opt-fr") as HTMLAnchorElement | null;
+    const optEN = document.getElementById("lang-opt-en") as HTMLAnchorElement | null;
+
+    if (optFR) optFR.href = frPath;
+    if (optEN) optEN.href = enPath;
+  })();
+
+  // ── Mobile menu toggle ─────────────────────────────────────────
+  const menuBtn    = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn?.addEventListener("click", () => {
+    const isNowOpen = !mobileMenu?.classList.toggle("hidden");
+    menuBtn.setAttribute("aria-expanded", String(isNowOpen));
+  });
+</script>

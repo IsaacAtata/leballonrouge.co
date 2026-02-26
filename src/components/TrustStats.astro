@@ -1,21 +1,33 @@
-    <!-- Trust Stats -->
+---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).trueStats;
+---
+
 <section class="mx-auto max-w-6xl px-4 py-20 bg-gradient-to-r from-red-50 to-orange-50">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">1986</div>
-        <p class="text-lg font-semibold text-slate-700">En service depuis</p>
-        </div>
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">2</div>
-        <p class="text-lg font-semibold text-slate-700">Centres francophones</p>
-        </div>
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">100%</div>
-        <p class="text-lg font-semibold text-slate-700">Agréé Ministère</p>
-        </div>
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">FR</div>
-        <p class="text-lg font-semibold text-slate-700">Immersion quotidienne</p>
-        </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+    <div>
+      <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">1986</div>
+      <p class="text-lg font-semibold text-slate-700">{t.stat1}</p>
     </div>
+
+    <div>
+      <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">2</div>
+      <p class="text-lg font-semibold text-slate-700">{t.stat2}</p>
+    </div>
+
+    <div>
+      <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">100%</div>
+      <p class="text-lg font-semibold text-slate-700">{t.stat3}</p>
+    </div>
+
+    <div>
+      <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">FR</div>
+      <p class="text-lg font-semibold text-slate-700">{t.stat4}</p>
+    </div>
+
+  </div>
 </section>

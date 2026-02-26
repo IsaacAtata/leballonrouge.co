@@ -1,220 +1,227 @@
 ---
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
+
+const lang = "en";
 ---
 
-<BaseLayout title="Inscription — Brantford">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Inscription — Brantford</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        Exemple de page d’inscription pour le centre de Brantford. (Contenu temporaire)
-      </p>
+<BaseLayout
+  lang={lang}
+  title="Registration — Brantford"
+  description="Request a spot at Le Ballon Rouge Brantford. Fill out the registration form to be placed on the waitlist for our French-language daycare centre."
+>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a
-          href="/inscription/hamilton/"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Voir Hamilton
-        </a>
+  <!-- Page intro -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Registration — Brantford</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Sample registration page for the Brantford centre. (Temporary content)
+    </p>
 
-        <a
-          href="/contact/"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-        >
-          Nous contacter
-        </a>
-      </div>
-    </section>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/en/inscription/hamilton/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        See Hamilton
+      </a>
+      <a
+        href="/en/contact/"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Contact us
+      </a>
+    </div>
+  </section>
 
-    <section class="mx-auto max-w-6xl px-4 pb-16">
-      <div class="grid gap-6 lg:grid-cols-5">
-        <!-- Left: info -->
-        <aside class="lg:col-span-2">
-          <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-            <h2 class="text-xl font-black tracking-tight md:text-2xl">Informations (exemple)</h2>
-            <p class="mt-3 leading-7 text-slate-600">
-              Ajoutez ici l’adresse, les heures, l’âge des groupes, et les documents requis.
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="grid gap-6 lg:grid-cols-5">
+
+      <!-- Left: info -->
+      <aside class="lg:col-span-2">
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Information (example)</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Add the address, hours, age groups and required documents here.
+          </p>
+          <ul class="mt-4 space-y-2 font-bold text-slate-700">
+            <li>Hours: Mon–Fri (example).</li>
+            <li>Ages: infants to preschool (example).</li>
+            <li>Language: French every day.</li>
+          </ul>
+        </article>
+      </aside>
+
+      <!-- Right: form -->
+      <div class="lg:col-span-3">
+        <article class="relative overflow-hidden rounded-[28px] border border-red-700/10 bg-white p-6 shadow-2xl shadow-red-700/10 ring-1 ring-black/5 md:p-10">
+          <div class="pointer-events-none absolute -inset-24 bg-gradient-to-br from-red-50 via-white to-orange-50 opacity-70 blur-2xl"></div>
+
+          <div class="relative">
+            <h2 class="text-xl font-black tracking-tight md:text-2xl">Registration form</h2>
+            <p class="mt-2 max-w-prose leading-7 text-slate-600">
+              Fill in the information below. (Demo)
             </p>
-            <ul class="mt-4 space-y-2 font-bold text-slate-700">
-              <li>Heures: Lun–Ven (exemple).</li>
-              <li>Âges: poupons à préscolaire (exemple).</li>
-              <li>Langue: français au quotidien.</li>
-            </ul>
-          </article>
-        </aside>
 
-        <!-- Right: form (bigger + stronger) -->
-        <div class="lg:col-span-3">
-          <article class="relative overflow-hidden rounded-[28px] border border-red-700/10 bg-white p-6 shadow-2xl shadow-red-700/10 ring-1 ring-black/5 md:p-10">
-            <!-- subtle background glow -->
-            <div class="pointer-events-none absolute -inset-24 bg-gradient-to-br from-red-50 via-white to-orange-50 opacity-70 blur-2xl"></div>
+            <form class="mt-6 space-y-10" onsubmit="event.preventDefault(); alert('Thank you! (demo)');">
 
-            <div class="relative">
-              <h2 class="text-xl font-black tracking-tight md:text-2xl">Formulaire d’inscription</h2>
-              <p class="mt-2 max-w-prose leading-7 text-slate-600">
-                Remplis les informations ci-dessous. (Démo)
-              </p>
+              <!-- Child information -->
+              <section class="space-y-5">
+                <h3 class="text-lg font-black text-slate-900">Child information</h3>
 
-              <form class="mt-6 space-y-10" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
-                <!-- Information Enfant -->
-                <section class="space-y-5">
-                  <h3 class="text-lg font-black text-slate-900">Information Enfant</h3>
-
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Nom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Prénom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Date de naissance *</span>
-                      <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Genre *</span>
-                      <select required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40">
-                        <option value="">Choisir…</option>
-                        <option>Féminin</option>
-                        <option>Masculin</option>
-                        <option>Autre</option>
-                        <option>Préfère ne pas répondre</option>
-                      </select>
-                    </label>
-                  </div>
-
-                  <fieldset class="space-y-2">
-                    <legend class="text-sm font-extrabold text-slate-700">Langue *</legend>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input required type="radio" name="langue" value="anglais" />
-                      Anglais
-                    </label>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input type="radio" name="langue" value="francais" />
-                      Français
-                    </label>
-                  </fieldset>
-
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Date de début souhaitée *</span>
-                      <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-
-                    <fieldset class="space-y-2">
-                      <legend class="text-sm font-extrabold text-slate-700">Groupe *</legend>
-                      <label class="flex items-center gap-2 font-semibold text-slate-800">
-                        <input required type="radio" name="groupe" value="bambins" />
-                        Bambins
-                      </label>
-                      <label class="flex items-center gap-2 font-semibold text-slate-800">
-                        <input type="radio" name="groupe" value="pr" />
-                        PR (Pré-scolaire)
-                      </label>
-                    </fieldset>
-                  </div>
-
-                  <fieldset class="space-y-2">
-                    <legend class="text-sm font-extrabold text-slate-700">Subvention demandée *</legend>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input required type="radio" name="subvention" value="oui" />
-                      OUI
-                    </label>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input type="radio" name="subvention" value="non" />
-                      NON
-                    </label>
-                  </fieldset>
-
-                  <fieldset class="space-y-2">
-                    <legend class="text-sm font-extrabold text-slate-700">Programme *</legend>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input required type="radio" name="programme" value="part_time" />
-                      Part-time
-                    </label>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input type="radio" name="programme" value="full_time" />
-                      Full-time (Jours)
-                    </label>
-                  </fieldset>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Last name *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
                   <label class="space-y-1">
-                    <span class="text-sm font-extrabold text-slate-700">Commentaire</span>
-                    <textarea rows="4" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40"></textarea>
+                    <span class="text-sm font-extrabold text-slate-700">First name *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
                   </label>
-                </section>
 
-                <hr class="border-slate-200" />
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Date of birth *</span>
+                    <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
-                <!-- Information Parent -->
-                <section class="space-y-5">
-                  <h3 class="text-lg font-black text-slate-900">Information Parent</h3>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Gender *</span>
+                    <select required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40">
+                      <option value="">Select…</option>
+                      <option>Female</option>
+                      <option>Male</option>
+                      <option>Other</option>
+                      <option>Prefer not to answer</option>
+                    </select>
+                  </label>
+                </div>
 
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Nom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Language *</legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="langue" value="english" />
+                    English
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="langue" value="french" />
+                    French
+                  </label>
+                </fieldset>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Desired start date *</span>
+                    <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <fieldset class="space-y-2">
+                    <legend class="text-sm font-extrabold text-slate-700">Group *</legend>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input required type="radio" name="groupe" value="toddler" />
+                      Toddler
                     </label>
-
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Prénom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input type="radio" name="groupe" value="preschool" />
+                      Preschool
                     </label>
+                  </fieldset>
+                </div>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Téléphone *</span>
-                      <input required inputmode="tel" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Subsidy requested *</legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="subvention" value="yes" />
+                    YES
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="subvention" value="no" />
+                    NO
+                  </label>
+                </fieldset>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Email *</span>
-                      <input required type="email" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-                  </div>
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Program *</legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="programme" value="part_time" />
+                    Part-time
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="programme" value="full_time" />
+                    Full-time (Days)
+                  </label>
+                </fieldset>
 
-                  <h4 class="text-base font-black text-slate-900">Adresse</h4>
+                <label class="space-y-1">
+                  <span class="text-sm font-extrabold text-slate-700">Comments</span>
+                  <textarea rows="4" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40"></textarea>
+                </label>
+              </section>
 
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1 sm:col-span-2">
-                      <span class="text-sm font-extrabold text-slate-700">Rue *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+              <hr class="border-slate-200" />
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Ville *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+              <!-- Parent information -->
+              <section class="space-y-5">
+                <h3 class="text-lg font-black text-slate-900">Parent information</h3>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Province *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Last name *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Code Postal *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-                  </div>
-                </section>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">First name *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
-                <button
-                  type="submit"
-                  class="w-full rounded-2xl bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-                >
-                  Envoyer la demande
-                </button>
-              </form>
-            </div>
-          </article>
-        </div>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Phone *</span>
+                    <input required inputmode="tel" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Email *</span>
+                    <input required type="email" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                </div>
+
+                <h4 class="text-base font-black text-slate-900">Address</h4>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1 sm:col-span-2">
+                    <span class="text-sm font-extrabold text-slate-700">Street *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">City *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Province *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Postal code *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                </div>
+              </section>
+
+              <button
+                type="submit"
+                class="w-full rounded-2xl bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+              >
+                Submit request
+              </button>
+            </form>
+          </div>
+        </article>
       </div>
-    </section>
-    <script is:inline src="/scripts/legacy.js"></script>
-  </main>
+
+    </div>
+  </section>
+
 </BaseLayout>

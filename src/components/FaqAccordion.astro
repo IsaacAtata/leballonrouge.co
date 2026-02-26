@@ -1,45 +1,39 @@
 ---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).faqAccordion;
+const base = lang === "en" ? "/en" : "";
+
 const {
-  title = "Questions fréquentes",
-  subtitle = "Tout ce qu’il faut savoir avant de faire une demande.",
-  items = [
-    {
-      q: "Quels sont vos horaires?",
-      a: "Nos heures varient selon le centre. Consultez “Nos centres” pour les horaires détaillés (Hamilton et Brantford).",
-    },
-    {
-      q: "Comment puis-je demander une place?",
-      a: "Cliquez sur “Demander une place” et remplissez le formulaire d’inscription. Nous vous contacterons pour la suite.",
-    },
-    {
-      q: "Est-ce une immersion française au quotidien?",
-      a: "Oui. Le français est utilisé au quotidien dans les routines, activités et jeux.",
-    },
-    {
-      q: "Y a-t-il des frais et des subventions?",
-      a: "Consultez la page “Frais et subventions” dans l’Espace parents pour les infos à jour.",
-    },
-  ],
+  title = t.title,
+  subtitle = t.subtitle,
+  items = t.items,
 } = Astro.props;
 
 const uid = `faq-${Math.random().toString(36).slice(2)}`;
 ---
 
 <section class="mx-auto max-w-6xl px-4 pb-12">
+
+  <!-- Section header -->
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
     <div>
       <h2 class="text-2xl font-black tracking-tight md:text-3xl">{title}</h2>
       <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">{subtitle}</p>
     </div>
 
+    <!-- CTA button -->
     <a
-      href="/espace-parents/"
+      href={`${base}/espace-parents/`}
       class="inline-flex h-fit items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
     >
-      Espace parents
+      {t.cta}
     </a>
   </div>
 
+  <!-- FAQ Accordion -->
   <div class="faq-accordion mt-8 grid gap-5">
     {items.map((item: { q: string; a: string }, i: number) => (
       <details
@@ -55,7 +49,7 @@ const uid = `faq-${Math.random().toString(36).slice(2)}`;
           <span
             aria-hidden="true"
             class="faq-icon mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white/80 text-red-700 shadow-sm"
-            title="Ouvrir"
+            title={t.openLabel}
           >
             <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 9l6 6 6-6" />
@@ -69,4 +63,5 @@ const uid = `faq-${Math.random().toString(36).slice(2)}`;
       </details>
     ))}
   </div>
+
 </section>

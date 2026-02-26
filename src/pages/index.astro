@@ -10,64 +10,56 @@ import FaqAccordion from "../components/FaqAccordion.astro";
 import BottomCta from "../components/BottomCta.astro";
 ---
 
-<BaseLayout title="Accueil – Le Ballon Rouge">
-  <!-- Hero (Tailwind, from old site) -->
+<BaseLayout 
+  lang="fr"
+  title="Accueil – Le Ballon Rouge"
+  description="Service de garde francophone chaleureux et sécuritaire à Hamilton et Brantford."
+>
+  <!-- Hero (French content stays EXACTLY AS-IS) -->
   <section class="mx-auto max-w-6xl px-4 pb-8 pt-8 md:pt-12">
     <div class="grid items-center gap-8 md:grid-cols-2">
       <div>
-        <h1 class="text-3xl font-black tracking-tight md:text-5xl" data-i18n="hero.title">
+        <h1 class="text-3xl font-black tracking-tight md:text-5xl">
           Une garderie francophone chaleureuse et sécuritaire
         </h1>
-
-        <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg" data-i18n="hero.subtitle">
+        <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
           Apprentissage par le jeu, exploration, routines sécurisantes et français au quotidien.
         </p>
-
         <div class="mt-5 flex flex-wrap gap-3">
           <a
             href="/inscription/"
             class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-            data-i18n="cta.apply"
           >
             Demander une place
           </a>
-
           <a
             href="/programmes/"
             class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-            data-i18n="cta.programme"
           >
             Voir le programme
           </a>
         </div>
-
         <div class="mt-6 flex flex-wrap gap-2 text-sm font-bold text-slate-600">
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2" data-i18n="chips.qualified">
-            Personnel qualifié
-          </span>
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2" data-i18n="chips.safe">
-            Milieu sécuritaire
-          </span>
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2" data-i18n="chips.french">
-            Programme en français
-          </span>
+          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Personnel qualifié</span>
+          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Milieu sécuritaire</span>
+          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Programme en français</span>
         </div>
       </div>
-
       <div class="rounded-[28px] border border-black/10 bg-white/60 p-4 shadow-xl shadow-black/5">
         <div class="flex min-h-[260px] items-center justify-center rounded-2xl border border-dashed border-red-700/30 bg-gradient-to-br from-white to-[#fff3ea] text-slate-500">
-          <span class="font-extrabold" data-i18n="hero.image">Image / illustration</span>
+          <span class="font-extrabold">Image / illustration</span>
         </div>
       </div>
     </div>
   </section>
 
-  <SolidInfoCards />
-  <StoryBlock />
-  <CentresPreview />
-  <PartnersTeaser />
-  <TrustStats />
-  <TestimonialsPreview />
-  <FaqAccordion />
-  <BottomCta />
+  <!-- All components auto-French via lang="fr" -->
+  <SolidInfoCards lang="fr" />
+  <StoryBlock lang="fr" />
+  <CentresPreview lang="fr" />
+  <PartnersTeaser lang="fr" />
+  <TrustStats lang="fr" />
+  <TestimonialsPreview lang="fr" />
+  <FaqAccordion lang="fr" />
+  <BottomCta lang="fr" />
 </BaseLayout>

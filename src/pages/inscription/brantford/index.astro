@@ -2,219 +2,253 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Inscription — Brantford">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Inscription — Brantford</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        Exemple de page d’inscription pour le centre de Brantford. (Contenu temporaire)
-      </p>
+<BaseLayout
+  lang="fr"
+  title="Inscription — Brantford"
+  description="Formulaire d'inscription pour le centre Le Ballon Rouge de Brantford. Demandez une place pour votre enfant."
+>
+  <!-- Page intro -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Inscription — Brantford</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Remplissez le formulaire ci-dessous pour faire une demande de place au centre de Brantford.
+    </p>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a
-          href="/inscription/hamilton/"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Voir Hamilton
-        </a>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/inscription/hamilton/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Voir Hamilton
+      </a>
+      <a
+        href="/contact/"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Nous contacter
+      </a>
+    </div>
+  </section>
 
-        <a
-          href="/contact/"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-        >
-          Nous contacter
-        </a>
-      </div>
-    </section>
+  <!-- Main content -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="grid gap-6 lg:grid-cols-5">
 
-    <section class="mx-auto max-w-6xl px-4 pb-16">
-      <div class="grid gap-6 lg:grid-cols-5">
-        <!-- Left: info -->
-        <aside class="lg:col-span-2">
-          <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-            <h2 class="text-xl font-black tracking-tight md:text-2xl">Informations (exemple)</h2>
-            <p class="mt-3 leading-7 text-slate-600">
-              Ajoutez ici l’adresse, les heures, l’âge des groupes, et les documents requis.
+      <!-- Left: info -->
+      <aside class="lg:col-span-2">
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <h2 class="text-xl font-black tracking-tight md:text-2xl">Informations</h2>
+          <p class="mt-3 leading-7 text-slate-600">
+            Centre situé au 60 Clench Ave, Brantford, ON N3T 1B8.
+          </p>
+          <ul class="mt-4 space-y-2 font-bold text-slate-700">
+            <li>Heures: Lun–Ven 7h30–17h30</li>
+            <li>Âges: poupons à préscolaire</li>
+            <li>Langue: français au quotidien</li>
+          </ul>
+
+          <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-4">
+            <p class="text-sm font-extrabold text-slate-900">Contact</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">Téléphone: 519-753-6541</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+              Courriel:
+              <a
+                href="mailto:leballonrougebrantford@cscmonavenir.ca"
+                class="text-red-700 underline underline-offset-4 hover:text-red-900"
+              >
+                leballonrougebrantford@cscmonavenir.ca
+              </a>
             </p>
-            <ul class="mt-4 space-y-2 font-bold text-slate-700">
-              <li>Heures: Lun–Ven (exemple).</li>
-              <li>Âges: poupons à préscolaire (exemple).</li>
-              <li>Langue: français au quotidien.</li>
-            </ul>
-          </article>
-        </aside>
+          </div>
 
-        <!-- Right: form (bigger + stronger) -->
-        <div class="lg:col-span-3">
-          <article class="relative overflow-hidden rounded-[28px] border border-red-700/10 bg-white p-6 shadow-2xl shadow-red-700/10 ring-1 ring-black/5 md:p-10">
-            <!-- subtle background glow -->
-            <div class="pointer-events-none absolute -inset-24 bg-gradient-to-br from-red-50 via-white to-orange-50 opacity-70 blur-2xl"></div>
+          <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-4">
+            <p class="text-sm font-extrabold text-slate-900">Liste d'attente centralisée</p>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">
+              Inscrivez votre enfant via la liste d'attente municipale de Brantford:
+            </p>
+            <a
+              href="https://brantford.onehsn.com"
+              target="_blank"
+              rel="noopener"
+              class="mt-2 inline-flex text-sm font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900"
+            >
+              brantford.onehsn.com
+            </a>
+          </div>
 
-            <div class="relative">
-              <h2 class="text-xl font-black tracking-tight md:text-2xl">Formulaire d’inscription</h2>
-              <p class="mt-2 max-w-prose leading-7 text-slate-600">
-                Remplis les informations ci-dessous. (Démo)
-              </p>
+          <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-4">
+            <p class="text-sm font-extrabold text-slate-900">Règle des 48 heures</p>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-700">
+              Lorsqu'une place se libère, vous avez 48 heures pour confirmer. Sans réponse, la place est offerte à la famille suivante sur la liste.
+            </p>
+          </div>
+        </article>
+      </aside>
 
-              <form class="mt-6 space-y-10" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
-                <!-- Information Enfant -->
-                <section class="space-y-5">
-                  <h3 class="text-lg font-black text-slate-900">Information Enfant</h3>
+      <!-- Right: form -->
+      <div class="lg:col-span-3">
+        <article class="relative overflow-hidden rounded-[28px] border border-red-700/10 bg-white p-6 shadow-2xl shadow-red-700/10 ring-1 ring-black/5 md:p-10">
+          <div class="pointer-events-none absolute -inset-24 bg-gradient-to-br from-red-50 via-white to-orange-50 opacity-70 blur-2xl"></div>
 
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Nom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+          <div class="relative">
+            <h2 class="text-xl font-black tracking-tight md:text-2xl">Formulaire d'inscription</h2>
+            <p class="mt-2 max-w-prose leading-7 text-slate-600">
+              Remplissez les informations ci-dessous pour vous inscrire sur la liste d'attente.
+            </p>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Prénom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+            <form class="mt-6 space-y-10" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Date de naissance *</span>
-                      <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+              <!-- Information Enfant -->
+              <section class="space-y-5">
+                <h3 class="text-lg font-black text-slate-900">Information Enfant</h3>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Genre *</span>
-                      <select required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40">
-                        <option value="">Choisir…</option>
-                        <option>Féminin</option>
-                        <option>Masculin</option>
-                        <option>Autre</option>
-                        <option>Préfère ne pas répondre</option>
-                      </select>
-                    </label>
-                  </div>
-
-                  <fieldset class="space-y-2">
-                    <legend class="text-sm font-extrabold text-slate-700">Langue *</legend>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input required type="radio" name="langue" value="anglais" />
-                      Anglais
-                    </label>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input type="radio" name="langue" value="francais" />
-                      Français
-                    </label>
-                  </fieldset>
-
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Date de début souhaitée *</span>
-                      <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-
-                    <fieldset class="space-y-2">
-                      <legend class="text-sm font-extrabold text-slate-700">Groupe *</legend>
-                      <label class="flex items-center gap-2 font-semibold text-slate-800">
-                        <input required type="radio" name="groupe" value="bambins" />
-                        Bambins
-                      </label>
-                      <label class="flex items-center gap-2 font-semibold text-slate-800">
-                        <input type="radio" name="groupe" value="pr" />
-                        PR (Pré-scolaire)
-                      </label>
-                    </fieldset>
-                  </div>
-
-                  <fieldset class="space-y-2">
-                    <legend class="text-sm font-extrabold text-slate-700">Subvention demandée *</legend>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input required type="radio" name="subvention" value="oui" />
-                      OUI
-                    </label>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input type="radio" name="subvention" value="non" />
-                      NON
-                    </label>
-                  </fieldset>
-
-                  <fieldset class="space-y-2">
-                    <legend class="text-sm font-extrabold text-slate-700">Programme *</legend>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input required type="radio" name="programme" value="part_time" />
-                      Part-time
-                    </label>
-                    <label class="flex items-center gap-2 font-semibold text-slate-800">
-                      <input type="radio" name="programme" value="full_time" />
-                      Full-time (Jours)
-                    </label>
-                  </fieldset>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Nom *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
                   <label class="space-y-1">
-                    <span class="text-sm font-extrabold text-slate-700">Commentaire</span>
-                    <textarea rows="4" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40"></textarea>
+                    <span class="text-sm font-extrabold text-slate-700">Prénom *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
                   </label>
-                </section>
 
-                <hr class="border-slate-200" />
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Date de naissance *</span>
+                    <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
-                <!-- Information Parent -->
-                <section class="space-y-5">
-                  <h3 class="text-lg font-black text-slate-900">Information Parent</h3>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Genre *</span>
+                    <select required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40">
+                      <option value="">Choisir…</option>
+                      <option>Féminin</option>
+                      <option>Masculin</option>
+                      <option>Autre</option>
+                      <option>Préfère ne pas répondre</option>
+                    </select>
+                  </label>
+                </div>
 
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Nom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Langue *</legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="langue" value="anglais" /> Anglais
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="langue" value="francais" /> Français
+                  </label>
+                </fieldset>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Date de début souhaitée *</span>
+                    <input required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <fieldset class="space-y-2">
+                    <legend class="text-sm font-extrabold text-slate-700">Groupe *</legend>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input required type="radio" name="groupe" value="bambins" /> Bambins
                     </label>
-
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Prénom *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input type="radio" name="groupe" value="prescolaire" /> Préscolaire
                     </label>
+                  </fieldset>
+                </div>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Téléphone *</span>
-                      <input required inputmode="tel" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Subvention demandée *</legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="subvention" value="oui" /> Oui
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="subvention" value="non" /> Non
+                  </label>
+                </fieldset>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Email *</span>
-                      <input required type="email" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-                  </div>
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Programme *</legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="programme" value="part_time" /> Temps partiel
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="programme" value="full_time" /> Temps plein (Jours)
+                  </label>
+                </fieldset>
 
-                  <h4 class="text-base font-black text-slate-900">Adresse</h4>
+                <label class="space-y-1">
+                  <span class="text-sm font-extrabold text-slate-700">Commentaire</span>
+                  <textarea rows="4" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40"></textarea>
+                </label>
+              </section>
 
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <label class="space-y-1 sm:col-span-2">
-                      <span class="text-sm font-extrabold text-slate-700">Rue *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+              <hr class="border-slate-200" />
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Ville *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+              <!-- Information Parent -->
+              <section class="space-y-5">
+                <h3 class="text-lg font-black text-slate-900">Information Parent</h3>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Province *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Nom *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
-                    <label class="space-y-1">
-                      <span class="text-sm font-extrabold text-slate-700">Code Postal *</span>
-                      <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
-                    </label>
-                  </div>
-                </section>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Prénom *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
 
-                <button
-                  type="submit"
-                  class="w-full rounded-2xl bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-                >
-                  Envoyer la demande
-                </button>
-              </form>
-            </div>
-          </article>
-        </div>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Téléphone *</span>
+                    <input required inputmode="tel" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Courriel *</span>
+                    <input required type="email" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                </div>
+
+                <h4 class="text-base font-black text-slate-900">Adresse</h4>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1 sm:col-span-2">
+                    <span class="text-sm font-extrabold text-slate-700">Rue *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Ville *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Province *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Code postal *</span>
+                    <input required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                </div>
+              </section>
+
+              <button
+                type="submit"
+                class="w-full rounded-2xl bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+              >
+                Envoyer la demande
+              </button>
+
+            </form>
+          </div>
+        </article>
       </div>
-    </section>
-    <script is:inline src="/scripts/legacy.js"></script>
-  </main>
+
+    </div>
+  </section>
+
 </BaseLayout>

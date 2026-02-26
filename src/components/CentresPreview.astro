@@ -1,34 +1,68 @@
-    <!-- Centres preview -->
-    <section class="mx-auto max-w-6xl px-4 pb-10">
-      <div class="flex items-end justify-between gap-4">
-        <div>
-          <h2 class="text-xl font-black tracking-tight md:text-2xl" data-i18n="centres.title">Nos centres</h2>
-          <p class="mt-1 text-slate-600" data-i18n="centres.subtitle">Hamilton et Brantford — coordonnées et horaires.</p>
-        </div>
-        <a href="./centres.html" class="hidden rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80 md:inline-flex"
-           data-i18n="centres.cta">Voir tous les centres</a>
-      </div>
+---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
 
-      <div class="mt-5 grid gap-5 md:grid-cols-2">
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
-          <h3 class="text-lg font-black" data-i18n="centres.ham.title">Le Ballon Rouge — Hamilton</h3>
-          <p class="mt-2 text-slate-600" data-i18n="centres.ham.addr">135 Bendamere Ave, Hamilton, ON L9C 1N4</p>
-          <p class="mt-1 text-slate-600" data-i18n="centres.ham.phone">Téléphone: 905-383-8371</p>
-          <p class="mt-1 text-slate-600" data-i18n="centres.ham.hours">Heures: Lun–Ven 7h00–17h30</p>
-          <a class="mt-4 inline-flex rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white hover:bg-red-800"
-             href="./centres.html#hamilton" data-i18n="centres.details">Détails</a>
-        </article>
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).centresPreview;
+const base = lang === "en" ? "/en" : "";
+---
 
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
-          <h3 class="text-lg font-black" data-i18n="centres.bra.title">Le Ballon Rouge — Brantford</h3>
-          <p class="mt-2 text-slate-600" data-i18n="centres.bra.addr">60 Clench Ave, Brantford, ON N3T 1B8</p>
-          <p class="mt-1 text-slate-600" data-i18n="centres.bra.phone">Téléphone: 519-753-6541</p>
-          <p class="mt-1 text-slate-600" data-i18n="centres.bra.hours">Heures: Lun–Ven 7h30–17h30</p>
-          <a class="mt-4 inline-flex rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white hover:bg-red-800"
-             href="./centres.html#brantford" data-i18n="centres.details">Détails</a>
-        </article>
-      </div>
+<section class="mx-auto max-w-6xl px-4 pb-10">
 
-      <a href="./centres.html" class="mt-5 inline-flex w-full justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80 md:hidden"
-         data-i18n="centres.cta">Voir tous nos centres</a>
-    </section>
+  <!-- Section header -->
+  <div class="flex items-end justify-between gap-4">
+    <div>
+      <h2 class="text-xl font-black tracking-tight md:text-2xl">{t.title}</h2>
+      <p class="mt-1 text-slate-600">{t.subtitle}</p>
+    </div>
+
+    <a
+      href={`${base}/centres/`}
+      class="hidden rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80 md:inline-flex"
+    >
+      {t.cta}
+    </a>
+  </div>
+
+  <!-- Centre cards -->
+  <div class="mt-5 grid gap-5 md:grid-cols-2">
+
+    <!-- Hamilton -->
+    <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+      <h3 class="text-lg font-black">Le Ballon Rouge — Hamilton</h3>
+      <p class="mt-2 text-slate-600">135 Bendamere Ave, Hamilton, ON L9C 1N4</p>
+      <p class="mt-1 text-slate-600">{t.phoneLabel} 905-383-8371</p>
+      <p class="mt-1 text-slate-600">{t.hoursHamilton}</p>
+      <a
+        href={`${base}/centres/hamilton/`}
+        class="mt-4 inline-flex rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white hover:bg-red-800"
+      >
+        {t.details}
+      </a>
+    </article>
+
+    <!-- Brantford -->
+    <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+      <h3 class="text-lg font-black">Le Ballon Rouge — Brantford</h3>
+      <p class="mt-2 text-slate-600">60 Clench Ave, Brantford, ON N3T 1B8</p>
+      <p class="mt-1 text-slate-600">{t.phoneLabel} 519-753-6541</p>
+      <p class="mt-1 text-slate-600">{t.hoursBrantford}</p>
+      <a
+        href={`${base}/centres/brantford/`}
+        class="mt-4 inline-flex rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white hover:bg-red-800"
+      >
+        {t.details}
+      </a>
+    </article>
+
+  </div>
+
+  <!-- Mobile CTA -->
+  <a
+    href={`${base}/centres/`}
+    class="mt-5 inline-flex w-full justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80 md:hidden"
+  >
+    {t.ctaMobile}
+  </a>
+
+</section>

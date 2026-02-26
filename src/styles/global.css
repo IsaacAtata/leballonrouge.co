@@ -11,7 +11,6 @@
     min-height: 100vh;
     scroll-behavior: smooth;
 
-    /* Light rendering polish (safe) */
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -21,11 +20,9 @@
   body {
     min-height: 100vh;
 
-    /* Default text */
-    color: #0f172a;   /* slate-900 */
+    color: #0f172a; /* slate-900 */
     line-height: 1.6;
 
-    /* Background (apply to body so it always shows) */
     background-image:
       radial-gradient(circle at 1px 1px, rgba(153,27,27,0.07) 1px, transparent 0),
       radial-gradient(circle at 1px 1px, rgba(15,23,42,0.04) 1px, transparent 0),
@@ -33,10 +30,10 @@
     background-size: 34px 34px, 44px 44px, cover;
     background-position: 0 0, 10px 12px, center;
     background-repeat: repeat, repeat, no-repeat;
-    background-attachment: fixed; /* optional: comment out if you dislike it */
+    background-attachment: fixed;
   }
 
-  /* Paragraph default: readable on light background (NOT white) */
+  /* Paragraph default: readable on light background */
   p { color: rgb(255, 255, 255); } /* slate-700 */
 
   h1, h2, h3, h4, h5, h6 {
@@ -50,7 +47,6 @@
 
   ::selection { background: rgba(185, 28, 28, 0.20); }
 
-  /* Focus style fallback (helps if some elements don't have Tailwind focus classes) */
   :where(a, button, summary, input, select, textarea):focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.35);
@@ -164,7 +160,8 @@
     transition: transform 180ms ease, opacity 180ms ease;
   }
 
-  .nav-group:hover .arrow {
+  .nav-group:hover .arrow,
+  .nav-group:focus-within .arrow {
     transform: translateY(1px) rotate(180deg);
     opacity: 1;
   }
@@ -188,8 +185,6 @@
 
     opacity: 0;
     visibility: hidden;
-
-    /* FIXED: single transform (no overwrite) */
     transform: translateY(-8px) scale(0.98);
 
     transition: opacity 160ms ease, transform 160ms ease, visibility 0s linear 160ms;
@@ -225,7 +220,7 @@
     justify-content: space-between;
     gap: 0.75rem;
 
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 14px;
 
     text-decoration: none;
@@ -235,6 +230,7 @@
     line-height: 1.15;
 
     transition: background-color 120ms ease, color 120ms ease;
+    cursor: pointer;
   }
 
   .dropdown-item:hover {
@@ -254,7 +250,47 @@
     box-shadow: 0 0 0 1px rgba(185, 28, 28, 0.15) inset;
   }
 
+  /* =========================================================
+     Language dropdown (flags)
+     Works with:
+     .nav-group > button#langToggle.nav-trigger + .nav-dropdown.lang-dropdown
+  ========================================================= */
+
   #langToggle { cursor: pointer; }
+
+  .lang-trigger .lang-current {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 800;
+  }
+
+  .lang-trigger img {
+    width: 22px;
+    height: 16px;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.65) inset, 0 4px 10px rgba(15,23,42,0.10);
+  }
+
+  .lang-dropdown {
+    min-width: 180px !important; /* Tight like screenshot */
+    max-width: 200px;            /* Don't let it grow too wide */
+    width: max-content;          /* Size to content */
+    padding: 4px;                /* Tiny container padding */
+  }
+
+  .lang-dropdown .dropdown-item {
+    justify-content: flex-start; /* text aligned like the mock */
+    gap: 0.75rem;
+    margin: 2px 0;               /* Space between items */
+    padding: 8px 12px;           /* Tight padding inside each item */
+    width: 100%;                 /* Fill dropdown */
+  }
+
+  .lang-dropdown .dropdown-item[aria-current="true"],
+  .lang-dropdown .dropdown-item.is-active {
+    background: rgba(15, 23, 42, 0.06);
+  }
 
   /* ---------- FAQ accordion ---------- */
   .faq-accordion summary::-webkit-details-marker { display: none; }
@@ -278,7 +314,7 @@
     border-radius: 1rem;
   }
 
-  /* ---------- Reduced motion (accessibility polish) ---------- */
+  /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 

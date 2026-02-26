@@ -1,132 +1,139 @@
 ---
-import BaseLayout from "../../../layouts/BaseLayout.astro"; // adjust if needed
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 const address = "135 Bendamere Ave, Hamilton, ON L9C 1N4";
 const mapsQuery = encodeURIComponent(address);
 
-// Use the exact link you provided for the "open in maps" button:
 const googlePlaceUrl =
   "https://www.google.com/maps/place/Le+Ballon+Rouge/@43.2340612,-79.8920059,17z/data=!4m15!1m8!3m7!1s0x882c9b19663e1913:0x3b7c4b5e166434dc!2s135+Bendamere+Ave,+Hamilton,+ON+L9C+1N4!3b1!8m2!3d43.2341417!4d-79.892331!16s%2Fg%2F11bw41tzwd!3m5!1s0x882c9b19663e1913:0x5fe06c0c04a1ded3!8m2!3d43.2340319!4d-79.8917385!16s%2Fg%2F1vrqb8ch?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D";
 ---
 
-<BaseLayout title="Centre Hamilton — Le Ballon Rouge">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-wider text-slate-700">
-        <span aria-hidden="true">📍</span>
-        <span>Hamilton</span>
-      </div>
+<BaseLayout
+  lang="fr"
+  title="Centre Hamilton — Le Ballon Rouge"
+  description="Centre de garde francophone Le Ballon Rouge à Hamilton. Adresse, heures, programmes et inscription."
+>
+  <!-- Page intro -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-wider text-slate-700">
+      <span aria-hidden="true">📍</span>
+      <span>Hamilton</span>
+    </div>
 
-      <h1 class="mt-3 text-3xl font-black tracking-tight md:text-5xl">Le Ballon Rouge Hamilton</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        {address} • Lundi au Vendredi 7h00 — 17h30
-      </p>
+    <h1 class="mt-3 text-3xl font-black tracking-tight md:text-5xl">Le Ballon Rouge Hamilton</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      {address} • Lundi au Vendredi 7h00 — 17h30
+    </p>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a
-          href="/inscription/#hamilton"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-        >
-          Inscription — Hamilton
-        </a>
-        <a
-          href="/centres/"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Retour aux centres
-        </a>
-        <a
-          href="/centres/brantford/"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Voir Brantford
-        </a>
-      </div>
-    </section>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/inscription/hamilton/"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Inscription — Hamilton
+      </a>
+      <a
+        href="/centres/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Retour aux centres
+      </a>
+      <a
+        href="/centres/brantford/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Voir Brantford
+      </a>
+    </div>
+  </section>
 
-    <section class="mx-auto max-w-6xl px-4 pb-12">
-      <div class="grid gap-6 md:grid-cols-2">
-        <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <h2 class="text-xl font-black tracking-tight md:text-2xl">Coordonnées</h2>
+  <!-- Info + map -->
+  <section class="mx-auto max-w-6xl px-4 pb-12">
+    <div class="grid gap-6 md:grid-cols-2">
 
-          <p class="mt-3 leading-7 text-slate-600">
-            <span class="font-extrabold">Adresse:</span> {address}
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">Téléphone:</span>{" "}
-            <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="tel:19053838371">
-              905-383-8371
-            </a>
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">Courriel:</span>{" "}
-            <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:leballonrouge@cscmonavenir.ca">
-              leballonrouge@cscmonavenir.ca
-            </a>
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">Superviseure:</span> Pierangela Lattuca
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">École:</span> École élémentaire Mon Seigneur de Laval
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">Heures:</span> Lundi au Vendredi 7h00 — 17h30
-          </p>
+      <!-- Info card -->
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">Coordonnées</h2>
 
-          <h3 class="mt-6 text-lg font-black">Programmes offerts</h3>
-          <div class="mt-3 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
-            <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">Bambins</span>
-            <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">Préscolaires</span>
-            <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">Avant et Après école</span>
-          </div>
+        <p class="mt-3 leading-7 text-slate-600">
+          <span class="font-extrabold">Adresse:</span> {address}
+        </p>
+        <p class="mt-1 leading-7 text-slate-600">
+          <span class="font-extrabold">Téléphone:</span>{" "}
+          <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="tel:19053838371">
+            905-383-8371
+          </a>
+        </p>
+        <p class="mt-1 leading-7 text-slate-600">
+          <span class="font-extrabold">Courriel:</span>{" "}
+          <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:leballonrouge@cscmonavenir.ca">
+            leballonrouge@cscmonavenir.ca
+          </a>
+        </p>
+        <p class="mt-1 leading-7 text-slate-600">
+          <span class="font-extrabold">Superviseure:</span> Pierangela Lattuca
+        </p>
+        <p class="mt-1 leading-7 text-slate-600">
+          <span class="font-extrabold">École:</span> École élémentaire Mon Seigneur de Laval
+        </p>
+        <p class="mt-1 leading-7 text-slate-600">
+          <span class="font-extrabold">Heures:</span> Lundi au Vendredi 7h00 — 17h30
+        </p>
 
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a
-              href="/programmes/"
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-            >
-              Découvrir les programmes
-            </a>
-            <a
-              href="/contact/"
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-            >
-              Nous contacter
-            </a>
-          </div>
+        <h3 class="mt-6 text-lg font-black">Programmes offerts</h3>
+        <div class="mt-3 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+          <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">Bambins</span>
+          <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">Préscolaires</span>
+          <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">Avant et Après école</span>
         </div>
 
-        <div class="rounded-[28px] border border-black/10 bg-white/70 p-3 shadow-xl shadow-black/5">
-          <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-black/10 bg-white">
-            <!-- iframe uses embed-friendly URL (no key) -->
-            <iframe
-              title="Carte — Centre Hamilton"
-              class="h-full w-full"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
-            />
-          </div>
-
-          <div class="mt-3 flex flex-wrap gap-2 px-3 pb-3">
-            <a
-              href={googlePlaceUrl}
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-white/80"
-            >
-              Ouvrir dans Google Maps
-            </a>
-            <a
-              href="/inscription/#comment-sinscrire"
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-white/80"
-            >
-              Comment s’inscrire
-            </a>
-          </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href="/programmes/"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+          >
+            Découvrir les programmes
+          </a>
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+          >
+            Nous contacter
+          </a>
         </div>
       </div>
-    </section>
-  </main>
+
+      <!-- Map card -->
+      <div class="rounded-[28px] border border-black/10 bg-white/70 p-3 shadow-xl shadow-black/5">
+        <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-black/10 bg-white">
+          <iframe
+            title="Carte — Centre Hamilton"
+            class="h-full w-full"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
+          />
+        </div>
+
+        <div class="mt-3 flex flex-wrap gap-2 px-3 pb-3">
+          <a
+            href={googlePlaceUrl}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-white/80"
+          >
+            Ouvrir dans Google Maps
+          </a>
+          <a
+            href="/inscription/#comment-sinscrire"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-white/80"
+          >
+            Comment s'inscrire
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </BaseLayout>
