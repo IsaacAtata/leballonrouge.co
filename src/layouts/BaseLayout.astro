@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
 import { useTranslations } from "../i18n";
 import type { Lang } from "../i18n";
 
@@ -27,6 +28,7 @@ const t = useTranslations(lang);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale" content={lang} />
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js" defer></script>
   </head>
 
   <body class="min-h-screen text-slate-800 antialiased">
@@ -44,6 +46,66 @@ const t = useTranslations(lang);
     </main>
 
     <Footer lang={lang} />
+    <BackToTop />
+
+    <!-- Smart sticky nav — hides on scroll down, reappears on scroll up -->
+    <script is:inline>
+      (function () {
+        var header = document.querySelector('header');
+        if (!header) return;
+
+        // Dynamically measure real header height and pad body so content isn't hidden under it
+        function setBodyPadding() {
+          document.body.style.paddingTop = header.offsetHeight + 'px';
+        }
+
+        setBodyPadding();
+        window.addEventListener('resize', setBodyPadding, { passive: true });
+
+        var lastY     = window.scrollY;
+        var ticking   = false;
+        var THRESHOLD = 80;
+
+        function update() {
+          var currentY = window.scrollY;
+
+          // Floating shadow once scrolled past 10px
+          if (currentY > 10) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+
+          // Hide on scroll down, show on scroll up
+          if (currentY > THRESHOLD) {
+            if (currentY > lastY) {
+              header.classList.add('nav-hidden');
+            } else {
+              header.classList.remove('nav-hidden');
+            }
+          } else {
+            header.classList.remove('nav-hidden');
+          }
+
+          lastY   = currentY;
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+          }
+        }, { passive: true });
+
+        // Reset on Astro page transitions
+        document.addEventListener('astro:after-swap', function () {
+          setBodyPadding();
+          lastY = window.scrollY;
+          header.classList.remove('nav-hidden', 'is-scrolled');
+        });
+      })();
+    </script>
 
     <script src="/assets/scripts/legacy.js" is:inline></script>
   </body>

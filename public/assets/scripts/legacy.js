@@ -48,18 +48,10 @@ function initActiveNav() {
 }
 
 /* -----------------------------
-   Mobile menu
+   Mobile menu — handled by Nav.astro
 ----------------------------- */
 function initMobileMenu() {
-  const btn = document.getElementById("menuBtn");
-  const menu = document.getElementById("mobileMenu");
-  if (!btn || !menu) return;
-
-  btn.addEventListener("click", () => {
-    const isOpen = menu.classList.toggle("hidden") === false;
-    btn.setAttribute("aria-expanded", String(isOpen));
-    btn.textContent = isOpen ? "✕" : "Menu";
-  });
+  // Intentionally empty — managed entirely by Nav.astro inline script
 }
 
 /* -----------------------------
@@ -156,7 +148,6 @@ class DynamicCards {
 ----------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   initFooterYear();
-  initMobileMenu();
   initActiveNav();
   new DynamicCards();
 });

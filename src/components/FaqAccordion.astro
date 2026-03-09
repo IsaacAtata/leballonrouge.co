@@ -15,7 +15,7 @@ const {
 const uid = `faq-${Math.random().toString(36).slice(2)}`;
 ---
 
-<section class="mx-auto max-w-6xl px-4 pb-12">
+<section class="mx-auto max-w-4xl px-4 pb-12">
 
   <!-- Section header -->
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -23,45 +23,85 @@ const uid = `faq-${Math.random().toString(36).slice(2)}`;
       <h2 class="text-2xl font-black tracking-tight md:text-3xl">{title}</h2>
       <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">{subtitle}</p>
     </div>
-
-    <!-- CTA button -->
     <a
       href={`${base}/espace-parents/`}
-      class="inline-flex h-fit items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
+      class="inline-flex h-fit w-fit items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
     >
       {t.cta}
     </a>
   </div>
 
-  <!-- FAQ Accordion -->
-  <div class="faq-accordion mt-8 grid gap-5">
+  <!-- FAQ items -->
+  <div class="mt-6 flex flex-col gap-3 md:mt-8">
     {items.map((item: { q: string; a: string }, i: number) => (
       <details
-        class="faq-item group rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7"
+        class="faq-item group overflow-hidden rounded-2xl border border-black/8 bg-white shadow-sm shadow-black/5"
         name={uid}
         open={i === 0}
       >
-        <summary class="faq-summary flex list-none items-start justify-between gap-5">
-          <span class="pr-2 text-base font-black text-slate-900 md:text-lg">
-            {item.q}
-          </span>
 
+        <!-- Question row -->
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-3 border-b border-transparent px-5 py-5 transition-colors duration-200 group-open:border-black/8 group-open:bg-red-50/60 md:gap-4 md:px-7 md:py-6">
+          <div class="flex items-center gap-3">
+            <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-700/10 text-xs font-black text-red-700 md:h-8 md:w-8">
+              {i + 1}
+            </span>
+            <span class="text-sm font-black text-slate-900 md:text-[1.05rem] lg:text-lg">
+              {item.q}
+            </span>
+          </div>
           <span
             aria-hidden="true"
-            class="faq-icon mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white/80 text-red-700 shadow-sm"
-            title={t.openLabel}
+            class="faq-icon ml-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-red-700 shadow-sm transition-transform duration-300 group-open:rotate-180 md:h-10 md:w-10"
           >
-            <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 9l6 6 6-6" />
             </svg>
           </span>
         </summary>
 
-        <div class="faq-content mt-4 leading-7 text-slate-600 md:text-[1.05rem]">
-          {item.a}
+        <!-- Answer body — wrapped for animation -->
+        <div class="faq-body overflow-hidden">
+          <div class="px-5 py-5 md:px-7 md:py-6">
+            <p class="mb-2 text-[0.65rem] font-black uppercase tracking-widest text-red-700/70 md:text-[0.7rem]">
+              {lang === "en" ? "Answer" : "Réponse"}
+            </p>
+            <p class="text-sm leading-7 text-slate-600 md:text-[1.02rem] md:leading-8">
+              {item.a}
+            </p>
+          </div>
         </div>
+
       </details>
     ))}
   </div>
 
 </section>
+
+<script>
+  document.querySelectorAll<HTMLDetailsElement>("details.faq-item").forEach((details) => {
+    const summary = details.querySelector("summary")!;
+
+    summary.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (details.open) {
+        // Closing — animate then remove open
+        const body = details.querySelector<HTMLElement>(".faq-body")!;
+        body.style.gridTemplateRows = "0fr";
+        body.addEventListener(
+          "transitionend",
+          () => { details.removeAttribute("open"); },
+          { once: true }
+        );
+      } else {
+        // Opening — set open first, then animate
+        details.setAttribute("open", "");
+        // Force reflow so transition fires
+        const body = details.querySelector<HTMLElement>(".faq-body")!;
+        body.getBoundingClientRect();
+        body.style.gridTemplateRows = "1fr";
+      }
+    });
+  });
+</script>
