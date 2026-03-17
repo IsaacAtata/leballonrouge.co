@@ -8,10 +8,16 @@ const centres = [
     name: "Le Ballon Rouge Hamilton",
     address: "135 Bendamere Ave, Hamilton, ON L9C 1N4",
     hours: "Lundi au Vendredi 7h00 — 17h30",
+    phone: "905-383-8371",
+    phoneTel: "19053838371",
+    email: "leballonrouge@cscmonavenir.ca",
     supervisor: "Pierangela Lattuca",
+    school: "École élémentaire Mon Seigneur de Laval",
     programs: ["Bambins", "Préscolaires", "Avant et Après école"],
-    pageHref: "/centres/hamilton/",
     inscriptionHref: "/inscription/hamilton/",
+    mapsQuery: encodeURIComponent("135 Bendamere Ave, Hamilton, ON L9C 1N4"),
+    googlePlaceUrl:
+      "https://www.google.com/maps/place/Le+Ballon+Rouge/@43.2340612,-79.8920059,17z/data=!4m15!1m8!3m7!1s0x882c9b19663e1913:0x3b7c4b5e166434dc!2s135+Bendamere+Ave,+Hamilton,+ON+L9C+1N4!3b1!8m2!3d43.2341417!4d-79.892331!16s%2Fg%2F11bw41tzwd!3m5!1s0x882c9b19663e1913:0x5fe06c0c04a1ded3!8m2!3d43.2340319!4d-79.8917385!16s%2Fg%2F1vrqb8ch?entry=ttu",
   },
   {
     slug: "brantford",
@@ -19,10 +25,16 @@ const centres = [
     name: "Le Ballon Rouge Brantford",
     address: "60 Clench Ave, Brantford, ON N3T 1B8",
     hours: "Lundi au Vendredi 7h30 — 17h30",
+    phone: "519-753-6541",
+    phoneTel: "15197536541",
+    email: "leballonrougebrantford@cscmonavenir.ca",
     supervisor: "Awatef Belghiti",
+    school: "École élémentaire Sainte Marguerite Bourgeoys",
     programs: ["Bambins", "Préscolaires", "Avant et Après école"],
-    pageHref: "/centres/brantford/",
     inscriptionHref: "/inscription/brantford/",
+    mapsQuery: encodeURIComponent("60 Clench Ave, Brantford, ON N3T 1B8"),
+    googlePlaceUrl:
+      "https://www.google.com/maps/place/Ballon+Rouge+Brantford+Le/@43.1249678,-80.2692262,17z/data=!3m1!5s0x882c66224ef0d12b:0x7c74146ac0ce288b!4m15!1m8!3m7!1s0x882c662250f94ca7:0xa61c9f61580b00a2!2s60+Clench+Ave,+Brantford,+ON+N3T+1B9!3b1!8m2!3d43.1249678!4d-80.2692262!16s%2Fg%2F11c0vpmtmg!3m5!1s0x882c662248959271:0x878929e7f1c7180b!8m2!3d43.1249728!4d-80.2692683!16s%2Fg%2F1hc0sm54k?entry=ttu",
   },
 ];
 ---
@@ -32,79 +44,191 @@ const centres = [
   title="Centres — Le Ballon Rouge"
   description="Découvrez les deux centres francophones du Ballon Rouge à Hamilton et Brantford, en Ontario."
 >
-  <!-- Page intro -->
+
+  <!-- Hero -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Nos centres</h1>
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Ontario · 2 centres
+    </div>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Nos centres</h1>
     <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-      Deux centres francophones en Ontario: Hamilton et Brantford.
+      Deux centres francophones en Ontario — Hamilton et Brantford — offrant des programmes agréés pour les bambins, préscolaires et le parascolaire.
     </p>
 
     <div class="mt-6 flex flex-wrap gap-3">
       <a
-        href="/inscription/#comment-sinscrire"
+        href="/inscription/"
         class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
       >
-        Comment s'inscrire
+        Comment s'inscrire →
       </a>
       <a
-        href="/centres/hamilton/"
+        href="#hamilton"
         class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
       >
-        Centre Hamilton
+        📍 Hamilton
       </a>
       <a
-        href="/centres/brantford/"
+        href="#brantford"
         class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
       >
-        Centre Brantford
+        📍 Brantford
       </a>
     </div>
   </section>
 
-  <!-- Centre cards -->
-  <section class="mx-auto max-w-6xl px-4 pb-12">
-    <div class="grid gap-5 md:grid-cols-2">
-      {centres.map((c) => (
+  <!-- One section per centre -->
+  {centres.map((c) => (
+    <section id={c.slug} class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-16">
+
+      <!-- Section header -->
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+            📍 {c.city}
+          </div>
+          <h2 class="mt-2 text-2xl font-black tracking-tight md:text-3xl">{c.name}</h2>
+          <p class="mt-1 text-sm font-semibold text-slate-500">{c.address} · {c.hours}</p>
+        </div>
+        <a
+          href={c.inscriptionHref}
+          class="inline-flex flex-shrink-0 items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+        >
+          Inscription — {c.city} →
+        </a>
+      </div>
+
+      <!-- Info + Map grid -->
+      <div class="grid gap-5 md:grid-cols-2">
+
+        <!-- Info card -->
         <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs font-extrabold uppercase tracking-wider text-slate-700">
-            <span aria-hidden="true">📍</span>
-            <span>{c.city}</span>
+          <h3 class="text-lg font-black tracking-tight">Coordonnées</h3>
+
+          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">📍</span>
+              <span>{c.address}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">🕐</span>
+              <span>{c.hours}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">👩‍🏫</span>
+              <span><span class="font-extrabold text-slate-900">Superviseure:</span> {c.supervisor}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">🏫</span>
+              <span><span class="font-extrabold text-slate-900">École:</span> {c.school}</span>
+            </li>
+          </ul>
+
+          <div class="mt-5 space-y-2">
+            <a
+              href={`tel:${c.phoneTel}`}
+              class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-slate-800 hover:bg-white"
+            >
+              📞 {c.phone}
+            </a>
+            <a
+              href={`mailto:${c.email}`}
+              class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-white"
+            >
+              ✉️ {c.email}
+            </a>
           </div>
 
-          <h2 class="mt-3 text-2xl font-black tracking-tight text-slate-900">{c.name}</h2>
-
-          <p class="mt-3 leading-7 text-slate-600">
-            <span class="font-extrabold">Adresse:</span> {c.address}
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">Heures:</span> {c.hours}
-          </p>
-          <p class="mt-1 leading-7 text-slate-600">
-            <span class="font-extrabold">Superviseure:</span> {c.supervisor}
-          </p>
-
-          <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
-            {c.programs.map((p) => (
-              <span class="rounded-full border border-black/10 bg-white/70 px-3 py-2">{p}</span>
-            ))}
+          <div class="mt-5">
+            <p class="text-sm font-extrabold text-slate-900">Programmes offerts</p>
+            <div class="mt-2 flex flex-wrap gap-2">
+              {c.programs.map((p) => (
+                <span class="rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-xs font-extrabold text-slate-700">
+                  {p}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div class="mt-6 flex flex-wrap gap-3">
             <a
-              href={c.pageHref}
-              class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+              href={c.inscriptionHref}
+              class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
             >
-              Voir le centre
+              S'inscrire →
             </a>
             <a
-              href={c.inscriptionHref}
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+              href="/programmes/"
+              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
             >
-              Inscription — {c.city}
+              Nos programmes
+            </a>
+            <a
+              href="/contact/"
+              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+            >
+              Nous contacter
             </a>
           </div>
         </article>
-      ))}
+
+        <!-- Map card -->
+        <div class="rounded-[28px] border border-black/10 bg-white/70 p-3 shadow-xl shadow-black/5">
+          <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-black/10 bg-white">
+            <iframe
+              title={`Carte — Centre ${c.city}`}
+              class="h-full w-full"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps?q=${c.mapsQuery}&output=embed`}
+            />
+          </div>
+          <div class="mt-3 flex flex-wrap gap-2 px-2 pb-2">
+            <a
+              href={c.googlePlaceUrl}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-white/80"
+            >
+              🗺️ Ouvrir dans Google Maps
+            </a>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${c.mapsQuery}`}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-white/80"
+            >
+              🧭 Obtenir l'itinéraire
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  ))}
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
+      <p class="text-4xl font-black text-white">🎈</p>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Prêt à rejoindre le Ballon Rouge?</h2>
+      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
+        Inscrivez votre enfant dès aujourd'hui et offrez-lui un milieu d'apprentissage francophone, chaleureux et stimulant.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href="/inscription/hamilton/"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
+        >
+          Inscription Hamilton →
+        </a>
+        <a
+          href="/inscription/brantford/"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
+        >
+          Inscription Brantford →
+        </a>
+      </div>
     </div>
   </section>
 

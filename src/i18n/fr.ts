@@ -28,6 +28,7 @@ export default {
       join: "Rejoignez notre équipe",
     },
     gouvernance: "Gouvernance",
+    contact: "Contact",
     centres: "Centres",
     cta: "Inscription",
     menu: "Menu",

@@ -1,10 +1,32 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const offres: {
+  titre: string;
+  centre: string;
+  type: string;
+  description: string;
+  dateAffichage: string;
+}[] = [{
+    titre: "Éducatrice qualifiée",
+    centre: "Hamilton",
+    type: "Temps plein",
+    description: "Nous recherchons une éducatrice qualifiée...",
+    dateAffichage: "Mars 2026",
+  },
+  {
+    titre: "Assistante éducatrice",
+    centre: "Brantford",
+    type: "Temps partiel",
+    description: "Poste d'assistante éducatrice disponible à Brantford...",
+    dateAffichage: "Mars 2026",
+  },
+];
+
 const recognitions = [
   {
     title: "Développement professionnel continu",
-    body: "Chaque membre du personnel suit un plan d'apprentissage professionnel continu fondé sur l'autoréflexion. Le centre requiert un minimum de quatre événements de développement professionnel par année (janvier à décembre), et le personnel se familiarise avec « Comment apprend-on? Pédagogie de l'Ontario pour la petite enfance ».",
+    body: "Chaque membre du personnel suit un plan d'apprentissage professionnel continu fondé sur l'autoréflexion. Le centre requiert un minimum de quatre événements de développement professionnel par année, et le personnel se familiarise avec « Comment apprend-on? Pédagogie de l'Ontario pour la petite enfance ».",
     icon: "📚",
   },
   {
@@ -23,21 +45,25 @@ const recognitions = [
 <BaseLayout
   lang="fr"
   title="Personnel — Le Ballon Rouge"
-  description="Découvrez l'équipe qualifiée du Ballon Rouge, nos reconnaissances et nos offres d'emploi à Hamilton et Brantford."
+  description="Découvrez l'équipe qualifiée du Ballon Rouge, notre organigramme et nos offres d'emploi à Hamilton et Brantford."
 >
+
   <!-- Hero -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Personnel</h1>
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Hamilton &amp; Brantford
+    </div>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Personnel</h1>
     <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
       Une équipe chaleureuse et qualifiée, engagée envers le bien-être, la sécurité et l'apprentissage des enfants.
     </p>
 
     <div class="mt-6 flex flex-wrap gap-3">
       <a
-        href="#reconnaissances"
+        href="#equipe"
         class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
       >
-        Reconnaissances des employés
+        Notre équipe →
       </a>
       <a
         href="#emplois"
@@ -52,46 +78,156 @@ const recognitions = [
         Rejoignez notre équipe
       </a>
     </div>
+
+    <!-- Anchor nav -->
+    <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+      <a href="#equipe"          class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Notre équipe</a>
+      <a href="#organigramme"    class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Organigramme</a>
+      <a href="#reconnaissances" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Reconnaissances</a>
+      <a href="#emplois"         class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Offres d'emploi</a>
+      <a href="#rejoignez"       class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Rejoignez-nous</a>
+    </div>
   </section>
 
   <!-- Intro / who we hire -->
-  <section class="mx-auto max-w-6xl px-4 pb-12">
+  <section id="equipe" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <h2 class="text-xl font-black tracking-tight md:text-2xl">Une équipe qualifiée</h2>
-      <p class="mt-3 leading-7 text-slate-600">
-        Le Ballon Rouge embauche des éducatrices qualifiées ainsi que des assistantes éducatrices, en fonction du nombre d'inscriptions et des exigences du
-        Ministère en matière de ratios éducatrice-enfants.
-      </p>
-      <p class="mt-3 leading-7 text-slate-600">
-        À l'occasion, nous accueillons des étudiantes du programme Éducation en services à l'enfance (collège) pour effectuer un stage au sein de la garderie,
-        afin d'enrichir leur expérience professionnelle.
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Qui nous sommes
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Une équipe qualifiée</h2>
+
+      <div class="mt-4 grid gap-5 md:grid-cols-2">
+        <div class="space-y-4 leading-7 text-slate-600">
+          <p>
+            Le Ballon Rouge embauche des éducatrices qualifiées ainsi que des assistantes éducatrices, en fonction du nombre d'inscriptions et des exigences du Ministère en matière de ratios éducatrice-enfants.
+          </p>
+          <p>
+            À l'occasion, nous accueillons des étudiantes du programme Éducation en services à l'enfance du collège, qui viennent effectuer un stage au sein de notre garderie pour enrichir leur expérience professionnelle.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-amber-100 bg-amber-50/60 p-5">
+          <p class="text-sm font-extrabold text-amber-800">📋 Note aux stagiaires</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-700">
+            Avant d'intégrer nos programmes, toutes les étudiantes doivent se familiariser avec nos politiques internes et fournir tous les documents exigés par le Ministère.
+          </p>
+        </div>
+      </div>
+
+      <!-- Roles grid -->
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        {[
+          { icon: "👩‍🏫", title: "Éducatrices", body: "Personnel qualifié en éducation de la petite enfance, formé selon les exigences du Ministère de l'Éducation de l'Ontario." },
+          { icon: "🤲", title: "Assistantes éducatrices", body: "Soutiennent les éducatrices qualifiées dans l'encadrement des groupes, selon les ratios prescrits." },
+          { icon: "🎓", title: "Stagiaires", body: "Étudiantes du programme Éducation en services à l'enfance accueillies pour enrichir leur expérience professionnelle." },
+        ].map((role) => (
+          <article class="rounded-2xl border border-black/10 bg-white/60 p-5">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
+              <span aria-hidden="true" class="text-lg">{role.icon}</span>
+            </div>
+            <h3 class="mt-3 font-black text-slate-900">{role.title}</h3>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{role.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Organigramme -->
+  <section id="organigramme" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Structure
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Organigramme</h2>
+      <p class="mt-2 leading-7 text-slate-600">
+        La structure organisationnelle du Ballon Rouge assure une gouvernance claire et un encadrement de qualité à chaque niveau.
       </p>
 
-      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-        <h3 class="text-lg font-black">Parents: vous êtes les bienvenus</h3>
-        <p class="mt-2 leading-7 text-slate-600">
-          La participation des parents est toujours bienvenue, et l'invitation s'étend aussi aux autres membres de la famille. Venez jouer avec nous, assister aux
-          activités, participer à une célébration spéciale, transmettre vos commentaires ou siéger sur le conseil d'administration.
-        </p>
-        <a
-          href="/gouvernance/#joindre"
-          class="mt-4 inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
-        >
-          Se joindre au conseil d'administration
-        </a>
+      <!-- Org chart -->
+      <div class="mt-8 flex flex-col items-center gap-0">
+
+        <!-- Tier 1 -->
+        <div class="flex justify-center">
+          <div class="rounded-2xl border border-red-200 bg-red-50 px-6 py-4 text-center shadow-sm">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-red-500">Gouvernance</p>
+            <p class="mt-1 font-black text-slate-900">Conseil d'administration</p>
+            <p class="text-xs font-semibold text-slate-500">Garderie Française de Hamilton Inc.</p>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="h-6 w-px bg-black/15"></div>
+
+        <!-- Tier 2 -->
+        <div class="flex justify-center">
+          <div class="rounded-2xl border border-black/10 bg-white/80 px-6 py-4 text-center shadow-sm">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Direction</p>
+            <p class="mt-1 font-black text-slate-900">Directrice générale</p>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="h-6 w-px bg-black/15"></div>
+
+        <!-- Tier 3 — two superviseurs -->
+        <div class="flex w-full max-w-lg justify-center gap-4">
+          <div class="relative flex-1">
+            <div class="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-black/15"></div>
+            <div class="rounded-2xl border border-black/10 bg-white/80 p-4 text-center shadow-sm">
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Supervision</p>
+              <p class="mt-1 font-black text-slate-900">Superviseure</p>
+              <p class="text-xs font-semibold text-red-700">Hamilton</p>
+            </div>
+          </div>
+          <div class="relative flex-1">
+            <div class="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-black/15"></div>
+            <div class="rounded-2xl border border-black/10 bg-white/80 p-4 text-center shadow-sm">
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Supervision</p>
+              <p class="mt-1 font-black text-slate-900">Superviseure</p>
+              <p class="text-xs font-semibold text-red-700">Brantford</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="h-6 w-px bg-black/15"></div>
+
+        <!-- Tier 4 — staff -->
+        <div class="flex w-full max-w-2xl flex-wrap justify-center gap-3">
+          {[
+            { role: "Éducatrices qualifiées", icon: "👩‍🏫" },
+            { role: "Assistantes éducatrices", icon: "🤲" },
+            { role: "Stagiaires", icon: "🎓" },
+          ].map((s) => (
+            <div class="relative">
+              <div class="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-black/15"></div>
+              <div class="rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-center shadow-sm">
+                <span aria-hidden="true" class="text-lg">{s.icon}</span>
+                <p class="mt-1 text-sm font-black text-slate-700">{s.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
+
+      <p class="mt-6 text-center text-xs font-semibold text-slate-400">
+        Organigramme simplifié — structure applicable aux deux centres.
+      </p>
     </div>
   </section>
 
   <!-- Reconnaissances -->
   <section id="reconnaissances" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <div>
-        <h2 class="text-xl font-black tracking-tight md:text-2xl">Reconnaissances des employés</h2>
-        <p class="mt-2 max-w-prose leading-7 text-slate-600">
-          Nous valorisons l'engagement de notre équipe et le développement professionnel continu.
-        </p>
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Notre engagement
       </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Reconnaissances des employés</h2>
+      <p class="mt-2 max-w-prose leading-7 text-slate-600">
+        Nous valorisons l'engagement de notre équipe et le développement professionnel continu.
+      </p>
 
       <div class="mt-6 grid gap-5 md:grid-cols-3">
         {recognitions.map((r) => (
@@ -104,38 +240,95 @@ const recognitions = [
           </article>
         ))}
       </div>
-
-      <div class="mt-8 rounded-2xl border border-dashed border-black/15 bg-white/50 p-5">
-        <p class="font-extrabold text-slate-900">À ajouter (optionnel)</p>
-        <p class="mt-2 leading-7 text-slate-600">
-          Tu peux afficher ici: années de service, remerciements, formations complétées, et messages de reconnaissance (sans données personnelles sensibles).
-        </p>
-      </div>
     </div>
   </section>
 
   <!-- Offres d'emploi -->
   <section id="emplois" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <h2 class="text-xl font-black tracking-tight md:text-2xl">Offres d'emploi</h2>
-      <p class="mt-3 leading-7 text-slate-600">
-        Les postes affichés varient selon les besoins des centres et les exigences de ratios. Pour postuler, veuillez consulter les offres ci-dessous ou nous
-        contacter.
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Carrières
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Offres d'emploi</h2>
+      <p class="mt-2 leading-7 text-slate-600">
+        Les postes affichés varient selon les besoins des centres et les exigences de ratios. Pour postuler, consultez les offres ci-dessous ou envoyez une candidature spontanée.
       </p>
 
-      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-        <p class="font-extrabold text-slate-900">Aucune offre affichée pour le moment</p>
-        <p class="mt-2 leading-7 text-slate-600">
-          Vous pouvez tout de même nous envoyer votre candidature spontanée via le formulaire ci-dessous.
-        </p>
+      {offres.length === 0 ? (
+        <div class="mt-6 rounded-2xl border border-dashed border-black/15 bg-white/50 p-6 text-center">
+          <span class="text-3xl">📭</span>
+          <p class="mt-3 font-extrabold text-slate-900">Aucune offre affichée pour le moment</p>
+          <p class="mt-2 text-sm font-semibold text-slate-500">
+            Vous pouvez tout de même nous envoyer votre candidature spontanée.
+          </p>
+          <a
+            href="/gouvernance/#rejoignez"
+            class="mt-4 inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          >
+            Candidature spontanée →
+          </a>
+        </div>
+      ) : (
+        <div class="mt-6 grid gap-4">
+          {offres.map((o) => (
+            <article class="rounded-2xl border border-black/10 bg-white/60 p-6">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-extrabold text-slate-600">{o.centre}</span>
+                    <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-extrabold text-slate-600">{o.type}</span>
+                    <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold text-slate-400">Affiché: {o.dateAffichage}</span>
+                  </div>
+                  <h3 class="mt-2 text-lg font-black text-slate-900">{o.titre}</h3>
+                  <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{o.description}</p>
+                </div>
+                <a
+                  href="/gouvernance/#rejoignez"
+                  class="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+                >
+                  Postuler →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Rejoignez notre équipe -->
+  <section id="rejoignez" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Postuler
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Rejoignez notre équipe</h2>
+      <p class="mt-2 leading-7 text-slate-600">
+        Vous souhaitez faire partie de l'équipe du Ballon Rouge? Consultez notre page dédiée pour soumettre votre candidature spontanée ou en savoir plus sur les postes disponibles.
+      </p>
+
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        {[
+          { icon: "👩‍🏫", title: "Éducatrice qualifiée", body: "Vous détenez un diplôme en éducation de la petite enfance et souhaitez travailler dans un milieu francophone bienveillant." },
+          { icon: "🤲", title: "Assistante éducatrice", body: "Vous souhaitez soutenir une équipe d'éducatrices qualifiées et contribuer au développement des enfants au quotidien." },
+          { icon: "🎓", title: "Stage", body: "Vous êtes étudiante en éducation en services à l'enfance et cherchez un milieu de stage enrichissant en français." },
+        ].map((r) => (
+          <article class="rounded-2xl border border-black/10 bg-white/60 p-5">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
+              <span aria-hidden="true" class="text-lg">{r.icon}</span>
+            </div>
+            <h3 class="mt-3 font-black text-slate-900">{r.title}</h3>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{r.body}</p>
+          </article>
+        ))}
       </div>
 
       <div class="mt-6 flex flex-wrap gap-3">
         <a
-          href="#rejoignez"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          href="/gouvernance/#rejoignez"
+          class="inline-flex items-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
         >
-          Candidature spontanée
+          Soumettre ma candidature →
         </a>
         <a
           href="/contact/"
@@ -147,84 +340,28 @@ const recognitions = [
     </div>
   </section>
 
-  <!-- Rejoignez notre équipe -->
-  <section id="rejoignez" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
-    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <h2 class="text-xl font-black tracking-tight md:text-2xl">Rejoignez notre équipe</h2>
-      <p class="mt-3 leading-7 text-slate-600">
-        Envoyez votre candidature. Nous vous contacterons si un poste correspondant à votre profil est disponible.
+  <!-- CTA -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
+      <p class="text-4xl font-black text-white">🎈</p>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Faites partie de la famille!</h2>
+      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
+        Rejoignez une équipe passionnée par la petite enfance, engagée envers la francophonie et le développement de chaque enfant.
       </p>
-
-      <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
-        <div class="grid gap-4 md:grid-cols-2">
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Nom complet</label>
-            <input
-              name="fullName"
-              required
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Courriel</label>
-            <input
-              type="email"
-              name="email"
-              required
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-        </div>
-
-        <div class="grid gap-4 md:grid-cols-2">
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Téléphone</label>
-            <input
-              name="phone"
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Centre préféré (optionnel)</label>
-            <select
-              name="preferredCentre"
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            >
-              <option value="">Aucune préférence</option>
-              <option>Hamilton</option>
-              <option>Brantford</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="text-sm font-extrabold text-slate-700">Message</label>
-          <textarea
-            name="message"
-            class="mt-2 min-h-[140px] w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            placeholder="Présentez-vous et indiquez le type de poste recherché (éducatrice, assistante, stage, etc.)."
-          ></textarea>
-        </div>
-
-        <div>
-          <label class="text-sm font-extrabold text-slate-700">CV (optionnel)</label>
-          <input
-            type="file"
-            name="cv"
-            accept=".pdf,.doc,.docx"
-            class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm"
-          />
-          <p class="mt-2 text-xs font-semibold text-slate-500">
-            Formats acceptés: PDF, DOC, DOCX.
-          </p>
-        </div>
-
-        <button
-          class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800"
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href="/gouvernance/#rejoignez"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
         >
-          Envoyer ma candidature
-        </button>
-      </form>
+          Postuler maintenant →
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
+        >
+          Nous contacter
+        </a>
+      </div>
     </div>
   </section>
 

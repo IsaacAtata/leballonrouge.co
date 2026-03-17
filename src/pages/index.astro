@@ -1,32 +1,514 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import SolidInfoCards from "../components/SolidInfoCards.astro";
-import StoryBlock from "../components/StoryBlock.astro";
-import CentresPreview from "../components/CentresPreview.astro";
-import PartnersTeaser from "../components/PartnersTeaser.astro";
-import TrustStats from "../components/TrustStats.astro";
-import TestimonialsPreview from "../components/TestimonialsPreview.astro";
-import FaqAccordion from "../components/FaqAccordion.astro";
-import BottomCta from "../components/BottomCta.astro";
-import BackToTop from "../components/BackToTop.astro"; 
+import BackToTop from "../components/BackToTop.astro";
+import { useTranslations } from "../i18n";
+
+const lang = "fr";
+const base = "";
+const t = {
+  story:        useTranslations(lang).storyBlock,
+  cards:        useTranslations(lang).solidInfoCards,
+  centres:      useTranslations(lang).centresPreview,
+  partners:     useTranslations(lang).partnerTeaser,
+  stats:        useTranslations(lang).trueStats,
+  testimonials: useTranslations(lang).testimonialsPreview,
+  faq:          useTranslations(lang).faqAccordion,
+  cta:          useTranslations(lang).bottomCTA,
+};
+
+const stats = [
+  { value: "1986", label: t.stats.stat1, badge: "En service depuis" },
+  { value: "2",    label: t.stats.stat2, badge: "Centres francophones" },
+  { value: "100%", label: t.stats.stat3, badge: "Agréé Ministère" },
+  { value: "FR",   label: t.stats.stat4, badge: "Immersion quotidienne" },
+];
+
+const faqUid = `faq-home`;
 ---
 
 <BaseLayout
   lang="fr"
-  title="Accueil – Le Ballon Rouge"
+  title="Accueil — Le Ballon Rouge"
   description="Service de garde francophone chaleureux et sécuritaire à Hamilton et Brantford."
 >
-  <Hero />
-  <SolidInfoCards lang="fr" />
-  <StoryBlock lang="fr" />
-  <CentresPreview lang="fr" />
-  <PartnersTeaser lang="fr" />
-  <TrustStats lang="fr" />
-  <TestimonialsPreview lang="fr" />
-  <FaqAccordion lang="fr" />
-  <BottomCta lang="fr" />
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="relative mx-auto max-w-7xl px-4 pb-12 pt-8 md:pt-16">
+    <div class="pointer-events-none absolute -left-20 -top-20 h-[400px] w-[400px] rounded-full bg-red-50 opacity-60 blur-3xl"></div>
+
+    <div class="relative grid grid-cols-1 items-center gap-8 md:grid-cols-[1fr_1.8fr]">
+
+      <!-- Left: text -->
+      <div class="flex flex-col gap-4 md:gap-5">
+
+        <!-- Location + ministry pills -->
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-extrabold text-slate-500">
+            <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+            Hamilton
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-extrabold text-slate-500">
+            <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+            Brantford
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1.5 text-xs font-extrabold text-red-600">
+            Agréé Ministère
+          </span>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-3xl font-black leading-[1.1] tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+          Là où le français<br />devient une{" "}
+          <span class="relative inline-block">
+            <span class="relative z-10 text-red-700">aventure</span>
+            <span class="absolute bottom-1 left-0 z-0 h-2.5 w-full rounded-full bg-red-100"></span>
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-sm font-medium leading-relaxed text-slate-500 sm:text-base">
+          Service de garde francophone à Hamilton et Brantford — apprentissage par le jeu, routines sécurisantes et immersion française au quotidien.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="/inscription/"
+            class="group inline-flex items-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-xl shadow-red-700/20 transition-all duration-150 hover:-translate-y-0.5 hover:bg-red-800 md:px-7 md:py-3.5"
+          >
+            Demander une place
+            <span class="transition-transform duration-150 group-hover:translate-x-1">→</span>
+          </a>
+          <a
+            href="/qui-sommes-nous/"
+            class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold text-slate-700 shadow-sm transition-all duration-150 hover:bg-slate-50 md:px-7 md:py-3.5"
+          >
+            À propos de nous!
+          </a>
+        </div>
+
+        <!-- Trust line -->
+        <p class="text-xs font-semibold text-slate-400 sm:text-sm">
+          En service depuis <strong class="text-slate-600">1986</strong> ·
+          <strong class="text-slate-600">2</strong> centres ·
+          Français <strong class="text-slate-600">100%</strong> du temps
+        </p>
+
+        <!-- Anchor nav pills -->
+        <div class="flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+          <a href="#notre-histoire"  class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">Notre histoire</a>
+          <a href="#centres-preview" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">Nos centres</a>
+          <a href="#en-chiffres"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">En chiffres</a>
+          <a href="#temoignages"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">Témoignages</a>
+          <a href="#faq"             class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">FAQ</a>
+        </div>
+      </div>
+
+      <!-- Right: image skeleton + stat chips -->
+      <div class="flex flex-col gap-4">
+        <div class="relative">
+          <div class="pointer-events-none absolute -inset-4 rounded-[36px] bg-red-500/10 blur-2xl"></div>
+          <div class="hero-img-skeleton">
+            <div class="hero-img-skeleton-content">
+              <div class="hero-img-balloon">🎈</div>
+              <p class="hero-img-label">Photo des enfants</p>
+              <p class="hero-img-size">1280 × 720 px</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {[
+            { val: "40+",  sub: "ans" },
+            { val: "2",    sub: "centres" },
+            { val: "100%", sub: "Français" },
+            { val: "FR",   sub: "immersion" },
+          ].map((s) => (
+            <div class="rounded-2xl border border-black/5 bg-white p-3 text-center shadow-sm">
+              <p class="text-xl font-black text-red-700">{s.val}</p>
+              <p class="mt-0.5 text-[10px] font-semibold text-slate-500">{s.sub}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       INFO CARDS (3 pillars) — original solid-card style
+  ═══════════════════════════════════════════════ -->
+  <section class="mx-auto max-w-7xl px-4 py-16">
+    <div class="mb-12 text-center">
+      <h2 class="mb-4 text-3xl font-black tracking-tight text-slate-900 md:text-4xl">
+        {t.cards.sectionTitle}
+      </h2>
+      <p class="mx-auto max-w-2xl text-xl leading-relaxed text-slate-600">
+        {t.cards.sectionSubtitle}
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {[
+        { icon: "🌍", tag: t.cards.card1.tag, title: t.cards.card1.title, body: t.cards.card1.body, link: t.cards.card1.link, href: "/programmes/" },
+        { icon: "👨‍👩‍👧‍👦", tag: t.cards.card2.tag, title: t.cards.card2.title, body: t.cards.card2.body, link: t.cards.card2.link, href: "/centres/" },
+        { icon: "🍎", tag: t.cards.card3.tag, title: t.cards.card3.title, body: t.cards.card3.body, link: t.cards.card3.link, href: "/espace-parents/" },
+      ].map((c) => (
+        <div class="solid-card group">
+          <div class="tag-badge mb-6">{c.icon} {c.tag}</div>
+          <h3 class="mb-4 text-2xl font-black text-slate-900 transition-colors group-hover:text-red-700">
+            {c.title}
+          </h3>
+          <p class="mb-8 text-lg leading-relaxed text-slate-600">{c.body}</p>
+          <a href={c.href} class="inline-flex items-center gap-2 font-bold text-red-700 hover:text-red-900">
+            {c.link} →
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       STORY + VISION / MISSION / VALUES
+  ═══════════════════════════════════════════════ -->
+  <section id="notre-histoire" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-10">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+            Notre histoire
+          </div>
+          <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">{t.story.title}</h2>
+          <p class="mt-3 leading-7 text-slate-600">{t.story.body}</p>
+        </div>
+        <a
+          href="/qui-sommes-nous/"
+          class="mt-2 inline-flex h-fit items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
+        >
+          {t.story.learnMore}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-10">
+    <div class="grid gap-5 md:grid-cols-3">
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          🔭 Vision
+        </div>
+        <h3 class="mt-3 text-lg font-black">{t.story.visionTitle}</h3>
+        <p class="mt-2 leading-7 text-slate-600">{t.story.visionBody}</p>
+      </article>
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          🎯 Mission
+        </div>
+        <h3 class="mt-3 text-lg font-black">{t.story.missionTitle}</h3>
+        <p class="mt-2 leading-7 text-slate-600">{t.story.missionBody}</p>
+      </article>
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          💎 Valeurs
+        </div>
+        <h3 class="mt-3 text-lg font-black">{t.story.valuesTitle}</h3>
+        <ul class="mt-3 space-y-2">
+          {t.story.values.map((v: string) => (
+            <li class="flex items-center gap-2 text-sm font-semibold text-slate-700">
+              <span class="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-red-700/10 text-[10px] font-black text-red-700">✓</span>
+              {v}
+            </li>
+          ))}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CENTRES PREVIEW
+  ═══════════════════════════════════════════════ -->
+  <section id="centres-preview" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-10">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          2 centres · Ontario
+        </div>
+        <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">{t.centres.title}</h2>
+        <p class="mt-1 text-slate-600">{t.centres.subtitle}</p>
+      </div>
+      <a
+        href="/centres/"
+        class="hidden rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80 md:inline-flex"
+      >
+        {t.centres.cta}
+      </a>
+    </div>
+
+    <div class="mt-5 grid gap-5 md:grid-cols-2">
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          📍 Hamilton
+        </div>
+        <h3 class="mt-3 text-lg font-black">Le Ballon Rouge — Hamilton</h3>
+        <ul class="mt-3 space-y-1.5 text-sm font-semibold text-slate-600">
+          <li>135 Bendamere Ave, Hamilton, ON L9C 1N4</li>
+          <li>{t.centres.phoneLabel} 905-383-8371</li>
+          <li>{t.centres.hoursHamilton}</li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="/centres/#hamilton" class="inline-flex rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white hover:bg-red-800">
+            {t.centres.details}
+          </a>
+          <a href="/inscription/hamilton/" class="inline-flex rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white/80">
+            Inscription →
+          </a>
+        </div>
+      </article>
+
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          📍 Brantford
+        </div>
+        <h3 class="mt-3 text-lg font-black">Le Ballon Rouge — Brantford</h3>
+        <ul class="mt-3 space-y-1.5 text-sm font-semibold text-slate-600">
+          <li>60 Clench Ave, Brantford, ON N3T 1B8</li>
+          <li>{t.centres.phoneLabel} 519-753-6541</li>
+          <li>{t.centres.hoursBrantford}</li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="/centres/#brantford" class="inline-flex rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white hover:bg-red-800">
+            {t.centres.details}
+          </a>
+          <a href="/inscription/brantford/" class="inline-flex rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white/80">
+            Inscription →
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <a
+      href="/centres/"
+      class="mt-5 inline-flex w-full justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80 md:hidden"
+    >
+      {t.centres.ctaMobile}
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PARTNERS TEASER
+  ═══════════════════════════════════════════════ -->
+  <section class="mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+            Partenaires
+          </div>
+          <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">{t.partners.title}</h2>
+          <p class="mt-1 text-slate-600">{t.partners.subtitle}</p>
+        </div>
+        <a
+          href="/qui-sommes-nous/#partenariat"
+          class="inline-flex rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
+        >
+          {t.partners.cta}
+        </a>
+      </div>
+      <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Hamilton</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Brantford</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">EarlyON</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Collège Boréal</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">{t.partners.andMore}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       TRUST STATS
+  ═══════════════════════════════════════════════ -->
+  <section id="en-chiffres" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Le Ballon Rouge en chiffres
+      </div>
+      <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+        {stats.map((s) => (
+          <div class="group relative flex flex-col items-center overflow-hidden rounded-[28px] border border-black/5 bg-white px-5 py-8 text-center shadow-lg shadow-black/5 transition duration-200 hover:-translate-y-1 hover:shadow-xl">
+            <div class="pointer-events-none absolute -top-6 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-red-100 opacity-60 blur-2xl"></div>
+            <span class="relative mb-4 inline-flex items-center rounded-full border border-black/5 bg-slate-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
+              {s.badge}
+            </span>
+            <div class="relative text-5xl font-black leading-none tracking-tight text-red-700 md:text-6xl">
+              {s.value}
+            </div>
+            <div class="mt-4 h-[2px] w-8 rounded-full bg-red-100"></div>
+            <p class="mt-3 text-sm font-semibold leading-snug text-slate-600">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════════ -->
+  <section id="temoignages" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          Témoignages
+        </div>
+        <h2 class="mt-3 text-2xl font-black tracking-tight md:text-3xl">{t.testimonials.title}</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">{t.testimonials.subtitle}</p>
+      </div>
+      <a
+        href="/qui-sommes-nous/#temoignages"
+        class="hidden rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80 md:inline-flex"
+      >
+        {t.testimonials.cta}
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-5 md:grid-cols-3">
+      {t.testimonials.testimonials.map((item: { location: string; quote: string; name: string }) => (
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
+          <div class="flex items-center justify-between gap-3">
+            <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
+              📍 {item.location}
+            </div>
+            <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-red-700/20 bg-red-50 text-red-700">
+              <span class="text-xl font-black leading-none">"</span>
+            </div>
+          </div>
+          <p class="mt-5 text-sm font-semibold leading-7 text-slate-700 md:text-base md:leading-8">
+            {item.quote}
+          </p>
+          <div class="mt-5 border-t border-black/10 pt-4">
+            <p class="font-black text-slate-900">{item.name}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <a
+      href="/qui-sommes-nous/#temoignages"
+      class="mt-5 inline-flex w-full justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80 md:hidden"
+    >
+      {t.testimonials.cta}
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FAQ ACCORDION
+  ═══════════════════════════════════════════════ -->
+  <section id="faq" class="scroll-mt-28 mx-auto max-w-4xl px-4 pb-12">
+    <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+          FAQ
+        </div>
+        <h2 class="mt-3 text-2xl font-black tracking-tight md:text-3xl">{t.faq.title}</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">{t.faq.subtitle}</p>
+      </div>
+      <a
+        href="/espace-parents/"
+        class="inline-flex h-fit w-fit items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
+      >
+        {t.faq.cta}
+      </a>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-3 md:mt-8">
+      {t.faq.items.map((item: { q: string; a: string }, i: number) => (
+        <details
+          class="faq-item group overflow-hidden rounded-2xl border border-black/8 bg-white shadow-sm shadow-black/5"
+          name={faqUid}
+          open={i === 0}
+        >
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-3 border-b border-transparent px-5 py-5 transition-colors duration-200 group-open:border-black/8 group-open:bg-red-50/60 md:gap-4 md:px-7 md:py-6">
+            <div class="flex items-center gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-700/10 text-xs font-black text-red-700 md:h-8 md:w-8">
+                {i + 1}
+              </span>
+              <span class="text-sm font-black text-slate-900 md:text-[1.05rem] lg:text-lg">
+                {item.q}
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="faq-icon ml-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-red-700 shadow-sm transition-transform duration-300 group-open:rotate-180 md:h-10 md:w-10"
+            >
+              <svg viewBox="0 0 24 24" class="h-4 w-4 md:h-5 md:w-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-body overflow-hidden">
+            <div class="px-5 py-5 md:px-7 md:py-6">
+              <p class="mb-2 text-[0.65rem] font-black uppercase tracking-widest text-red-700/70 md:text-[0.7rem]">
+                Réponse
+              </p>
+              <p class="text-sm leading-7 text-slate-600 md:text-[1.02rem] md:leading-8">
+                {item.a}
+              </p>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       BOTTOM CTA
+  ═══════════════════════════════════════════════ -->
+  <section class="mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
+      <p class="text-4xl font-black text-white">🎈</p>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">{t.cta.title}</h2>
+      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
+        {t.cta.body}
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href="/inscription/"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
+        >
+          {t.cta.primaryText}
+        </a>
+        <a
+          href="/centres/"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
+        >
+          {t.cta.secondaryText}
+        </a>
+      </div>
+    </div>
+  </section>
 
   <BackToTop />
+
   <script src="/assets/scripts/legacy.js" is:inline></script>
+
+  <script>
+    document.querySelectorAll<HTMLDetailsElement>("details.faq-item").forEach((details) => {
+      const summary = details.querySelector("summary")!;
+      summary.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (details.open) {
+          const body = details.querySelector<HTMLElement>(".faq-body")!;
+          body.style.gridTemplateRows = "0fr";
+          body.addEventListener("transitionend", () => { details.removeAttribute("open"); }, { once: true });
+        } else {
+          details.setAttribute("open", "");
+          const body = details.querySelector<HTMLElement>(".faq-body")!;
+          body.getBoundingClientRect();
+          body.style.gridTemplateRows = "1fr";
+        }
+      });
+    });
+  </script>
+
 </BaseLayout>

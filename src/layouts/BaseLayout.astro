@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
+import Toast from "../components/Toast.astro";
 import { useTranslations } from "../i18n";
 import type { Lang } from "../i18n";
 
@@ -48,20 +49,25 @@ const t = useTranslations(lang);
     <Footer lang={lang} />
     <BackToTop />
 
+    <Toast /> 
+
     <!-- Smart sticky nav — hides on scroll down, reappears on scroll up -->
     <script is:inline>
       (function () {
         var header = document.querySelector('header');
         if (!header) return;
 
-        // Dynamically measure real header height and pad body so content isn't hidden under it
+        /* ── Body padding ── */
         function setBodyPadding() {
-          document.body.style.paddingTop = header.offsetHeight + 'px';
+          var h = header.offsetHeight;
+          if (h > 0) document.body.style.paddingTop = h + 'px';
         }
 
-        setBodyPadding();
+        requestAnimationFrame(setBodyPadding);
+        window.addEventListener('load',   setBodyPadding, { passive: true });
         window.addEventListener('resize', setBodyPadding, { passive: true });
 
+        /* ── Scroll hide / show ── */
         var lastY     = window.scrollY;
         var ticking   = false;
         var THRESHOLD = 80;
@@ -69,20 +75,10 @@ const t = useTranslations(lang);
         function update() {
           var currentY = window.scrollY;
 
-          // Floating shadow once scrolled past 10px
-          if (currentY > 10) {
-            header.classList.add('is-scrolled');
-          } else {
-            header.classList.remove('is-scrolled');
-          }
+          header.classList.toggle('is-scrolled', currentY > 10);
 
-          // Hide on scroll down, show on scroll up
           if (currentY > THRESHOLD) {
-            if (currentY > lastY) {
-              header.classList.add('nav-hidden');
-            } else {
-              header.classList.remove('nav-hidden');
-            }
+            header.classList.toggle('nav-hidden', currentY > lastY);
           } else {
             header.classList.remove('nav-hidden');
           }
@@ -92,13 +88,10 @@ const t = useTranslations(lang);
         }
 
         window.addEventListener('scroll', function () {
-          if (!ticking) {
-            window.requestAnimationFrame(update);
-            ticking = true;
-          }
+          if (!ticking) { requestAnimationFrame(update); ticking = true; }
         }, { passive: true });
 
-        // Reset on Astro page transitions
+        /* ── Astro page transitions ── */
         document.addEventListener('astro:after-swap', function () {
           setBodyPadding();
           lastY = window.scrollY;
