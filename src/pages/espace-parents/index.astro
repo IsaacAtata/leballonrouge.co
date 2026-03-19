@@ -4,20 +4,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const fraisDivers = [
   {
     icon: "⏰",
-    title: "Frais de retard",
-    body: "Une pénalité de retard sera appliquée pour tous les départs après 17h30. Des frais de 10,00$ par 15 minutes, par famille, sont payés directement au personnel en argent comptant. L'heure sur l'horloge de la garderie servira à déterminer l'heure de départ.",
+    title: "Late pickup fees",
+    body: "A late pickup penalty applies for all departures after 5:30 PM. A fee of $10.00 per 15 minutes, per family, is paid directly to staff in cash. The daycare's clock will be used to determine the pickup time.",
     detail: [
-      { range: "0 à 15 minutes",  amount: "10,00$ / famille" },
-      { range: "16 à 30 minutes", amount: "20,00$ / famille" },
-      { range: "31 à 45 minutes", amount: "30,00$ / famille" },
-      { range: "46 à 60 minutes", amount: "40,00$ / famille" },
+      { range: "0 to 15 minutes",  amount: "$10.00 / family" },
+      { range: "16 to 30 minutes", amount: "$20.00 / family" },
+      { range: "31 to 45 minutes", amount: "$30.00 / family" },
+      { range: "46 to 60 minutes", amount: "$40.00 / family" },
     ],
-    note: "Aucun reçu pour fin d'impôt ne sera remis pour les frais de retard puisqu'il s'agit d'une pénalité et non pas de frais de garde régulier.",
+    note: "No tax receipt will be issued for late fees, as this is a penalty and not a regular childcare fee.",
   },
   {
     icon: "🏦",
-    title: "Paiement retourné",
-    body: "Dans le cas d'un paiement par chèque, TEF ou DPA qui est retourné ou qui n'a pas abouti, des frais de 20,00$ seront ajoutés pour défrayer les frais bancaires et administratifs.",
+    title: "Returned payment",
+    body: "In the event of a returned or failed cheque, EFT or PAD payment, a $20.00 fee will be added to cover banking and administrative costs.",
     detail: null,
     note: null,
   },
@@ -25,56 +25,56 @@ const fraisDivers = [
 ---
 
 <BaseLayout
-  lang="fr"
-  title="Espace parents — Le Ballon Rouge"
-  description="Guide des parents, frais, subventions, menu et ressources utiles pour les familles du Ballon Rouge."
+  lang="en"
+  title="Parent Space — Le Ballon Rouge"
+  description="Guide, fees, subsidies, menu and useful resources for Le Ballon Rouge families in Hamilton and Brantford."
 >
 
   <!-- Hero intro -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
     <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-      Familles · Hamilton &amp; Brantford
+      Families · Hamilton &amp; Brantford
     </div>
-    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Espace parents</h1>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Parent Space</h1>
     <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-      Guide, frais, menu et ressources utiles pour accompagner votre enfant au Ballon Rouge.
+      Guide, fees, menu and useful resources to support your child at Le Ballon Rouge.
     </p>
 
     <div class="mt-6 flex flex-wrap gap-3">
       <a
-        href="/inscription/"
+        href="/en/inscription/"
         class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
       >
-        Comment s'inscrire →
+        How to register →
       </a>
       <a
-        href="/contact/"
+        href="/en/contact/"
         class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
       >
-        Nous contacter
+        Contact us
       </a>
     </div>
 
     <!-- Anchor nav -->
     <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
-      <a href="#guide"      class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Guide des parents</a>
-      <a href="#frais"      class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Frais &amp; subventions</a>
-      <a href="#divers"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Frais divers</a>
-      <a href="#subvention" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Subvention</a>
+      <a href="#guide"      class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Parent guide</a>
+      <a href="#frais"      class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Fees &amp; subsidies</a>
+      <a href="#divers"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Miscellaneous fees</a>
+      <a href="#subvention" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Subsidy</a>
       <a href="#menu"       class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Menu</a>
-      <a href="#ressources" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Ressources</a>
+      <a href="#ressources" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Resources</a>
     </div>
   </section>
 
-  <!-- Guide des parents -->
+  <!-- Parent guide -->
   <section id="guide" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
       <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Ressource
+        Resource
       </div>
-      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Guide des parents</h2>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Parent guide</h2>
       <p class="mt-2 max-w-prose leading-7 text-slate-600">
-        Le centre de garde fournit aux familles un guide contenant de l'information utile sur l'inscription et le retrait, les arrivées et départs, les personnes autorisées, les biens personnels, les jours fériés, les vacances, les maladies, l'administration des médicaments, la supervision, et plus encore.
+        The daycare centre provides families with a guide containing useful information on registration and withdrawal, arrivals and departures, authorized persons, personal belongings, statutory holidays, vacations, illness, medication administration, supervision, and more.
       </p>
       <div class="mt-5 flex flex-wrap gap-3">
         <a
@@ -83,32 +83,32 @@ const fraisDivers = [
           rel="noopener"
           class="inline-flex items-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
         >
-          📄 Télécharger le guide (PDF)
+          📄 Download the guide (PDF)
         </a>
         <a
-          href="/contact/"
+          href="/en/contact/"
           class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
         >
-          Une question? Contactez-nous
+          A question? Contact us
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Frais de base -->
+  <!-- Base fees -->
   <section id="frais" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
       <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Tarification 2025
+        2025 Rates
       </div>
-      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Frais et subventions</h2>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Fees and subsidies</h2>
       <p class="mt-2 max-w-prose leading-7 text-slate-600">
-        Le Ballon Rouge est inscrit au système pancanadien d'apprentissage et de garde des jeunes enfants. Notez bien que ceci ne s'applique pas aux frais divers tels que les excursions, les frais de retard ou les frais d'insuffisance de fonds.
+        Le Ballon Rouge is enrolled in the Canada-wide early learning and child care system. Please note that this does not apply to miscellaneous fees such as field trips, late pickup fees or non-sufficient funds fees.
       </p>
 
       <!-- Table -->
-      <h3 class="mt-8 text-lg font-black text-slate-900">Frais de base 2025</h3>
-      <p class="mt-1 text-sm font-semibold text-slate-500">Temps plein: 5 jours · Temps partiel: 2 jours minimum</p>
+      <h3 class="mt-8 text-lg font-black text-slate-900">Base fees 2025</h3>
+      <p class="mt-1 text-sm font-semibold text-slate-500">Full-time: 5 days · Part-time: minimum 2 days</p>
 
       <div class="mt-4 overflow-x-auto rounded-2xl border border-black/10">
         <table class="w-full min-w-[640px] text-sm">
@@ -116,20 +116,20 @@ const fraisDivers = [
             <tr class="border-b border-black/10 bg-slate-50/80">
               <th class="px-4 py-3 text-left font-black text-slate-900">Centre</th>
               <th class="px-4 py-3 text-left font-black text-slate-900">
-                Bambins<br/>
-                <span class="text-xs font-semibold text-slate-500">18 à 30 mois</span>
+                Toddlers<br/>
+                <span class="text-xs font-semibold text-slate-500">18 to 30 months</span>
               </th>
               <th class="px-4 py-3 text-left font-black text-slate-900">
-                Préscolaires<br/>
-                <span class="text-xs font-semibold text-slate-500">2,5 à 4 ans</span>
+                Preschool<br/>
+                <span class="text-xs font-semibold text-slate-500">2.5 to 4 years</span>
               </th>
               <th class="px-4 py-3 text-left font-black text-slate-900">
-                Parascolaires<br/>
-                <span class="text-xs font-semibold text-slate-500">4 à 5 ans</span>
+                Before &amp; After School<br/>
+                <span class="text-xs font-semibold text-slate-500">4 to 5 years</span>
               </th>
               <th class="px-4 py-3 text-left font-black text-slate-900">
-                Parascolaires<br/>
-                <span class="text-xs font-semibold text-slate-500">6 à 12 ans</span>
+                Before &amp; After School<br/>
+                <span class="text-xs font-semibold text-slate-500">6 to 12 years</span>
               </th>
             </tr>
           </thead>
@@ -137,53 +137,53 @@ const fraisDivers = [
             <tr class="bg-white/60">
               <td class="px-4 py-4 font-black text-slate-900">Brantford</td>
               <td class="px-4 py-4">
-                <span class="font-black text-red-700">22,00$</span><br/>
-                <span class="text-xs text-slate-500">par jour</span>
+                <span class="font-black text-red-700">$22.00</span><br/>
+                <span class="text-xs text-slate-500">per day</span>
               </td>
               <td class="px-4 py-4">
-                <span class="font-black text-red-700">21,48$</span><br/>
-                <span class="text-xs text-slate-500">par jour</span>
+                <span class="font-black text-red-700">$21.48</span><br/>
+                <span class="text-xs text-slate-500">per day</span>
               </td>
               <td class="px-4 py-4 text-xs font-semibold leading-6 text-slate-700">
-                AM: 11,36$<br/>PM: 11,36$<br/>AM &amp; PM: 12,00$<br/>
-                <span class="text-slate-500">Péd./Congé: 18,66$</span>
+                AM: $11.36<br/>PM: $11.36<br/>AM &amp; PM: $12.00<br/>
+                <span class="text-slate-500">PD/Holiday: $18.66</span>
               </td>
               <td class="px-4 py-4 text-xs font-semibold leading-6 text-slate-700">
-                AM: 11,36$<br/>PM: 11,36$<br/>AM &amp; PM: 18,69$<br/>
-                <span class="text-slate-500">Péd./Congé: 39,50$</span>
+                AM: $11.36<br/>PM: $11.36<br/>AM &amp; PM: $18.69<br/>
+                <span class="text-slate-500">PD/Holiday: $39.50</span>
               </td>
             </tr>
             <tr class="bg-white/30">
               <td class="px-4 py-4 font-black text-slate-900">Hamilton</td>
               <td class="px-4 py-4">
-                <span class="font-black text-red-700">22,00$</span><br/>
-                <span class="text-xs text-slate-500">par jour</span>
+                <span class="font-black text-red-700">$22.00</span><br/>
+                <span class="text-xs text-slate-500">per day</span>
               </td>
               <td class="px-4 py-4">
-                <span class="font-black text-red-700">22,00$</span><br/>
-                <span class="text-xs text-slate-500">par jour</span>
+                <span class="font-black text-red-700">$22.00</span><br/>
+                <span class="text-xs text-slate-500">per day</span>
               </td>
               <td class="px-4 py-4 text-xs font-semibold leading-6 text-slate-700">
-                AM: 11,36$<br/>PM: 11,36$<br/>AM &amp; PM: 12,00$<br/>
-                <span class="text-slate-500">Péd./Congé: 18,66$</span>
+                AM: $11.36<br/>PM: $11.36<br/>AM &amp; PM: $12.00<br/>
+                <span class="text-slate-500">PD/Holiday: $18.66</span>
               </td>
               <td class="px-4 py-4 text-xs font-semibold leading-6 text-slate-700">
-                AM: 7,50$<br/>PM: 7,50$<br/>AM &amp; PM: 15,00$<br/>
-                <span class="text-slate-500">Péd./Congé: 39,50$</span>
+                AM: $7.50<br/>PM: $7.50<br/>AM &amp; PM: $15.00<br/>
+                <span class="text-slate-500">PD/Holiday: $39.50</span>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <!-- Tarif notes -->
+      <!-- Fee notes -->
       <div class="mt-6 rounded-2xl border border-black/10 bg-white/60 p-5">
-        <h3 class="font-black text-slate-900">Notes tarifaires</h3>
+        <h3 class="font-black text-slate-900">Fee notes</h3>
         <ul class="mt-3 space-y-3">
           {[
-            "Les tarifs varient selon le programme fréquenté et la fréquence. Les frais sont calculés selon le nombre de jours de garde durant les heures d'ouverture et de jours fériés par mois, excluant la fermeture à Noël ainsi que la semaine de fermeture estivale.",
-            "Pas d'ajustement aux tarifs pour les journées d'absence, de maladie ou de vacances d'un enfant. Le centre de garde ne pourra garantir la place de votre enfant si vous tenez un compte en souffrance.",
-            "Pour les programmes à temps partiel, les journées sont stables et non échangeables afin de respecter les ratios exigés par le Ministère de l'Éducation.",
+            "Rates vary by program and attendance frequency. Fees are calculated based on the number of care days during opening hours and statutory holidays per month, excluding the Christmas closure and the summer closure week.",
+            "No adjustment is made to fees for a child's absences, illness or vacation days. The daycare cannot guarantee your child's spot if you carry an outstanding balance.",
+            "For part-time programs, days are fixed and non-exchangeable in order to comply with the ratios required by the Ministry of Education.",
           ].map((note) => (
             <li class="flex items-start gap-3">
               <span class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>
@@ -195,12 +195,12 @@ const fraisDivers = [
     </div>
   </section>
 
-  <!-- Frais divers -->
+  <!-- Miscellaneous fees -->
   <section id="divers" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="mb-6">
-      <h2 class="text-2xl font-black tracking-tight md:text-3xl">Frais divers</h2>
+      <h2 class="text-2xl font-black tracking-tight md:text-3xl">Miscellaneous fees</h2>
       <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">
-        Ces frais s'ajoutent aux frais de garde réguliers et ne sont pas couverts par le système pancanadien.
+        These fees are in addition to regular childcare fees and are not covered by the Canada-wide system.
       </p>
     </div>
 
@@ -234,15 +234,15 @@ const fraisDivers = [
     </div>
   </section>
 
-  <!-- Subvention -->
+  <!-- Subsidy -->
   <section id="subvention" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
       <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Aide financière
+        Financial assistance
       </div>
-      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Subvention</h2>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Subsidy</h2>
       <p class="mt-2 max-w-prose leading-7 text-slate-600">
-        Les résidents de l'Ontario peuvent être admissibles à une subvention totale ou partielle selon leur situation financière. Les critères d'admissibilité sont gérés par la ville. Veuillez vous référer à votre ville respective pour déterminer si vous êtes qualifié. Vous devez communiquer avec la division <strong class="font-extrabold text-slate-800">Child Care Services</strong>.
+        Ontario residents may be eligible for a full or partial subsidy based on their financial situation. Eligibility criteria are managed by the city. Please contact your respective city to determine if you qualify. You must reach out to the <strong class="font-extrabold text-slate-800">Child Care Services</strong> division.
       </p>
 
       <div class="mt-6 grid gap-5 md:grid-cols-2">
@@ -255,7 +255,7 @@ const fraisDivers = [
               <span aria-hidden="true" class="text-xl">🏫</span>
             </div>
             <div>
-              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Subvention</p>
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Subsidy</p>
               <h3 class="text-xl font-black text-slate-900">Brantford</h3>
             </div>
           </div>
@@ -280,7 +280,7 @@ const fraisDivers = [
               <span aria-hidden="true" class="text-xl">📝</span>
             </div>
             <div>
-              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Subvention</p>
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Subsidy</p>
               <h3 class="text-xl font-black text-slate-900">Hamilton</h3>
             </div>
           </div>
@@ -302,11 +302,11 @@ const fraisDivers = [
   <section id="menu" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
       <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Alimentation
+        Nutrition
       </div>
       <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Menu</h2>
       <p class="mt-2 leading-7 text-slate-600">
-        Consultez ou téléchargez le menu du mois ci-dessous. Nos repas suivent les recommandations du Guide Alimentaire Canadien.
+        View or download the monthly menu below. Our meals follow the recommendations of Canada's Food Guide.
       </p>
       <div class="mt-5 flex flex-wrap gap-3">
         <a
@@ -315,21 +315,21 @@ const fraisDivers = [
           rel="noopener"
           class="inline-flex items-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
         >
-          📄 Télécharger le menu (PDF)
+          📄 Download the menu (PDF)
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Ressources -->
+  <!-- Resources -->
   <section id="ressources" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
       <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Soutien aux familles
+        Family support
       </div>
-      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Ressources pour les parents</h2>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Resources for parents</h2>
       <p class="mt-2 leading-7 text-slate-600">
-        Nous collaborons avec des partenaires et des ressources communautaires afin de soutenir les enfants, les familles et le personnel, au besoin.
+        We collaborate with partners and community resources to support children, families and staff as needed.
       </p>
 
       <div class="mt-6 grid gap-4 md:grid-cols-2">
@@ -337,11 +337,11 @@ const fraisDivers = [
           <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
             <span aria-hidden="true" class="text-lg">🤝</span>
           </div>
-          <h3 class="mt-3 font-black text-slate-900">Ressources communautaires</h3>
+          <h3 class="mt-3 font-black text-slate-900">Community resources</h3>
           <ul class="mt-3 space-y-2">
             {[
               "EarlyON Programs",
-              "Santé publique (Hamilton / Brantford)",
+              "Public Health (Hamilton / Brantford)",
               "Lansdowne Children's Centre",
               "Community Living",
             ].map((r) => (
@@ -357,12 +357,12 @@ const fraisDivers = [
           <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
             <span aria-hidden="true" class="text-lg">💬</span>
           </div>
-          <h3 class="mt-3 font-black text-slate-900">Communication avec les familles</h3>
+          <h3 class="mt-3 font-black text-slate-900">Family communication</h3>
           <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
-            Le personnel échange avec les familles à l'arrivée et au départ, et partage des informations via des outils de communication et des affichages pour chaque groupe.
+            Staff connect with families at drop-off and pick-up, and share information through communication tools and group postings for each age group.
           </p>
           <p class="mt-3 text-sm font-semibold leading-6 text-slate-600">
-            La participation des parents est toujours bienvenue, y compris lors d'activités spéciales ou via le conseil d'administration.
+            Parent involvement is always welcome, including during special activities or through the board of directors.
           </p>
         </article>
 
@@ -370,9 +370,9 @@ const fraisDivers = [
           <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
             <span aria-hidden="true" class="text-lg">♿</span>
           </div>
-          <h3 class="mt-3 font-black text-slate-900">Accessibilité &amp; inclusion</h3>
+          <h3 class="mt-3 font-black text-slate-900">Accessibility &amp; inclusion</h3>
           <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
-            Les enfants ayant des besoins particuliers peuvent être intégrés au programme avec une attitude positive. Nous favorisons le dépistage précoce, la prévention et la collaboration avec les ressources disponibles dans la communauté.
+            Children with special needs can be integrated into the program with a positive approach. We encourage early screening, prevention and collaboration with available community resources.
           </p>
         </article>
       </div>
@@ -383,22 +383,22 @@ const fraisDivers = [
   <section class="mx-auto max-w-6xl px-4 pb-16">
     <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
       <p class="text-4xl font-black text-white">🎈</p>
-      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Des questions?</h2>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Any questions?</h2>
       <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
-        Notre équipe est là pour vous accompagner. N'hésitez pas à contacter la superviseure de votre centre.
+        Our team is here to support you. Don't hesitate to contact the supervisor at your centre.
       </p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <a
-          href="/contact/"
+          href="/en/contact/"
           class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
         >
-          Nous contacter →
+          Contact us →
         </a>
         <a
-          href="/inscription/"
+          href="/en/inscription/"
           class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
         >
-          Inscription
+          Registration
         </a>
       </div>
     </div>

@@ -7,6 +7,16 @@ interface Props { lang?: Lang; }
 const { lang = "fr" } = Astro.props;
 const t = useTranslations(lang).nav;
 const base = lang === "en" ? "/en" : "";
+
+const currentPath = Astro.url.pathname;
+
+const frHref = currentPath.startsWith("/en/")
+  ? currentPath.replace(/^\/en/, "") || "/"
+  : currentPath;
+
+const enHref = currentPath.startsWith("/en/")
+  ? currentPath
+  : "/en" + currentPath;
 ---
 
 <header class="border-b border-black/10 bg-white/95 backdrop-blur-xl">
@@ -126,11 +136,11 @@ const base = lang === "en" ? "/en" : "";
             <span class="arrow" aria-hidden="true">▾</span>
           </button>
           <div class="nav-dropdown lang-dropdown">
-            <a id="lang-opt-fr" href="/" class="dropdown-item lang-option" data-lang="fr">
+            <a id="lang-opt-fr" href={frHref} class="dropdown-item lang-option" data-lang="fr">
               <img src="/assets/flags/fr.svg" alt="Français" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
               Français
             </a>
-            <a id="lang-opt-en" href="/en/" class="dropdown-item lang-option" data-lang="en">
+            <a id="lang-opt-en" href={enHref} class="dropdown-item lang-option" data-lang="en">
               <img src="/assets/flags/en.svg" alt="English" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
               English
             </a>
@@ -241,7 +251,6 @@ const base = lang === "en" ? "/en" : "";
     var iconClose = menuBtn.querySelector('svg:last-of-type');
     var menuLabel = menuBtn.querySelector('#menuLabel');
 
-    // Hard reset state
     mobileMenu.className = 'mobile-menu-panel';
     mobileMenu.setAttribute('aria-hidden', 'true');
     menuBtn.setAttribute('aria-expanded', 'false');
@@ -274,11 +283,9 @@ const base = lang === "en" ? "/en" : "";
       document.body.style.overflow = '';
     }
 
-    // Strip old listeners by replacing the button
     var newBtn = menuBtn.cloneNode(true);
     menuBtn.parentNode.replaceChild(newBtn, menuBtn);
 
-    // Re-grab refs from the new button
     iconOpen  = newBtn.querySelector('svg:first-of-type');
     iconClose = newBtn.querySelector('svg:last-of-type');
     menuLabel = newBtn.querySelector('#menuLabel');
@@ -305,9 +312,6 @@ const base = lang === "en" ? "/en" : "";
       }
     });
 
-    // -------------------------------------------------------
-    // Touch-friendly lang dropdown for mobile
-    // -------------------------------------------------------
     document.querySelectorAll('.nav-group').forEach(function(group) {
       var trigger = group.querySelector('.lang-trigger');
       if (!trigger) return;
@@ -315,7 +319,6 @@ const base = lang === "en" ? "/en" : "";
       trigger.addEventListener('click', function(e) {
         e.stopPropagation();
         var alreadyOpen = group.classList.contains('is-open');
-        // Close all open dropdowns first
         document.querySelectorAll('.nav-group.is-open').forEach(function(g) {
           g.classList.remove('is-open');
         });
@@ -323,7 +326,6 @@ const base = lang === "en" ? "/en" : "";
       });
     });
 
-    // Close lang dropdown when clicking anywhere else
     document.addEventListener('click', function() {
       document.querySelectorAll('.nav-group.is-open').forEach(function(g) {
         g.classList.remove('is-open');

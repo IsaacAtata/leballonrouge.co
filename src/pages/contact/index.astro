@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+
 const locations = [
   {
     id: "hamilton",
@@ -32,8 +33,10 @@ const locations = [
   },
 ];
 
+
 const generalEmail = "info@ballonrouge.ca";
 ---
+
 
 <BaseLayout
   lang="fr"
@@ -62,6 +65,7 @@ const generalEmail = "info@ballonrouge.ca";
       </a>
     </div>
   </section>
+
 
   <!-- Locations -->
   <section class="mx-auto max-w-6xl px-4 pb-12">
@@ -148,6 +152,7 @@ const generalEmail = "info@ballonrouge.ca";
     </div>
   </section>
 
+
   <!-- Contact form -->
   <section class="mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
@@ -156,10 +161,37 @@ const generalEmail = "info@ballonrouge.ca";
         Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.
       </p>
 
-      <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
+      <!-- Netlify Forms: hidden pre-render form so Netlify detects it at build time -->
+      <form name="contact-general" {...({netlify: true, 'netlify-honeypot': 'bot-field'} as any)} hidden>
+        <input type="text" name="fullName" />
+        <input type="email" name="email" />
+        <input type="text" name="phone" />
+        <select name="location"></select>
+        <textarea name="message"></textarea>
+      </form>
+
+      <!-- Actual visible form -->
+      <form
+        id="contactForm"
+        name="contact-general"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="mt-6 grid gap-4"
+      >
+        <!-- Required hidden fields -->
+        <input type="hidden" name="form-name" value="contact-general" />
+
+        <!-- Honeypot — hidden from real users, catches bots -->
+        <p class="hidden" aria-hidden="true">
+          <label>Ne pas remplir : <input name="bot-field" /></label>
+        </p>
+
         <div class="grid gap-4 md:grid-cols-2">
           <div>
-            <label class="text-sm font-extrabold text-slate-700">Nom complet</label>
+            <label class="text-sm font-extrabold text-slate-700">
+              Nom complet <span class="text-red-600">*</span>
+            </label>
             <input
               name="fullName"
               required
@@ -167,7 +199,9 @@ const generalEmail = "info@ballonrouge.ca";
             />
           </div>
           <div>
-            <label class="text-sm font-extrabold text-slate-700">Courriel</label>
+            <label class="text-sm font-extrabold text-slate-700">
+              Courriel <span class="text-red-600">*</span>
+            </label>
             <input
               type="email"
               name="email"
@@ -199,7 +233,9 @@ const generalEmail = "info@ballonrouge.ca";
         </div>
 
         <div>
-          <label class="text-sm font-extrabold text-slate-700">Message</label>
+          <label class="text-sm font-extrabold text-slate-700">
+            Message <span class="text-red-600">*</span>
+          </label>
           <textarea
             name="message"
             required
@@ -208,11 +244,83 @@ const generalEmail = "info@ballonrouge.ca";
           ></textarea>
         </div>
 
-        <button class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800">
-          Envoyer
-        </button>
+        <!-- Submit + status messages -->
+        <div class="flex flex-col gap-3">
+          <button
+            type="submit"
+            id="contactSubmitBtn"
+            class="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800 disabled:opacity-60 disabled:cursor-not-allowed transition-all"
+          >
+            Envoyer le message
+          </button>
+
+          <!-- Success message (hidden by default) -->
+          <div
+            id="contactSuccess"
+            class="hidden rounded-2xl bg-green-50 border border-green-200 px-5 py-4 text-sm font-semibold text-green-800"
+            role="alert"
+          >
+            ✅ Votre message a bien été envoyé! Nous vous répondrons dans les plus brefs délais.
+          </div>
+
+          <!-- Error message (hidden by default) -->
+          <div
+            id="contactError"
+            class="hidden rounded-2xl bg-red-50 border border-red-200 px-5 py-4 text-sm font-semibold text-red-800"
+            role="alert"
+          >
+            ❌ Une erreur s'est produite. Veuillez réessayer ou nous écrire directement à
+            <a href={`mailto:${generalEmail}`} class="underline underline-offset-4">{generalEmail}</a>.
+          </div>
+        </div>
       </form>
     </div>
   </section>
 
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    var form    = document.getElementById('contactForm');
+    var btn     = document.getElementById('contactSubmitBtn');
+    var success = document.getElementById('contactSuccess');
+    var error   = document.getElementById('contactError');
+
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Disable button + show loading state
+      btn.disabled    = true;
+      btn.textContent = 'Envoi en cours…';
+      success.classList.add('hidden');
+      error.classList.add('hidden');
+
+      var data = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            success.classList.remove('hidden');
+            success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .catch(function () {
+          error.classList.remove('hidden');
+          error.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        })
+        .finally(function () {
+          btn.disabled    = false;
+          btn.textContent = 'Envoyer le message';
+        });
+    });
+  })();
+</script>

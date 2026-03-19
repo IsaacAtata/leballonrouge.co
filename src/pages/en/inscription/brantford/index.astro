@@ -1,105 +1,171 @@
 ---
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
-
-const lang = "en";
 ---
 
 <BaseLayout
-  lang={lang}
+  lang="en"
   title="Registration — Brantford"
-  description="Request a spot at Le Ballon Rouge Brantford. Fill out the registration form to be placed on the waitlist for our French-language daycare centre."
+  description="Online registration form for Le Ballon Rouge Brantford. Submit your child's spot request directly to our team."
 >
 
-  <!-- Page intro -->
+  <!-- Hero -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Registration — Brantford</h1>
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Brantford
+    </div>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Registration — Brantford</h1>
     <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-      To register at Le Ballon Rouge Brantford, please use the City of Brantford's centralized waitlist at
-      <a href="https://brantford.onehsn.com" target="_blank" rel="noopener" class="font-extrabold text-red-700 hover:underline">brantford.onehsn.com</a>.
-      Once on the list, our supervisor will confirm your request by phone or email.
+      To register your child at the Brantford centre, you must go through the municipal centralized waitlist. Follow the guide below.
     </p>
 
     <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="https://brantford.onehsn.com/"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Access the waitlist ↗
+      </a>
+      <a
+        href="/en/inscription/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        ← Back to registration
+      </a>
       <a
         href="/en/inscription/hamilton/"
         class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
       >
         See Hamilton
       </a>
-      <a
-        href="/en/contact/"
-        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-      >
-        Contact us
-      </a>
     </div>
   </section>
 
+  <!-- Main content -->
   <section class="mx-auto max-w-6xl px-4 pb-16">
     <div class="grid gap-6 lg:grid-cols-5">
 
       <!-- Left: info -->
-      <aside class="lg:col-span-2">
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <h2 class="text-xl font-black tracking-tight md:text-2xl">Brantford Centre</h2>
-          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
-            <li><span class="font-extrabold text-slate-900">Address:</span><br/>60 Clench Ave, Brantford, ON N3T 1B8</li>
-            <li><span class="font-extrabold text-slate-900">Hours:</span><br/>Monday to Friday, 7:30 AM – 5:30 PM</li>
-            <li><span class="font-extrabold text-slate-900">Phone:</span><br/><a href="tel:15197536541" class="text-red-700 hover:underline">519-753-6541</a></li>
-            <li><span class="font-extrabold text-slate-900">Email:</span><br/><a href="mailto:leballonrougebrantford@cscmonavenir.ca" class="text-red-700 hover:underline">leballonrougebrantford@cscmonavenir.ca</a></li>
-          </ul>
+      <aside class="space-y-4 lg:col-span-2">
 
-          <div class="mt-6 rounded-2xl border border-black/10 bg-slate-50 p-4">
-            <p class="text-xs font-extrabold uppercase tracking-wide text-slate-500">How to register</p>
-            <ol class="mt-2 space-y-2 text-xs font-semibold leading-5 text-slate-600 list-decimal list-inside">
-              <li>Register on the centralized municipal waitlist at <a href="https://brantford.onehsn.com" class="text-red-700 hover:underline" target="_blank" rel="noopener">brantford.onehsn.com</a></li>
-              <li>The list is in chronological order by registration date and time</li>
-              <li>The supervisor will confirm your request by email or phone once received</li>
-            </ol>
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h2 class="text-lg font-black tracking-tight">Contact information</h2>
+          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
+            <li class="flex items-start gap-2"><span>📍</span> 60 Clench Ave, Brantford, ON N3T 1B8</li>
+            <li class="flex items-start gap-2"><span>🕐</span> Mon–Fri 7:30 AM–5:30 PM</li>
+            <li class="flex items-start gap-2"><span>👶</span> Toddlers &amp; preschoolers</li>
+            <li class="flex items-start gap-2"><span>🇫🇷</span> French every day</li>
+          </ul>
+          <div class="mt-4 space-y-2">
+            <a href="tel:5197536541" class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-slate-800 hover:bg-white">
+              📞 519-753-6541
+            </a>
+            <a href="mailto:leballonrougebrantford@cscmonavenir.ca" class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-white">
+              ✉️ leballonrougebrantford@cscmonavenir.ca
+            </a>
           </div>
         </article>
+
+        <article class="rounded-[28px] border border-amber-100 bg-amber-50/60 p-5 shadow-lg shadow-black/5">
+          <p class="text-sm font-extrabold text-amber-800">⏱️ 48-hour rule</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-700">
+            When a spot becomes available, you have <strong>48 hours</strong> to confirm. If we don't hear back within that window, the spot will be offered to the next family.
+          </p>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-5 shadow-lg shadow-black/5">
+          <p class="text-sm font-extrabold text-slate-900">📋 Admission priorities</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
+            Priority is given to Francophone families, siblings of enrolled children, and children of staff. See the
+            <a href="/en/inscription/#conditions" class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900">registration page</a>
+            for the full list.
+          </p>
+        </article>
+
       </aside>
 
-      <!-- Right: contact card (no online form — uses city system) -->
-      <div class="lg:col-span-3">
-        <article class="relative overflow-hidden rounded-[28px] border border-red-700/10 bg-white p-6 shadow-2xl shadow-red-700/10 ring-1 ring-black/5 md:p-10">
-          <div class="pointer-events-none absolute -inset-24 bg-gradient-to-br from-red-50 via-white to-orange-50 opacity-70 blur-2xl"></div>
+      <!-- Right: steps -->
+      <div class="space-y-5 lg:col-span-3">
 
-          <div class="relative space-y-6">
-            <div>
-              <h2 class="text-xl font-black tracking-tight md:text-2xl">Questions about registration?</h2>
-              <p class="mt-2 leading-7 text-slate-600">
-                If you have questions about the waitlist, available spots or admission conditions, contact our Brantford supervisor directly.
-              </p>
-            </div>
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+          <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+            Municipal waitlist
+          </div>
+          <h2 class="mt-3 text-xl font-black tracking-tight">Registration guide — Brantford</h2>
+          <p class="mt-2 leading-7 text-slate-600">
+            The Brantford centre uses the City of Brantford's centralized waitlist. Follow these three steps:
+          </p>
 
-            <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href="tel:15197536541"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-              >
-                📞 Call 519-753-6541
-              </a>
-              <a
-                href="mailto:leballonrougebrantford@cscmonavenir.ca"
-                class="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-              >
-                ✉️ Send an email
-              </a>
-            </div>
+          <ol class="mt-6 space-y-5">
+            {[
+              {
+                n: "1",
+                icon: "🌐",
+                title: "Register online",
+                body: "Visit the City of Brantford portal and add your child to the centralized waitlist.",
+                cta: { label: "brantford.onehsn.com ↗", href: "https://brantford.onehsn.com/" },
+              },
+              {
+                n: "2",
+                icon: "📊",
+                title: "Chronological order",
+                body: "The waitlist registers children in chronological order by registration date and time. To check your child's position on the list, contact our supervisor.",
+              },
+              {
+                n: "3",
+                icon: "✅",
+                title: "Confirmation of receipt",
+                body: "Once your child is on the waitlist, the supervisor will confirm receipt by email or phone.",
+              },
+            ].map((s) => (
+              <li class="flex items-start gap-4 rounded-2xl border border-black/10 bg-white/60 p-5">
+                <div class="flex flex-col items-center gap-1">
+                  <span class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-700 text-xs font-black text-white">{s.n}</span>
+                  <span class="text-xl">{s.icon}</span>
+                </div>
+                <div>
+                  <h3 class="font-black text-slate-900">{s.title}</h3>
+                  <p class="mt-1 text-sm font-semibold leading-6 text-slate-600">{s.body}</p>
+                  {s.cta && (
+                    <a
+                      href={s.cta.href}
+                      target="_blank"
+                      rel="noopener"
+                      class="mt-3 inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2 text-xs font-extrabold text-white shadow-md shadow-red-700/20 hover:bg-red-800"
+                    >
+                      {s.cta.label}
+                    </a>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </article>
 
-            <div class="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-              <p class="text-sm font-extrabold text-amber-800">⚠️ Important</p>
-              <p class="mt-1 text-sm font-semibold leading-6 text-amber-700">
-                Registration for Brantford is done exclusively through the City of Brantford's centralized waitlist system at
-                <a href="https://brantford.onehsn.com" target="_blank" rel="noopener" class="underline">brantford.onehsn.com</a>.
-                Once on the list, you have 48 hours to respond to an available spot offer.
-              </p>
-            </div>
+        <!-- Questions card -->
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h2 class="text-lg font-black tracking-tight">Any questions?</h2>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
+            If you need help registering or checking your position on the waitlist, don't hesitate to contact our supervisor directly.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a
+              href="tel:5197536541"
+              class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-slate-50"
+            >
+              📞 519-753-6541
+            </a>
+            <a
+              href="mailto:leballonrougebrantford@cscmonavenir.ca"
+              class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-red-700 shadow-sm hover:bg-red-50"
+            >
+              ✉️ Send an email
+            </a>
           </div>
         </article>
-      </div>
 
+      </div>
     </div>
   </section>
 
