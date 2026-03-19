@@ -1,218 +1,98 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const lang = "en";
 ---
 
 <BaseLayout
-  lang="en"
-  title="About Us"
-  description="Learn about Le Ballon Rouge's history, mission, vision, values and partnerships — a French-language daycare in Hamilton and Brantford, Ontario since 1986."
+  lang={lang}
+  title="About Us – Le Ballon Rouge"
+  description="Learn about Le Ballon Rouge's mission, vision, values, partnerships and what parents say about our French-language daycare in Hamilton and Brantford."
 >
 
-  <!-- Hero intro -->
+  <!-- Page intro -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
     <div class="grid gap-6 md:grid-cols-2 md:items-center">
       <div>
-        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-          Since 1986 · Hamilton &amp; Brantford
-        </div>
-        <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">
-          The sky is the limit.
-        </h1>
+        <h1 class="text-3xl font-black tracking-tight md:text-5xl">About Us</h1>
         <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-          A welcoming, warm French-language daycare focused on exploration and play — where every child develops to their full potential.
+          Le Ballon Rouge is a French-language daycare focused on learning through play,
+          nurturing routines and a warm environment where every child can thrive.
         </p>
 
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a
-            href="/en/inscription/"
-            class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-          >
-            Request a spot →
+        <div class="mt-6 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+          <a href="#vmv" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">
+            Vision, Mission, Values
           </a>
-          <a
-            href="/en/programmes/"
-            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-          >
-            Our programs
+          <a href="#partenariats" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">
+            Partnerships
+          </a>
+          <a href="#temoignages" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">
+            Testimonials
           </a>
         </div>
-
-        <!-- Anchor nav -->
-        <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
-          <a href="#histoire"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Our history</a>
-          <a href="#vmv"          class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Vision, Mission, Values</a>
-          <a href="#partenariats" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Partnerships</a>
-          <a href="#temoignages"  class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Testimonials</a>
-        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Stats bar -->
-  <section class="mx-auto max-w-6xl px-4 pb-12">
-    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
-      {[
-        { value: "40+",  label: "years of experience" },
-        { value: "2",    label: "centres" },
-        { value: "100%", label: "French" },
-        { value: "∞",    label: "potential" },
-      ].map((s) => (
-        <div class="rounded-[28px] border border-black/10 bg-white/70 p-5 text-center shadow-xl shadow-black/5">
-          <p class="text-3xl font-black text-red-700">{s.value}</p>
-          <p class="mt-1 text-sm font-extrabold text-slate-500">{s.label}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- History -->
-  <section id="histoire" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
-    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Our history
-      </div>
-      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">From 1986 to today</h2>
-
-      <div class="mt-5 space-y-4 leading-7 text-slate-600">
-        <p>
-          In <strong class="font-extrabold text-slate-800">1986</strong>, a group of parents incorporated La Garderie Française de Hamilton Inc. and Le Ballon Rouge opened its doors at the Catholic elementary school Monseigneur-de-Laval in Hamilton.
-        </p>
-        <p>
-          In <strong class="font-extrabold text-slate-800">2011</strong>, La Garderie Française de Hamilton Inc. established a second childcare centre in partnership with the Conseil Scolaire Catholique Mon Avenir (CSC Mon Avenir). Le Ballon Rouge Brantford opened at the Catholic elementary school Sainte-Marguerite-Bourgeoys in Brantford.
-        </p>
-        <p>
-          Our indoor and outdoor environments are constantly evolving to meet the diverse needs of children. We work hard to make our spaces feel like home to ease children's transition into care.
-        </p>
-      </div>
-
-      <!-- Timeline -->
-      <div class="mt-8 flex flex-col border-l-2 border-red-100 pl-6 md:pl-8">
-        {[
-          { year: "1986",  text: "Foundation of La Garderie Française de Hamilton Inc. and opening of the Hamilton centre at école Monseigneur-de-Laval." },
-          { year: "2011",  text: "Opening of the second centre in Brantford in partnership with CSC Mon Avenir, at école Sainte-Marguerite-Bourgeoys." },
-          { year: "Today", text: "Two active centres, a passionate team, and generations of children thriving in a 100% French-language environment." },
-        ].map((item) => (
-          <div class="relative mb-8 last:mb-0">
-            <div class="absolute -left-[2.15rem] top-1 h-4 w-4 rounded-full border-2 border-red-600 bg-white"></div>
-            <p class="text-xs font-black uppercase tracking-widest text-red-700">{item.year}</p>
-            <p class="mt-1 leading-7 text-slate-600">{item.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Mission pillars -->
-  <section class="mx-auto max-w-6xl px-4 pb-12">
-    <div class="grid gap-5 md:grid-cols-2">
-      {[
-        {
-          icon: "🏡",
-          title: "Our environment",
-          body: "Our indoor and outdoor environments are constantly evolving to meet the diverse needs of children. We work hard to make our spaces feel like home to ease every child's transition into care.",
-        },
-        {
-          icon: "🥗",
-          title: "Healthy habits",
-          body: "Our practices emphasize healthy lifestyle habits such as physical activity, rest periods, daily outdoor time, and balanced nutrition following the recommendations of Canada's Food Guide.",
-        },
-        {
-          icon: "🗣️",
-          title: "French every day",
-          body: "At Le Ballon Rouge, we place special emphasis on using French every day. Children grow in an environment where French is the main language of communication — through songs, stories, games and creative activities.",
-        },
-        {
-          icon: "🌱",
-          title: "At their own pace",
-          body: "Every child develops at their own pace with the support and encouragement of passionate and qualified early childhood educators.",
-        },
-      ].map((card) => (
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
-            <span aria-hidden="true" class="text-xl">{card.icon}</span>
-          </div>
-          <h2 class="mt-4 text-xl font-black tracking-tight">{card.title}</h2>
-          <p class="mt-3 leading-7 text-slate-600">{card.body}</p>
-        </article>
-      ))}
     </div>
   </section>
 
   <!-- VMV -->
   <section id="vmv" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
-    <div class="mb-6">
-      <h2 class="text-2xl font-black tracking-tight md:text-3xl">Vision, Mission, Values</h2>
-      <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">
-        A clear, human and consistent framework to guide our everyday decisions.
-      </p>
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-black tracking-tight md:text-3xl">Vision, Mission, Values</h2>
+        <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">
+          A clear, human and consistent framework to guide our everyday decisions.
+        </p>
+      </div>
     </div>
 
-    <div class="grid gap-5 md:grid-cols-3">
+    <div class="mt-7 grid gap-5 md:grid-cols-3">
       <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
-        <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
-          <span aria-hidden="true" class="text-xl">🔭</span>
-        </div>
-        <h3 class="mt-4 text-lg font-black text-slate-900">Vision</h3>
+        <h3 class="text-lg font-black text-slate-900">Vision</h3>
         <p class="mt-3 leading-7 text-slate-600">
-          To offer a quality French-language environment focused on exploration, curiosity and the joy of learning, so every child can progress at their own pace.
+          To offer a quality French-language environment focused on exploration, curiosity and the joy of learning,
+          so every child can progress at their own pace.
         </p>
       </article>
 
       <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
-        <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
-          <span aria-hidden="true" class="text-xl">🎯</span>
-        </div>
-        <h3 class="mt-4 text-lg font-black text-slate-900">Mission</h3>
+        <h3 class="text-lg font-black text-slate-900">Mission</h3>
         <p class="mt-3 leading-7 text-slate-600">
-          To provide a French-language childcare service that supports the overall development of each child, in collaboration with families and the community.
+          To provide a French-language childcare service that supports the overall development of each child,
+          in collaboration with families and the community.
         </p>
       </article>
 
       <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
-        <div class="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
-          <span aria-hidden="true" class="text-xl">💎</span>
-        </div>
-        <h3 class="mt-4 text-lg font-black text-slate-900">Values</h3>
-        <ul class="mt-3 space-y-2 font-bold text-slate-700">
-          <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>Kindness and respect</li>
-          <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>Safety and reassuring routines</li>
-          <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>Inclusion and diversity</li>
-          <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>Partnership with parents</li>
-          <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>Excellence and continuous improvement</li>
+        <h3 class="text-lg font-black text-slate-900">Values</h3>
+        <ul class="mt-4 space-y-2 font-bold text-slate-700">
+          <li>Kindness and respect.</li>
+          <li>Safety and reassuring routines.</li>
+          <li>Inclusion and diversity.</li>
+          <li>Partnership with parents.</li>
+          <li>Excellence and continuous improvement.</li>
         </ul>
       </article>
     </div>
 
-    <!-- Values list -->
     <div class="mt-6 rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        At Le Ballon Rouge
-      </div>
-      <h3 class="mt-3 text-xl font-black tracking-tight md:text-2xl">What defines us</h3>
-      <p class="mt-2 max-w-prose leading-7 text-slate-600">
-        A French-language childcare centre with a welcoming environment, warm staff, inviting spaces and learning focused on exploration and play.
+      <h3 class="text-xl font-black tracking-tight md:text-2xl">Our story</h3>
+      <p class="mt-3 leading-7 text-slate-600">
+        Le Ballon Rouge evolves with the needs of children and families. We continuously improve our spaces,
+        activities and communication tools to offer a consistent, reassuring and stimulating experience.
       </p>
-
-      <ul class="mt-6 grid gap-3 md:grid-cols-2">
-        {[
-          { icon: "⭐", text: "Every child is unique, capable, competent and full of potential." },
-          { icon: "🌿", text: "A welcoming, inviting, natural environment rich in discovery." },
-          { icon: "🧩", text: "Learning through exploration and play using natural, varied and evolving materials as well as loose parts." },
-          { icon: "💛", text: "Developing all dimensions: emotional, social, moral, cognitive, language, physical and motor." },
-          { icon: "👐", text: "Warm staff who focus on each child's potential and offer play-based exploration opportunities." },
-          { icon: "🚀", text: "Supporting natural curiosity, interests, initiatives and challenges. The sky is the limit!" },
-          { icon: "🦋", text: "Encouraging autonomy, self-esteem, respect for oneself, others and the environment." },
-          { icon: "🏠", text: "Our home is your home! Parental involvement is important and parent participation is always welcome." },
-        ].map((item) => (
-          <li class="flex items-start gap-4 rounded-2xl border border-black/5 bg-white/60 p-4">
-            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-black/10 bg-white text-lg shadow-sm" aria-hidden="true">
-              {item.icon}
-            </span>
-            <p class="pt-1.5 font-semibold leading-7 text-slate-700">{item.text}</p>
-          </li>
-        ))}
-      </ul>
+      <p class="mt-3 leading-7 text-slate-600">
+        Our goal is simple: create a French-language environment where children learn through play, build confidence,
+        and feel welcomed every single day.
+      </p>
     </div>
+
+    <a
+      href="/en/inscription/"
+      class="mt-6 inline-flex w-full justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800 md:hidden"
+    >
+      Request a spot
+    </a>
   </section>
 
   <!-- Partnerships -->
@@ -225,6 +105,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
             A network of community and institutional partners who support our families.
           </p>
         </div>
+
         <a
           href="/en/contact/"
           class="inline-flex rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
@@ -233,10 +114,13 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
         </a>
       </div>
 
-      <div class="mt-6 flex flex-wrap gap-2">
-        {["City of Hamilton", "City of Brantford", "EarlyON", "Collège Boréal", "French-language schools", "Local organizations"].map((p) => (
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-sm font-bold text-slate-700">{p}</span>
-        ))}
+      <div class="mt-6 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Hamilton</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Brantford</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">EarlyON</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Collège Boréal</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">French-language schools</span>
+        <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Local organizations</span>
       </div>
 
       <div class="mt-6 grid gap-5 md:grid-cols-2">
@@ -246,10 +130,11 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
             They help us better guide families, enrich our activities and strengthen the local Francophone community.
           </p>
         </article>
+
         <article class="rounded-3xl border border-black/10 bg-white/60 p-6">
           <h3 class="text-lg font-black text-slate-900">What does that look like?</h3>
           <p class="mt-3 leading-7 text-slate-600">
-            Workshops, parent resources, special events and connections with community support services.
+            Workshops, parent resources, special events and connections with support services.
           </p>
         </article>
       </div>
@@ -262,9 +147,10 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
       <div>
         <h2 class="text-2xl font-black tracking-tight md:text-3xl">Testimonials</h2>
         <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">
-          A few words from parents who trust us with their children.
+          A few words from parents about their experience at Le Ballon Rouge.
         </p>
       </div>
+
       <a
         href="/en/inscription/"
         class="hidden rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80 md:inline-flex"
@@ -274,55 +160,68 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
     </div>
 
     <div class="mt-7 grid gap-6 md:grid-cols-3">
-      {[
-        { location: "Hamilton",  quote: "An attentive team and clear communication. Our child feels confident and is making great progress." },
-        { location: "Brantford", quote: "We love the French atmosphere and the activities. The routines are reassuring and well structured." },
-        { location: "Ontario",   quote: "A very warm welcome from the start. You can feel a real team spirit and an environment truly designed for children." },
-      ].map((t) => (
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
-          <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
-            {t.location}
-          </div>
-          <p class="mt-5 text-[1.05rem] font-semibold leading-8 text-slate-800">
-            "{t.quote}"
-          </p>
-          <p class="mt-5 font-black text-slate-900">— Parent</p>
-        </article>
-      ))}
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
+        <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
+          Hamilton
+        </div>
+        <p class="mt-5 text-[1.05rem] font-semibold leading-8 text-slate-800 md:text-lg">
+          "An attentive team and clear communication. Our child feels confident and is making great progress."
+        </p>
+        <p class="mt-5 font-black text-slate-900">Parent</p>
+      </article>
+
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
+        <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
+          Brantford
+        </div>
+        <p class="mt-5 text-[1.05rem] font-semibold leading-8 text-slate-800 md:text-lg">
+          "We love the French atmosphere and the activities. The routines are reassuring and well structured."
+        </p>
+        <p class="mt-5 font-black text-slate-900">Parent</p>
+      </article>
+
+      <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-7">
+        <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
+          Ontario
+        </div>
+        <p class="mt-5 text-[1.05rem] font-semibold leading-8 text-slate-800 md:text-lg">
+          "A very warm welcome from the start. You can feel a real team spirit and an environment truly designed for children."
+        </p>
+        <p class="mt-5 font-black text-slate-900">Parent</p>
+      </article>
     </div>
 
-    <!-- Mobile CTA -->
+    <div class="mt-8 rounded-[28px] border border-black/10 bg-gradient-to-r from-red-50 to-orange-50 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div class="max-w-2xl">
+          <h3 class="text-xl font-black tracking-tight md:text-2xl">Want to meet us?</h3>
+          <p class="mt-2 leading-7 text-slate-600">
+            Request a spot or contact us to learn more about our centres and our approach.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="/en/inscription/"
+            class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          >
+            Request a spot
+          </a>
+          <a
+            href="/en/centres/"
+            class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+          >
+            See our centres
+          </a>
+        </div>
+      </div>
+    </div>
+
     <a
       href="/en/inscription/"
       class="mt-6 inline-flex w-full justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80 md:hidden"
     >
       Register
     </a>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="mx-auto max-w-6xl px-4 pb-16">
-    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
-      <p class="text-4xl font-black text-white">🎈</p>
-      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">The sky is the limit!</h2>
-      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
-        Join the Le Ballon Rouge family and give your child a warm French-language environment where they can truly thrive.
-      </p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <a
-          href="/en/inscription/"
-          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
-        >
-          Request a spot →
-        </a>
-        <a
-          href="/en/contact/"
-          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
-        >
-          Contact us
-        </a>
-      </div>
-    </div>
   </section>
 
 </BaseLayout>
