@@ -1,0 +1,360 @@
+---
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  lang="en"
+  title="Registration — Hamilton"
+  description="Online registration form for Le Ballon Rouge Hamilton. Submit your child's spot request directly to our team."
+>
+
+  <!-- Hero -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Hamilton
+    </div>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Registration — Hamilton</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Fill out the form below to add your child to the waitlist for the Hamilton centre. Your request will be sent directly to our supervisor at
+      <a href="mailto:leballonrouge@cscmonavenir.ca" class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900">leballonrouge@cscmonavenir.ca</a>.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/en/inscription/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        ← Back to registration
+      </a>
+      <a
+        href="/en/inscription/brantford/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        See Brantford
+      </a>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="grid gap-6 lg:grid-cols-5">
+
+      <!-- Left: info -->
+      <aside class="space-y-4 lg:col-span-2">
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h2 class="text-lg font-black tracking-tight">Contact information</h2>
+          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
+            <li class="flex items-start gap-2"><span>📍</span> 135 Bendamere Ave, Hamilton, ON L9C 1N4</li>
+            <li class="flex items-start gap-2"><span>🕐</span> Mon–Fri 7:00 AM–5:30 PM</li>
+            <li class="flex items-start gap-2"><span>👶</span> Toddlers &amp; preschoolers</li>
+            <li class="flex items-start gap-2"><span>🇫🇷</span> French every day</li>
+          </ul>
+          <div class="mt-4 space-y-2">
+            <a href="tel:9053838371" class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-slate-800 hover:bg-white">
+              📞 905-383-8371
+            </a>
+            <a href="mailto:leballonrouge@cscmonavenir.ca" class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-white">
+              ✉️ leballonrouge@cscmonavenir.ca
+            </a>
+          </div>
+        </article>
+
+        <article class="rounded-[28px] border border-amber-100 bg-amber-50/60 p-5 shadow-lg shadow-black/5">
+          <p class="text-sm font-extrabold text-amber-800">⏱️ 48-hour rule</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-700">
+            When a spot becomes available, you have <strong>48 hours</strong> to confirm. If we don't hear back within that window, the spot will be offered to the next family on the list.
+          </p>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-5 shadow-lg shadow-black/5">
+          <p class="text-sm font-extrabold text-slate-900">📋 Admission priorities</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
+            Priority is given to Francophone families, siblings of enrolled children, and children of staff. See the
+            <a href="/en/inscription/#conditions" class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900">registration page</a>
+            for the full list.
+          </p>
+        </article>
+
+      </aside>
+
+      <!-- Right: form -->
+      <div class="lg:col-span-3">
+        <article class="relative overflow-hidden rounded-[28px] border border-red-700/10 bg-white p-6 shadow-2xl shadow-red-700/10 ring-1 ring-black/5 md:p-10">
+          <div class="pointer-events-none absolute -inset-24 bg-gradient-to-br from-red-50 via-white to-orange-50 opacity-70 blur-2xl"></div>
+
+          <div class="relative">
+            <h2 class="text-xl font-black tracking-tight md:text-2xl">Registration form</h2>
+            <p class="mt-1 text-xs font-semibold text-slate-500">
+              All fields marked <span class="text-red-600">*</span> are required.
+            </p>
+
+            <!-- Netlify pre-render detection form (hidden) -->
+            <form name="inscription-hamilton" data-netlify netlify-honeypot="bot-field" hidden>
+              <input type="text" name="enfant_nom" />
+              <input type="text" name="enfant_prenom" />
+              <input type="date" name="enfant_ddn" />
+              <select name="enfant_genre"></select>
+              <input type="date" name="enfant_debut" />
+              <input type="radio" name="enfant_langue" />
+              <input type="radio" name="enfant_groupe" />
+              <input type="radio" name="enfant_subvention" />
+              <input type="radio" name="enfant_programme" />
+              <textarea name="enfant_commentaire"></textarea>
+              <input type="text" name="parent_nom" />
+              <input type="text" name="parent_prenom" />
+              <input type="tel" name="parent_tel" />
+              <input type="email" name="parent_email" />
+              <input type="text" name="adresse_rue" />
+              <input type="text" name="adresse_ville" />
+              <input type="text" name="adresse_province" />
+              <input type="text" name="adresse_cp" />
+              <input type="text" name="bot-field" />
+            </form>
+
+            <!-- Actual visible form -->
+            <form
+              id="inscriptionHamiltonForm"
+              name="inscription-hamilton"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              class="mt-6 space-y-10"
+            >
+              <input type="hidden" name="form-name" value="inscription-hamilton" />
+
+              <!-- Honeypot -->
+              <p class="hidden" aria-hidden="true">
+                <label>Do not fill: <input name="bot-field" /></label>
+              </p>
+
+              <!-- Child information -->
+              <section class="space-y-5">
+                <div class="flex items-center gap-3">
+                  <div class="h-px flex-1 bg-black/10"></div>
+                  <h3 class="text-lg font-black text-slate-900">👶 Child information</h3>
+                  <div class="h-px flex-1 bg-black/10"></div>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Last name <span class="text-red-600">*</span></span>
+                    <input name="enfant_nom" required maxlength="100" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">First name <span class="text-red-600">*</span></span>
+                    <input name="enfant_prenom" required maxlength="100" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Date of birth <span class="text-red-600">*</span></span>
+                    <input name="enfant_ddn" required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Gender <span class="text-red-600">*</span></span>
+                    <select name="enfant_genre" required class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40">
+                      <option value="">Select…</option>
+                      <option>Female</option>
+                      <option>Male</option>
+                      <option>Other</option>
+                      <option>Prefer not to answer</option>
+                    </select>
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Desired start date <span class="text-red-600">*</span></span>
+                    <input name="enfant_debut" required type="date" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-3">
+                  <fieldset class="space-y-2">
+                    <legend class="text-sm font-extrabold text-slate-700">Language <span class="text-red-600">*</span></legend>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input required type="radio" name="enfant_langue" value="French" /> French
+                    </label>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input type="radio" name="enfant_langue" value="English" /> English
+                    </label>
+                  </fieldset>
+
+                  <fieldset class="space-y-2">
+                    <legend class="text-sm font-extrabold text-slate-700">Group <span class="text-red-600">*</span></legend>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input required type="radio" name="enfant_groupe" value="Toddlers" /> Toddlers
+                    </label>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input type="radio" name="enfant_groupe" value="Preschool" /> Preschool
+                    </label>
+                  </fieldset>
+
+                  <fieldset class="space-y-2">
+                    <legend class="text-sm font-extrabold text-slate-700">Subsidy <span class="text-red-600">*</span></legend>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input required type="radio" name="enfant_subvention" value="Yes" /> Yes
+                    </label>
+                    <label class="flex items-center gap-2 font-semibold text-slate-800">
+                      <input type="radio" name="enfant_subvention" value="No" /> No
+                    </label>
+                  </fieldset>
+                </div>
+
+                <fieldset class="space-y-2">
+                  <legend class="text-sm font-extrabold text-slate-700">Program <span class="text-red-600">*</span></legend>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input required type="radio" name="enfant_programme" value="Part-time" /> Part-time
+                  </label>
+                  <label class="flex items-center gap-2 font-semibold text-slate-800">
+                    <input type="radio" name="enfant_programme" value="Full-time" /> Full-time (Days)
+                  </label>
+                </fieldset>
+
+                <label class="space-y-1">
+                  <span class="text-sm font-extrabold text-slate-700">Comments</span>
+                  <textarea name="enfant_commentaire" rows="3" maxlength="2000" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" placeholder="Additional information, special needs, allergies, etc."></textarea>
+                </label>
+              </section>
+
+              <hr class="border-slate-200" />
+
+              <!-- Parent information -->
+              <section class="space-y-5">
+                <div class="flex items-center gap-3">
+                  <div class="h-px flex-1 bg-black/10"></div>
+                  <h3 class="text-lg font-black text-slate-900">👨‍👩‍👧 Parent / Guardian information</h3>
+                  <div class="h-px flex-1 bg-black/10"></div>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Last name <span class="text-red-600">*</span></span>
+                    <input name="parent_nom" required maxlength="100" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">First name <span class="text-red-600">*</span></span>
+                    <input name="parent_prenom" required maxlength="100" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Phone <span class="text-red-600">*</span></span>
+                    <input name="parent_tel" required inputmode="tel" maxlength="20" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Email <span class="text-red-600">*</span></span>
+                    <input name="parent_email" required type="email" maxlength="150" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                  <div class="h-px flex-1 bg-black/10"></div>
+                  <h4 class="text-sm font-extrabold text-slate-700">Address</h4>
+                  <div class="h-px flex-1 bg-black/10"></div>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <label class="space-y-1 sm:col-span-2">
+                    <span class="text-sm font-extrabold text-slate-700">Street <span class="text-red-600">*</span></span>
+                    <input name="adresse_rue" required maxlength="150" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">City <span class="text-red-600">*</span></span>
+                    <input name="adresse_ville" required maxlength="100" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Province <span class="text-red-600">*</span></span>
+                    <input name="adresse_province" required value="Ontario" maxlength="50" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" />
+                  </label>
+                  <label class="space-y-1">
+                    <span class="text-sm font-extrabold text-slate-700">Postal code <span class="text-red-600">*</span></span>
+                    <input name="adresse_cp" required maxlength="10" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 font-semibold shadow-sm outline-none focus:ring-2 focus:ring-red-500/40" placeholder="e.g. L9C 1N4" />
+                  </label>
+                </div>
+              </section>
+
+              <!-- Submit + status -->
+              <div class="space-y-3">
+                <button
+                  type="submit"
+                  id="hamiltonSubmitBtn"
+                  class="w-full rounded-2xl bg-red-700 px-6 py-4 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 transition-all hover:bg-red-800 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Submit registration request →
+                </button>
+
+                <!-- Success -->
+                <div
+                  id="hamiltonSuccess"
+                  class="hidden rounded-2xl border border-green-200 bg-green-50 px-5 py-4 text-sm font-semibold text-green-800"
+                  role="alert"
+                >
+                  ✅ Your registration request has been received! Our supervisor will contact you to confirm.
+                </div>
+
+                <!-- Error -->
+                <div
+                  id="hamiltonError"
+                  class="hidden rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm font-semibold text-red-800"
+                  role="alert"
+                >
+                  ❌ An error occurred. Please try again or contact us directly at
+                  <a href="mailto:leballonrouge@cscmonavenir.ca" class="underline underline-offset-4">leballonrouge@cscmonavenir.ca</a>.
+                </div>
+              </div>
+
+              <p class="text-center text-xs font-semibold text-slate-400">
+                Your request will be sent to
+                <a href="mailto:leballonrouge@cscmonavenir.ca" class="text-red-700 underline underline-offset-4">leballonrouge@cscmonavenir.ca</a>.
+                Our supervisor will contact you to confirm receipt.
+              </p>
+
+            </form>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var form    = document.getElementById('inscriptionHamiltonForm');
+    var btn     = document.getElementById('hamiltonSubmitBtn');
+    var success = document.getElementById('hamiltonSuccess');
+    var error   = document.getElementById('hamiltonError');
+
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      btn.disabled    = true;
+      btn.textContent = 'Sending…';
+      success.classList.add('hidden');
+      error.classList.add('hidden');
+
+      var data = new FormData(form);
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            success.classList.remove('hidden');
+            success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        })
+        .catch(function () {
+          error.classList.remove('hidden');
+          error.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        })
+        .finally(function () {
+          btn.disabled    = false;
+          btn.textContent = 'Submit registration request →';
+        });
+    });
+  })();
+</script>

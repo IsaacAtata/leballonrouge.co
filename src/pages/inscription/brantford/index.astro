@@ -2,64 +2,171 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Inscription — Brantford">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Inscription — Brantford</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        Exemple de page d’inscription pour le centre de Brantford. (Contenu temporaire)
-      </p>
+<BaseLayout
+  lang="fr"
+  title="Inscription — Brantford"
+  description="Inscrivez votre enfant sur la liste d'attente du centre Le Ballon Rouge de Brantford."
+>
 
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a
-          href="/inscription/hamilton/"
-          class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-        >
-          Voir Hamilton
-        </a>
+  <!-- Hero -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Brantford
+    </div>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Inscription — Brantford</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Pour inscrire votre enfant au centre de Brantford, vous devez passer par la liste d'attente centralisée municipale. Suivez le guide ci-dessous.
+    </p>
 
-        <a
-          href="/contact/"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-        >
-          Nous contacter
-        </a>
-      </div>
-    </section>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="https://brantford.onehsn.com/"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Accéder à la liste d'attente ↗
+      </a>
+      <a
+        href="/inscription/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        ← Retour à l'inscription
+      </a>
+      <a
+        href="/inscription/hamilton/"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        Voir Hamilton
+      </a>
+    </div>
+  </section>
 
-    <section class="mx-auto max-w-6xl px-4 pb-12">
-      <div class="grid gap-5 md:grid-cols-2">
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <h2 class="text-xl font-black tracking-tight md:text-2xl">Informations (exemple)</h2>
-          <p class="mt-3 leading-7 text-slate-600">
-            Ajoutez ici l’adresse, les heures, l’âge des groupes, et les documents requis.
-          </p>
-          <ul class="mt-4 space-y-2 font-bold text-slate-700">
-            <li>Heures: Lun–Ven (exemple).</li>
-            <li>Âges: poupons à préscolaire (exemple).</li>
-            <li>Langue: français au quotidien.</li>
+  <!-- Main content -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="grid gap-6 lg:grid-cols-5">
+
+      <!-- Left: info -->
+      <aside class="lg:col-span-2 space-y-4">
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h2 class="text-lg font-black tracking-tight">Coordonnées</h2>
+          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
+            <li class="flex items-start gap-2"><span>📍</span> 60 Clench Ave, Brantford, ON N3T 1B8</li>
+            <li class="flex items-start gap-2"><span>🕐</span> Lun–Ven 7h30–17h30</li>
+            <li class="flex items-start gap-2"><span>👶</span> Bambins &amp; préscolaires</li>
+            <li class="flex items-start gap-2"><span>🇫🇷</span> Français au quotidien</li>
           </ul>
+          <div class="mt-4 space-y-2">
+            <a href="tel:5197536541" class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-slate-800 hover:bg-white">
+              📞 519-753-6541
+            </a>
+            <a href="mailto:leballonrougebrantford@cscmonavenir.ca" class="flex items-center gap-3 rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-white">
+              ✉️ leballonrougebrantford@cscmonavenir.ca
+            </a>
+          </div>
         </article>
+
+        <article class="rounded-[28px] border border-amber-100 bg-amber-50/60 p-5 shadow-lg shadow-black/5">
+          <p class="text-sm font-extrabold text-amber-800">⏱️ Règle des 48 heures</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-700">
+            Lorsqu'une place se libère, vous avez <strong>48 heures</strong> pour confirmer. Sans réponse dans ce délai, la place sera offerte à la famille suivante.
+          </p>
+        </article>
+
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-5 shadow-lg shadow-black/5">
+          <p class="text-sm font-extrabold text-slate-900">📋 Priorités d'admission</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
+            La priorité est accordée aux familles francophones, aux frères et sœurs d'enfants inscrits, et aux enfants du personnel. Consultez la
+            <a href="/inscription/#conditions" class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900">page d'inscription</a>
+            pour la liste complète.
+          </p>
+        </article>
+
+      </aside>
+
+      <!-- Right: steps -->
+      <div class="lg:col-span-3 space-y-5">
 
         <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <h2 class="text-xl font-black tracking-tight md:text-2xl">Formulaire (placeholder)</h2>
-          <p class="mt-3 leading-7 text-slate-600">
-            Remplace ceci par ton vrai formulaire plus tard.
+          <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+            Liste d'attente municipale
+          </div>
+          <h2 class="mt-3 text-xl font-black tracking-tight">Guide d'inscription — Brantford</h2>
+          <p class="mt-2 leading-7 text-slate-600">
+            Le centre de Brantford utilise la liste d'attente centralisée de la région de Brantford. Suivez ces trois étapes:
           </p>
 
-          <form class="mt-5 grid gap-3" onsubmit="event.preventDefault(); alert('Merci! (démo)');">
-            <label class="text-sm font-extrabold text-slate-700">Nom du parent</label>
-            <input class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" />
-
-            <label class="text-sm font-extrabold text-slate-700">Courriel</label>
-            <input type="email" class="w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500" />
-
-            <button class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800">
-              Envoyer la demande
-            </button>
-          </form>
+          <ol class="mt-6 space-y-5">
+            {[
+              {
+                n: "1",
+                icon: "🌐",
+                title: "Inscrivez-vous en ligne",
+                body: "Rendez-vous sur le portail de la région de Brantford et inscrivez votre enfant sur la liste d'attente centralisée.",
+                cta: { label: "brantford.onehsn.com ↗", href: "https://brantford.onehsn.com/" },
+              },
+              {
+                n: "2",
+                icon: "📊",
+                title: "Ordre chronologique",
+                body: "La liste inscrit les enfants en ordre chronologique selon la date et l'heure de réception de l'inscription. Pour vérifier le rang de votre enfant, contactez notre superviseure.",
+              },
+              {
+                n: "3",
+                icon: "✅",
+                title: "Confirmation de réception",
+                body: "Une fois votre enfant inscrit sur la liste, la superviseure attestera la réception par courriel ou par téléphone.",
+              },
+            ].map((s) => (
+              <li class="flex items-start gap-4 rounded-2xl border border-black/10 bg-white/60 p-5">
+                <div class="flex flex-col items-center gap-1">
+                  <span class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-red-700 text-xs font-black text-white">{s.n}</span>
+                  <span class="text-xl">{s.icon}</span>
+                </div>
+                <div>
+                  <h3 class="font-black text-slate-900">{s.title}</h3>
+                  <p class="mt-1 text-sm font-semibold leading-6 text-slate-600">{s.body}</p>
+                  {s.cta && (
+                    <a
+                      href={s.cta.href}
+                      target="_blank"
+                      rel="noopener"
+                      class="mt-3 inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2 text-xs font-extrabold text-white shadow-md shadow-red-700/20 hover:bg-red-800"
+                    >
+                      {s.cta.label}
+                    </a>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
         </article>
+
+        <!-- Questions card -->
+        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5">
+          <h2 class="text-lg font-black tracking-tight">Des questions?</h2>
+          <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">
+            Si vous avez besoin d'aide pour vous inscrire ou pour vérifier votre rang sur la liste d'attente, n'hésitez pas à contacter notre superviseure directement.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a
+              href="tel:5197536541"
+              class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-slate-50"
+            >
+              📞 519-753-6541
+            </a>
+            <a
+              href="mailto:leballonrougebrantford@cscmonavenir.ca"
+              class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-red-700 shadow-sm hover:bg-red-50"
+            >
+              ✉️ Envoyer un courriel
+            </a>
+          </div>
+        </article>
+
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
 </BaseLayout>

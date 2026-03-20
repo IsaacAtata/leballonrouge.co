@@ -2,32 +2,122 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-const { title = "Le Ballon Rouge" } = Astro.props;
+import BackToTop from "../components/BackToTop.astro";
+import Toast from "../components/Toast.astro";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const {
+  title = "TODO: Page title",
+  lang = "fr",
+  description = "TODO: Page description",
+} = Astro.props as { title?: string; lang?: Lang; description?: string };
+
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
+
+    <!-- Primary SEO -->
+    <title>{title} | Le Ballon Rouge</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={`https://leballonrouge.ca${Astro.url.pathname}`} />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+    <meta property="og:type"         content="website" />
+    <meta property="og:site_name"    content="Le Ballon Rouge" />
+    <meta property="og:title"        content={`${title} | Le Ballon Rouge`} />
+    <meta property="og:description"  content={description} />
+    <meta property="og:url"          content={`https://leballonrouge.ca${Astro.url.pathname}`} />
+    <meta property="og:image"        content="https://leballonrouge.ca/og-image.jpg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"       content={lang === "en" ? "en_CA" : "fr_CA"} />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={`${title} | Le Ballon Rouge`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content="https://leballonrouge.ca/og-image.jpg" />
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js" defer></script>
   </head>
 
-  <body class="min-h-screen text-slate-800">
+  <body class="min-h-screen text-slate-800 antialiased">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-xl focus:bg-white focus:px-3 focus:py-2 focus:shadow"
+      class="sr-only focus:not-sr-only fixed left-4 top-4 z-50 rounded-xl bg-white px-3 py-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500"
     >
-      Aller au contenu principal
+      {lang === "en" ? t.layout.skipLinkEn : t.layout.skipLinkFr}
     </a>
 
-    <Nav />
+    <Nav lang={lang} />
 
     <main id="main">
       <slot />
     </main>
 
-    <Footer />
+    <Footer lang={lang} />
+    <BackToTop />
+    <Toast />
+
+    <!-- Smart sticky nav — hides on scroll down, reappears on scroll up -->
+    <script is:inline>
+      (function () {
+        var header = document.querySelector('header');
+        if (!header) return;
+
+        /* ── Body padding ── */
+        function setBodyPadding() {
+          var h = header.offsetHeight;
+          if (h > 0) document.body.style.paddingTop = h + 'px';
+        }
+
+        requestAnimationFrame(setBodyPadding);
+        window.addEventListener('load',   setBodyPadding, { passive: true });
+        window.addEventListener('resize', setBodyPadding, { passive: true });
+
+        /* ── Scroll hide / show ── */
+        var lastY     = window.scrollY;
+        var ticking   = false;
+        var THRESHOLD = 80;
+
+        function update() {
+          var currentY = window.scrollY;
+
+          header.classList.toggle('is-scrolled', currentY > 10);
+
+          if (currentY > THRESHOLD) {
+            header.classList.toggle('nav-hidden', currentY > lastY);
+          } else {
+            header.classList.remove('nav-hidden');
+          }
+
+          lastY   = currentY;
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+          if (!ticking) { requestAnimationFrame(update); ticking = true; }
+        }, { passive: true });
+
+        /* ── Astro page transitions ── */
+        document.addEventListener('astro:after-swap', function () {
+          setBodyPadding();
+          lastY = window.scrollY;
+          header.classList.remove('nav-hidden', 'is-scrolled');
+        });
+      })();
+    </script>
+
+    <!-- legacy.js — restored with is:inline to prevent Astro bundler 500 error -->
+    <script is:inline src="/assets/scripts/legacy.js"></script>
   </body>
 </html>

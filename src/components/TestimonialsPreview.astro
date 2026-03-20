@@ -1,75 +1,60 @@
 ---
-const {
-  title = "Témoignages",
-  subtitle = "Ce que des parents apprécient le plus au Ballon Rouge.",
-  ctaHref = "/qui-sommes-nous/temoignages/",
-  ctaText = "Voir tous les témoignages",
-  testimonials = [
-    {
-      quote:
-        "Une équipe attentionnée et un environnement vraiment sécuritaire. Notre enfant s’épanouit chaque semaine.",
-      name: "Parent",
-      location: "Hamilton",
-    },
-    {
-      quote:
-        "On adore l’immersion en français au quotidien. Les routines sont claires et le personnel est chaleureux.",
-      name: "Parent",
-      location: "Brantford",
-    },
-    {
-      quote:
-        "Communication facile et une belle approche par le jeu. Ça nous a beaucoup rassurés dès le début.",
-      name: "Parent",
-      location: "Ontario",
-    },
-  ],
-} = Astro.props;
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).testimonialsPreview;
+const base = lang === "en" ? "/en" : "";
 ---
 
 <section class="mx-auto max-w-6xl px-4 pb-12">
+
+  <!-- Section header -->
   <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
     <div>
-      <h2 class="text-2xl font-black tracking-tight md:text-3xl">{title}</h2>
-      <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">{subtitle}</p>
+      <h2 class="text-2xl font-black tracking-tight md:text-3xl">{t.title}</h2>
+      <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">{t.subtitle}</p>
     </div>
 
+    <!-- Desktop CTA -->
     <a
-      href={ctaHref}
+      href={`${base}/qui-sommes-nous/#temoignages`}
       class="hidden rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80 md:inline-flex"
     >
-      {ctaText}
+      {t.cta}
     </a>
   </div>
 
+  <!-- Testimonial cards -->
   <div class="mt-8 grid gap-6 md:grid-cols-3">
-    {testimonials.map((t: { quote: string; name: string; location: string }) => (
+    {t.testimonials.map((item) => (
       <article class="group rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/10 md:p-7">
         <div class="flex items-center justify-between gap-3">
           <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
-            {t.location}
+            {item.location}
           </div>
-
           <div class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-red-700/20 bg-red-50 text-red-700">
-            <span class="text-xl font-black leading-none">“</span>
+            <span class="text-xl font-black leading-none">"</span>
           </div>
         </div>
 
         <p class="mt-5 text-[1.05rem] font-semibold leading-8 text-slate-800 md:text-lg">
-          {t.quote}
+          {item.quote}
         </p>
 
         <div class="mt-6 border-t border-black/10 pt-4">
-          <p class="font-black text-slate-900">{t.name}</p>
+          <p class="font-black text-slate-900">{item.name}</p>
         </div>
       </article>
     ))}
   </div>
 
+  <!-- Mobile CTA -->
   <a
-    href={ctaHref}
+    href={`${base}/qui-sommes-nous/#temoignages`}
     class="mt-7 inline-flex w-full justify-center rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80 md:hidden"
   >
-    {ctaText}
+    {t.cta}
   </a>
+
 </section>

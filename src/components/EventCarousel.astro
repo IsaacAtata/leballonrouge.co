@@ -1,0 +1,247 @@
+---
+interface Props {
+  lang?: "fr" | "en";
+}
+
+const { lang = "fr" } = Astro.props;
+
+const slidesData = {
+  fr: [
+    {
+      emoji: "🎉",
+      title: "Fête de fin d'année",
+      description: "Rejoignez-nous pour célébrer une magnifique année ensemble!",
+      date: "Juin 2026",
+      cta: { label: "En savoir plus", href: "/programmes/#evenements" },
+      bg: "from-red-600 to-red-800",
+      badge: "Événement à venir",
+    },
+    {
+      emoji: "🌸",
+      title: "Journée portes ouvertes",
+      description: "Venez découvrir nos centres, rencontrer l'équipe et visiter les locaux.",
+      date: "Mai 2026",
+      cta: { label: "Demander une place", href: "/inscription/" },
+      bg: "from-orange-500 to-red-600",
+      badge: "Portes ouvertes",
+    },
+    {
+      emoji: "🎨",
+      title: "Semaine de l'art francophone",
+      description: "Une semaine dédiée à la créativité, à la culture et à la langue française.",
+      date: "Avril 2026",
+      cta: { label: "Voir les programmes", href: "/programmes/" },
+      bg: "from-amber-500 to-orange-600",
+      badge: "Activité spéciale",
+    },
+  ],
+  en: [
+    {
+      emoji: "🎉",
+      title: "End-of-Year Celebration",
+      description: "Join us to celebrate a wonderful year together!",
+      date: "June 2026",
+      cta: { label: "Learn more", href: "/en/programmes/#evenements" },
+      bg: "from-red-600 to-red-800",
+      badge: "Upcoming event",
+    },
+    {
+      emoji: "🌸",
+      title: "Open House",
+      description: "Come discover our centres, meet the team and tour our spaces.",
+      date: "May 2026",
+      cta: { label: "Request a spot", href: "/en/inscription/" },
+      bg: "from-orange-500 to-red-600",
+      badge: "Open house",
+    },
+    {
+      emoji: "🎨",
+      title: "Francophone Arts Week",
+      description: "A week dedicated to creativity, culture and the French language.",
+      date: "April 2026",
+      cta: { label: "View programs", href: "/en/programmes/" },
+      bg: "from-amber-500 to-orange-600",
+      badge: "Special activity",
+    },
+  ],
+};
+
+const slides = slidesData[lang];
+
+const labels = {
+  fr: {
+    prevSlide: "Diapositive précédente",
+    nextSlide: "Diapositive suivante",
+    selectSlide: "Sélectionner une diapositive",
+    slideLabel: (i: number) => `Diapositive ${i + 1}`,
+    ariaLabel: "Événements et célébrations",
+  },
+  en: {
+    prevSlide: "Previous slide",
+    nextSlide: "Next slide",
+    selectSlide: "Select a slide",
+    slideLabel: (i: number) => `Slide ${i + 1}`,
+    ariaLabel: "Events and celebrations",
+  },
+};
+
+const l = labels[lang];
+---
+
+<section
+  id="event-carousel"
+  aria-label={l.ariaLabel}
+  class="relative overflow-hidden"
+>
+  <!-- Slides wrapper -->
+  <div
+    id="carousel-track"
+    class="flex transition-transform duration-500 ease-in-out"
+    style="transform: translateX(0%)"
+  >
+    {slides.map((slide, i) => (
+      <div
+        class={`carousel-slide min-w-full bg-gradient-to-r ${slide.bg} relative`}
+        aria-hidden={i !== 0 ? "true" : "false"}
+      >
+        <div class="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-12 text-center md:flex-row md:py-14 md:text-left">
+
+          <!-- Emoji / image placeholder -->
+          <div class="flex-shrink-0">
+            <div class="flex h-24 w-24 items-center justify-center rounded-3xl bg-white/20 shadow-xl backdrop-blur-sm md:h-28 md:w-28">
+              <span class="text-5xl md:text-6xl" aria-hidden="true">{slide.emoji}</span>
+            </div>
+          </div>
+
+          <!-- Text content -->
+          <div class="flex-1">
+            <span class="inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-black uppercase tracking-widest text-white/90">
+              {slide.badge}
+            </span>
+            <h2 class="mt-2 text-2xl font-black text-white md:text-3xl">
+              {slide.title}
+            </h2>
+            <p class="mt-1 text-sm font-bold text-white/70">{slide.date}</p>
+            <p class="mt-2 max-w-prose text-base font-semibold leading-7 text-white/90">
+              {slide.description}
+            </p>
+            {slide.cta && (
+              <a
+                href={slide.cta.href}
+                class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-extrabold text-red-700 shadow-lg transition hover:bg-red-50"
+              >
+                {slide.cta.label} <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+
+          <!-- Slide number -->
+          <div class="hidden flex-shrink-0 md:block">
+            <span class="select-none text-6xl font-black text-white/10">
+              0{i + 1}
+            </span>
+          </div>
+
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Prev / Next buttons -->
+  <button
+    id="carousel-prev"
+    aria-label={l.prevSlide}
+    class="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <button
+    id="carousel-next"
+    aria-label={l.nextSlide}
+    class="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Dot indicators -->
+  <div
+    id="carousel-dots"
+    class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2"
+    role="tablist"
+    aria-label={l.selectSlide}
+  >
+    {slides.map((_, i) => (
+      <button
+        role="tab"
+        aria-selected={i === 0 ? "true" : "false"}
+        aria-label={l.slideLabel(i)}
+        data-index={i}
+        class={`carousel-dot h-2 rounded-full transition-all duration-300 ${i === 0 ? "w-6 bg-white" : "w-2 bg-white/40"}`}
+      />
+    ))}
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var track   = document.getElementById('carousel-track');
+    var dots    = document.querySelectorAll('.carousel-dot');
+    var slides  = document.querySelectorAll('.carousel-slide');
+    var prev    = document.getElementById('carousel-prev');
+    var next    = document.getElementById('carousel-next');
+    var total   = slides.length;
+    var current = 0;
+    var timer   = null;
+    var DELAY   = 5000;
+
+    function goTo(index) {
+      current = (index + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      slides.forEach(function (s, i) {
+        s.setAttribute('aria-hidden', i !== current ? 'true' : 'false');
+      });
+      dots.forEach(function (d, i) {
+        var active = i === current;
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
+        d.className = 'carousel-dot h-2 rounded-full transition-all duration-300 ' +
+          (active ? 'w-6 bg-white' : 'w-2 bg-white/40');
+      });
+    }
+
+    function startAuto() {
+      clearInterval(timer);
+      timer = setInterval(function () { goTo(current + 1); }, DELAY);
+    }
+
+    function stopAuto() { clearInterval(timer); }
+
+    prev.addEventListener('click', function () { goTo(current - 1); stopAuto(); startAuto(); });
+    next.addEventListener('click', function () { goTo(current + 1); stopAuto(); startAuto(); });
+
+    dots.forEach(function (d) {
+      d.addEventListener('click', function () {
+        goTo(parseInt(d.dataset.index));
+        stopAuto(); startAuto();
+      });
+    });
+
+    track.addEventListener('mouseenter', stopAuto);
+    track.addEventListener('mouseleave', startAuto);
+
+    document.getElementById('event-carousel').addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft')  { goTo(current - 1); stopAuto(); startAuto(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); stopAuto(); startAuto(); }
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      track.style.transition = 'none';
+    } else {
+      startAuto();
+    }
+  })();
+</script>

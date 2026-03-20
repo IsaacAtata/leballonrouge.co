@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import SolidInfoCards from "../../components/SolidInfoCards.astro";
+import StoryBlock from "../../components/StoryBlock.astro";
+import CentresPreview from "../../components/CentresPreview.astro";
+import PartnerTeaser from "../../components/PartnersTeaser.astro";
+import TrueStats from "../../components/TrustStats.astro";
+import TestimonialsPreview from "../../components/TestimonialsPreview.astro";
+import FaqAccordion from "../../components/FaqAccordion.astro";
+import BottomCTA from "../../components/BottomCta.astro";
+import BackToTop from "../../components/BackToTop.astro";
+---
+
+<BaseLayout
+  lang="en"
+  title="Home – Le Ballon Rouge"
+  description="French-language daycare in Hamilton and Brantford. Learning through play, daily French immersion, and a safe and caring environment."
+>
+  <Hero lang="en" />
+  <SolidInfoCards lang="en" />
+  <StoryBlock lang="en" />
+  <CentresPreview lang="en" />
+  <PartnerTeaser lang="en" />
+  <TrueStats lang="en" />
+  <TestimonialsPreview lang="en" />
+  <FaqAccordion lang="en" />
+  <BottomCTA lang="en" />
+
+  <BackToTop />
+
+  <script src="/assets/scripts/legacy.js" is:inline></script>
+
+  <script>
+    document.querySelectorAll<HTMLDetailsElement>("details.faq-item").forEach((details) => {
+      const summary = details.querySelector("summary")!;
+      summary.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (details.open) {
+          const body = details.querySelector<HTMLElement>(".faq-body")!;
+          body.style.gridTemplateRows = "0fr";
+          body.addEventListener("transitionend", () => { details.removeAttribute("open"); }, { once: true });
+        } else {
+          details.setAttribute("open", "");
+          const body = details.querySelector<HTMLElement>(".faq-body")!;
+          body.getBoundingClientRect();
+          body.style.gridTemplateRows = "1fr";
+        }
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,231 +1,304 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro"; // adjust if needed
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const priorites = [
+  "Familles où au moins l'un des parents ou le tuteur légal est francophone et parle le français.",
+  "Enfants des membres du personnel du Ballon Rouge.",
+  "Enfants actuellement inscrits qui doivent être transférés dans un groupe d'enfants plus âgés.",
+  "Frères et sœurs des enfants actuellement inscrits au centre de garde.",
+  "Enfants des employés du CSC Mon Avenir.",
+  "Frères et sœurs des élèves des écoles où se situent nos centres.",
+];
+
+const offre48h = [
+  { icon: "📞", title: "Notification", body: "Les parents des enfants figurant sur la liste d'attente seront avisés par téléphone et courriel lorsqu'une place se libérera dans le programme demandé." },
+  { icon: "⏱️", title: "Délai de 48 heures", body: "Les parents devront répondre dans le délai de 48 heures, après quoi la place sera offerte au prochain enfant figurant sur la liste d'attente." },
+  { icon: "➡️", title: "Famille suivante", body: "Si un parent n'a pas répondu dans le délai prescrit, la superviseure communiquera avec le parent du prochain enfant sur la liste d'attente." },
+];
+
+const centres = [
+  {
+    name: "Hamilton",
+    icon: "📝",
+    gradient: "from-white/80 to-orange-50/60",
+    blob: "bg-orange-500/10",
+    hours: "Lun–Ven 7h00–17h30",
+    waitlist: null,
+    formHref: "/inscription/hamilton/",
+    contactHref: "mailto:leballonrouge@cscmonavenir.ca",
+    contactEmail: "leballonrouge@cscmonavenir.ca",
+    phone: "905-383-8371",
+  },
+  {
+    name: "Brantford",
+    icon: "🏫",
+    gradient: "from-white/80 to-red-50/60",
+    blob: "bg-red-700/10",
+    hours: "Lun–Ven 7h30–17h30",
+    waitlist: "brantford.onehsn.com",
+    waitlistHref: "https://brantford.onehsn.com",
+    formHref: "/inscription/brantford/",
+    contactHref: "mailto:leballonrougebrantford@cscmonavenir.ca",
+    contactEmail: "leballonrougebrantford@cscmonavenir.ca",
+    phone: "519-753-6541",
+  },
+];
+
+const documents = [
+  { icon: "🪪", label: "Acte de naissance de l'enfant" },
+  { icon: "💉", label: "Carnet de vaccination à jour" },
+  { icon: "📋", label: "Coordonnées complètes des parents ou tuteurs" },
+  { icon: "🏥", label: "Informations médicales et besoins particuliers" },
+  { icon: "👤", label: "Photo récente de l'enfant" },
+  { icon: "📄", label: "Formulaire de consentement signé" },
+];
 ---
 
-<BaseLayout title="Inscription — Le Ballon Rouge">
-  <main id="main">
-    <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-      <h1 class="text-3xl font-black tracking-tight md:text-5xl">Inscription</h1>
-      <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
-        Choisissez le centre pour consulter les détails et faire une demande de place.
-      </p>
-    </section>
+<BaseLayout
+  lang="fr"
+  title="Inscription — Le Ballon Rouge"
+  description="Demandez une place au Ballon Rouge à Hamilton ou Brantford. Consultez les étapes d'inscription, les conditions d'admission et la liste d'attente."
+>
 
-    <!-- Comment s’inscrire -->
-    <section id="comment-sinscrire" class="mx-auto max-w-6xl px-4 pb-12 scroll-mt-28">
-    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-            <div>
-                <h2 class="text-xl font-black tracking-tight md:text-2xl">Comment s’inscrire</h2>
-                <p class="mt-2 max-w-prose leading-7 text-slate-600">
-                Vous êtes un parent qui cherche des services de garde, ou vous êtes intéressé aux services proposés par Le Ballon Rouge?
-                Voici les étapes pour compléter une demande et vous placer sur la liste d’attente.
-                </p>
-            </div>
-        </div>
-
-        <div class="mt-8 grid gap-5 md:grid-cols-2">
-
-        <!-- Brantford -->
-        <article class="relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-red-50/60 p-6 shadow-lg shadow-black/5">
-            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-red-700/10 blur-2xl"></div>
-
-            <div class="flex items-start gap-3">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-700/20 bg-white shadow-sm">
-                <span aria-hidden="true" class="text-xl">🏫</span>
-            </div>
-            <div>
-                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Centre</p>
-                <h3 class="text-lg font-black text-slate-900">Le Ballon Rouge Brantford</h3>
-            </div>
-            </div>
-
-            <ol class="mt-5 space-y-3 font-semibold text-slate-700">
-            <li>
-                1) Inscrivez votre enfant sur la liste d’attente centralisée municipale via:
-                <a class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900" href="https://brantford.onehsn.com" target="_blank" rel="noopener">
-                brantford.onehsn.com
-                </a>
-            </li>
-            <li>2) La liste d’attente inscrit les enfants en ordre chronologique (date et heure de réception).</li>
-            <li>3) Pour vérifier le rang sur la liste, contactez la superviseure.</li>
-            <li>4) Une fois le nom sur la liste, la superviseure confirmera la réception par courriel ou téléphone.</li>
-            </ol>
-
-            <div class="mt-5 flex flex-wrap gap-3">
-            <a
-                href="/inscription/brantford/"
-                class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-            >
-                Formulaire Brantford
-            </a>
-            <a
-                href="mailto:inscription@ballonrouge.ca"  
-                class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-            >
-                Écrire à inscription@ballonrouge.ca
-            </a>
-            </div>
-
-            <div class="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
-            <p class="text-sm font-extrabold text-slate-900">Contact Brantford</p>
-            <p class="mt-1 text-sm font-semibold text-slate-700">Téléphone: 519-753-6541</p>
-            <p class="mt-1 text-sm font-semibold text-slate-700">
-                Courriel:
-                <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:leballonrougebrantford@cscmonavenir.ca">
-                leballonrougebrantford@cscmonavenir.ca
-                </a>
-            </p>
-            </div>
-        </article>
-
-        <!-- Hamilton -->
-        <article class="relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br from-white/80 to-orange-50/60 p-6 shadow-lg shadow-black/5">
-            <div class="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-orange-500/10 blur-2xl"></div>
-
-            <div class="flex items-start gap-3">
-            <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-orange-500/20 bg-white shadow-sm">
-                <span aria-hidden="true" class="text-xl">📝</span>
-            </div>
-            <div>
-                <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Centre</p>
-                <h3 class="text-lg font-black text-slate-900">Le Ballon Rouge Hamilton</h3>
-            </div>
-            </div>
-
-            <ol class="mt-5 space-y-3 font-semibold text-slate-700">
-            <li>
-                1) Remplissez le formulaire d’inscription (liste d’attente centralisée) pour Hamilton.
-                <span class="font-bold text-slate-600">(Le formulaire sera envoyé à)</span>
-                <a class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:inscription@ballonrouge.ca">
-                inscription@ballonrouge.ca
-                </a>
-            </li>
-            <li>2) La liste d’attente inscrit les enfants en ordre chronologique (date et heure de réception).</li>
-            <li>3) Pour vérifier le rang sur la liste, contactez la superviseure.</li>
-            <li>4) Une fois le nom sur la liste, la superviseure confirmera la réception par courriel ou téléphone.</li>
-            </ol>
-
-            <div class="mt-5 flex flex-wrap gap-3">
-            <a
-                href="/inscription/hamilton/"
-                class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-            >
-                Formulaire Hamilton
-            </a>
-            <a
-                href="mailto:inscription@ballonrouge.ca"
-                class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-            >
-                Écrire à inscription@ballonrouge.ca
-            </a>
-            </div>
-
-            <div class="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
-            <p class="text-sm font-extrabold text-slate-900">Contact Hamilton</p>
-            <p class="mt-1 text-sm font-semibold text-slate-700">Téléphone: 905-383-8371</p>
-            <p class="mt-1 text-sm font-semibold text-slate-700">
-                Courriel:
-                <a class="text-red-700 underline underline-offset-4 hover:text-red-900" href="mailto:leballonrouge@cscmonavenir.ca">
-                leballonrouge@cscmonavenir.ca
-                </a>
-            </p>
-            </div>
-        </article>
-        </div>
-
-        <!-- 48h rule -->
-        <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-        <h3 class="text-lg font-black text-slate-900">Offre de place disponible (règle des 48 heures)</h3>
-        <ul class="mt-3 space-y-2 font-semibold text-slate-700">
-            <li>Les familles sur la liste d’attente sont avisées par téléphone et courriel lorsqu’une place se libère dans le programme demandé.</li>
-            <li>Les parents doivent répondre dans un délai de 48 heures; sinon la place est offerte au prochain enfant sur la liste d’attente.</li>
-            <li>Si aucun retour n’est reçu dans le délai prescrit, la superviseure (ou la personne désignée) communiquera avec la famille suivante.</li>
-        </ul>
-        </div>
+  <!-- Hero intro -->
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Hamilton &amp; Brantford
     </div>
-    </section>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Inscription</h1>
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Vous êtes un parent qui cherche des services de garde ou vous êtes intéressé aux services proposés par Le Ballon Rouge? Vous trouverez ici toutes les informations nécessaires pour vous guider tout au long de votre processus d'inscription. Nous nous engageons à offrir un soutien de qualité à nos familles.
+    </p>
 
+    <!-- Contact rapide -->
+    <div class="mt-5 flex flex-wrap gap-3">
+      <a
+        href="mailto:leballonrouge@cscmonavenir.ca"
+        class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        📧 Hamilton: 905-383-8371
+      </a>
+      <a
+        href="mailto:leballonrougebrantford@cscmonavenir.ca"
+        class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+      >
+        📧 Brantford: 519-753-6541
+      </a>
+    </div>
 
-    <section class="mx-auto max-w-6xl px-4 pb-12">
-      <div class="grid gap-5 md:grid-cols-2">
-        <!-- Hamilton card -->
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
-            Centre
+    <!-- Anchor nav -->
+    <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+      <a href="#centres"    class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Nos centres</a>
+      <a href="#conditions" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Conditions d'admission</a>
+      <a href="#regle-48h"  class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Règle des 48 heures</a>
+      <a href="#documents"  class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Documents requis</a>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="mx-auto max-w-6xl px-4 pb-12">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+      {[
+        { value: "2",    label: "centres" },
+        { value: "48h",  label: "délai de réponse" },
+        { value: "100%", label: "français" },
+        { value: "1986", label: "en service depuis" },
+      ].map((s) => (
+        <div class="rounded-[28px] border border-black/10 bg-white/70 p-5 text-center shadow-xl shadow-black/5">
+          <p class="text-3xl font-black text-red-700">{s.value}</p>
+          <p class="mt-1 text-sm font-extrabold text-slate-500">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Centre cards -->
+  <section id="centres" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="mb-6">
+      <h2 class="text-2xl font-black tracking-tight md:text-3xl">Choisissez votre centre</h2>
+      <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">
+        Accédez directement au formulaire d'inscription du centre le plus proche de chez vous.
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      {centres.map((c) => (
+        <article class={`relative overflow-hidden rounded-[28px] border border-black/10 bg-gradient-to-br ${c.gradient} p-6 shadow-xl shadow-black/5 md:p-8`}>
+          <div class={`absolute -right-12 -top-12 h-40 w-40 rounded-full ${c.blob} blur-2xl`}></div>
+
+          <div class="flex items-start gap-3">
+            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
+              <span aria-hidden="true" class="text-xl">{c.icon}</span>
+            </div>
+            <div>
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Centre</p>
+              <h3 class="text-xl font-black text-slate-900">Le Ballon Rouge {c.name}</h3>
+            </div>
           </div>
 
-          <h2 class="mt-4 text-2xl font-black tracking-tight text-slate-900">Hamilton</h2>
-          <p class="mt-3 leading-7 text-slate-600">
-            Exemple de contenu: horaires, groupes d’âge, documents requis, et infos utiles pour les parents.
-          </p>
-
-          <ul class="mt-4 space-y-2 font-bold text-slate-700">
-            <li>Heures: Lun–Ven (exemple).</li>
-            <li>Âges: poupons à préscolaire (exemple).</li>
-            <li>Langue: immersion française au quotidien.</li>
+          <ul class="mt-5 space-y-2 font-bold text-slate-700">
+            <li class="flex items-center gap-2">
+              <span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>
+              Heures: {c.hours}
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>
+              Âges: poupons à préscolaire
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>
+              Immersion française au quotidien
+            </li>
           </ul>
 
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a
-              href="/inscription/hamilton/"
-              class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-            >
-              Inscription Hamilton
-            </a>
+          {c.waitlist && (
+            <p class="mt-4 text-sm font-semibold text-slate-600">
+              Liste d'attente municipale:{" "}
+              <a
+                href={c.waitlistHref}
+                target="_blank"
+                rel="noopener"
+                class="font-extrabold text-red-700 underline underline-offset-4 hover:text-red-900"
+              >
+                {c.waitlist}
+              </a>
+            </p>
+          )}
 
+          <div class="mt-5 flex flex-wrap gap-3">
             <a
-              href="/centres/#hamilton"
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+              href={c.formHref}
+              class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
             >
-              Voir le centre
+              Formulaire {c.name} →
             </a>
+            <a
+              href={c.contactHref}
+              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
+            >
+              Écrire par courriel
+            </a>
+          </div>
+
+          <div class="mt-5 rounded-2xl border border-black/10 bg-white/70 p-4">
+            <p class="text-sm font-extrabold text-slate-900">Contact {c.name}</p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+              Téléphone:{" "}
+              <a href={`tel:${c.phone.replace(/-/g, "")}`} class="text-red-700 hover:text-red-900">
+                {c.phone}
+              </a>
+            </p>
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+              Courriel:{" "}
+              <a
+                href={c.contactHref}
+                class="break-all text-red-700 underline underline-offset-4 hover:text-red-900"
+              >
+                {c.contactEmail}
+              </a>
+            </p>
           </div>
         </article>
+      ))}
+    </div>
+  </section>
 
-        <!-- Brantford card -->
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <div class="inline-flex rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-extrabold text-slate-600">
-            Centre
-          </div>
-
-          <h2 class="mt-4 text-2xl font-black tracking-tight text-slate-900">Brantford</h2>
-          <p class="mt-3 leading-7 text-slate-600">
-            Exemple de contenu: processus d’inscription, pièces à fournir, et réponses rapides aux questions fréquentes.
-          </p>
-
-          <ul class="mt-4 space-y-2 font-bold text-slate-700">
-            <li>Heures: Lun–Ven (exemple).</li>
-            <li>Âges: poupons à préscolaire (exemple).</li>
-            <li>Langue: immersion française au quotidien.</li>
-          </ul>
-
-          <div class="mt-6 flex flex-wrap gap-3">
-            <a
-              href="/inscription/brantford/"
-              class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-            >
-              Inscription Brantford
-            </a>
-
-            <a
-              href="/centres/#brantford"
-              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
-            >
-              Voir le centre
-            </a>
-          </div>
-        </article>
+  <!-- Conditions d'admission -->
+  <section id="conditions" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Admissions
       </div>
-    </section>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Conditions d'admission</h2>
+      <p class="mt-2 max-w-prose leading-7 text-slate-600">
+        Le rang est influencé selon les besoins du service de garde; nous devons respecter des normes en fonction de l'âge de l'enfant, les ratios, les places disponibles ainsi que les priorités lors de la formation des groupes. Lorsqu'une place se libère, les priorités suivantes s'appliquent:
+      </p>
 
-    <section class="mx-auto max-w-6xl px-4 pb-12">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <h3 class="text-xl font-black tracking-tight md:text-2xl">Documents requis (exemple)</h3>
-        <p class="mt-3 leading-7 text-slate-600">
-          Ajoutez ici une liste simple des documents ou informations demandés (contact, date de naissance, besoins particuliers, etc.).
-        </p>
+      <ol class="mt-6 flex flex-col border-l-2 border-red-100 pl-6 md:pl-8">
+        {priorites.map((p, i) => (
+          <li class="relative mb-6 last:mb-0">
+            <div class="absolute -left-[2.15rem] top-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-red-600 bg-white text-xs font-black text-red-700">
+              {i + 1}
+            </div>
+            <p class="pt-0.5 font-semibold leading-7 text-slate-700">{p}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 48h rule -->
+  <section id="regle-48h" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Important
       </div>
-    </section>
-  </main>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Offre de place disponible</h2>
+      <p class="mt-2 max-w-prose leading-7 text-slate-600">
+        Lorsqu'une place se libère dans un programme, voici le processus qui s'applique:
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        {offre48h.map((item) => (
+          <article class="rounded-2xl border border-black/10 bg-white/60 p-5">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
+              <span aria-hidden="true" class="text-lg">{item.icon}</span>
+            </div>
+            <h3 class="mt-3 font-black text-slate-900">{item.title}</h3>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents requis -->
+  <section id="documents" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        À préparer
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Documents requis</h2>
+      <p class="mt-2 max-w-prose leading-7 text-slate-600">
+        Préparez les documents suivants pour compléter votre inscription. La superviseure pourra vous informer si des pièces supplémentaires sont requises selon la situation de votre enfant.
+      </p>
+
+      <ul class="mt-6 grid gap-3 md:grid-cols-2">
+        {documents.map((doc) => (
+          <li class="flex items-center gap-4 rounded-2xl border border-black/5 bg-white/60 p-4">
+            <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-black/10 bg-white text-lg shadow-sm" aria-hidden="true">
+              {doc.icon}
+            </span>
+            <p class="font-semibold text-slate-700">{doc.label}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
+      <p class="text-4xl font-black text-white">🎈</p>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Prêt à rejoindre la famille?</h2>
+      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
+        Choisissez votre centre et faites votre demande de place dès aujourd'hui. Si vous avez des questions, nos superviseurs sont là pour vous accompagner.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href="/inscription/hamilton/"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
+        >
+          Hamilton →
+        </a>
+        <a
+          href="/inscription/brantford/"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
+        >
+          Brantford →
+        </a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>

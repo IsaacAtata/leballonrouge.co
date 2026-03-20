@@ -1,17 +1,26 @@
 ---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).bottomCTA;
+const base = lang === "en" ? "/en" : "";
+
 const {
-  title = "Prêt(e) à faire une demande de place?",
-  body = "Dites-nous quel centre vous intéresse, et on vous guidera pour la suite.",
-  primaryHref = "/inscription/",
-  primaryText = "Demander une place",
-  secondaryHref = "/centres/",
-  secondaryText = "Voir nos centres",
+  title        = t.title,
+  body         = t.body,
+  primaryHref  = `${base}/inscription/`,
+  primaryText  = t.primaryText,
+  secondaryHref = `${base}/centres/`,
+  secondaryText = t.secondaryText,
 } = Astro.props;
 ---
 
 <section class="mx-auto max-w-6xl px-4 pb-12">
   <div class="rounded-[28px] border border-black/10 bg-gradient-to-r from-red-50 to-orange-50 p-6 shadow-xl shadow-black/5 md:p-8">
+
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+
       <div class="max-w-3xl">
         <h2 class="text-xl font-black tracking-tight md:text-2xl">{title}</h2>
         <p class="mt-2 leading-7 text-slate-600">{body}</p>
@@ -24,7 +33,6 @@ const {
         >
           {primaryText}
         </a>
-
         <a
           href={secondaryHref}
           class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-white"
@@ -32,6 +40,8 @@ const {
           {secondaryText}
         </a>
       </div>
+
     </div>
+
   </div>
 </section>

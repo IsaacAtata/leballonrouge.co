@@ -1,21 +1,38 @@
-    <!-- Partners teaser -->
-    <section class="mx-auto max-w-6xl px-4 pb-12">
-      <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-        <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 class="text-xl font-black tracking-tight md:text-2xl" data-i18n="partners.title">Partenariats</h2>
-            <p class="mt-1 text-slate-600" data-i18n="partners.subtitle">Un réseau de partenaires communautaires et institutionnels.</p>
-          </div>
-          <a href="./qui-sommes-nous.html#partenariat" class="inline-flex rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
-             data-i18n="partners.cta">Voir la liste</a>
-        </div>
+---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
 
-        <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Hamilton</span>
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Brantford</span>
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">EarlyON</span>
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Collège Boréal</span>
-          <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2" data-i18n="partners.more">…et plus</span>
-        </div>
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).partnerTeaser;
+const base = lang === "en" ? "/en" : "";
+---
+
+<section class="mx-auto max-w-6xl px-4 pb-12">
+  <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+
+    <!-- Header row -->
+    <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div>
+        <h2 class="text-xl font-black tracking-tight md:text-2xl">{t.title}</h2>
+        <p class="mt-1 text-slate-600">{t.subtitle}</p>
       </div>
-    </section>
+
+      <a
+        href={`${base}/qui-sommes-nous/#partenariat`}
+        class="inline-flex rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold shadow-sm hover:bg-white/80"
+      >
+        {t.cta}
+      </a>
+    </div>
+
+    <!-- Partner tags (proper nouns — stay the same in both languages) -->
+    <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+      <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Hamilton</span>
+      <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">City of Brantford</span>
+      <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">EarlyON</span>
+      <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">Collège Boréal</span>
+      <span class="rounded-full border border-black/10 bg-white/60 px-3 py-2">{t.andMore}</span>
+    </div>
+
+  </div>
+</section>

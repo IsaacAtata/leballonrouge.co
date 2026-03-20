@@ -1,126 +1,341 @@
-<header class="sticky top-0 z-50 border-b border-black/10 bg-white/95 backdrop-blur-xl">
-  <div class="mx-auto max-w-screen-2xl px-2 py-4">
+---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+interface Props { lang?: Lang; }
+
+const { lang = "fr" } = Astro.props;
+const t = useTranslations(lang).nav;
+const base = lang === "en" ? "/en" : "";
+---
+
+<header class="border-b border-black/10 bg-white/95 backdrop-blur-xl">
+  <div class="mx-auto max-w-screen-2xl px-3 py-3 md:px-4 md:py-4">
     <div class="flex items-center justify-between">
+
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3">
-        <span class="h-11 w-11 rounded-full bg-gradient-to-b from-red-500 to-red-800 shadow-lg" aria-hidden="true"></span>
+      <a href={`${base}/`} class="flex min-h-0 items-center gap-2 md:gap-3">
+        <img
+          src="/assets/images/LBR_No_Name.png"
+          alt="Le Ballon Rouge"
+          class="h-9 w-9 rounded-full object-contain bg-white shadow-lg md:h-11 md:w-11"
+          loading="eager"
+          decoding="async"
+          width="44"
+          height="44"
+        />
         <div>
-          <p class="text-base font-black text-slate-900">Le Ballon Rouge</p>
-          <p class="text-xs font-semibold text-slate-600">Garderie francophone</p>
+          <p class="text-sm font-black text-slate-900 md:text-base">Le Ballon Rouge</p>
+          <p class="text-[10px] font-semibold text-slate-600 md:text-xs">{t.tagline}</p>
         </div>
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden lg:block" aria-label="Navigation">
-        <div class="flex items-center gap-2">
+      <nav class="hidden lg:block" aria-label={t.ariaNav}>
+        <div class="flex items-center gap-1">
+
           <div class="nav-group">
-            <a href="/qui-sommes-nous/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Qui sommes-nous?
-              <span class="arrow" aria-hidden="true">▾</span>
+            <a href={`${base}/qui-sommes-nous/`} class="nav-trigger">
+              {t.about} <span class="arrow" aria-hidden="true">▾</span>
             </a>
             <div class="nav-dropdown">
-              <a href="/qui-sommes-nous/#vmv" class="dropdown-item">Vision, Mission, Valeurs</a>
-              <a href="/qui-sommes-nous/#partenariats" class="dropdown-item">Partenariats</a>
-              <a href="/qui-sommes-nous/#temoignages" class="dropdown-item">Témoignages</a>
+              <a href={`${base}/qui-sommes-nous/#vmv`} class="dropdown-item">{t.aboutDropdown.vmv}</a>
+              <a href={`${base}/qui-sommes-nous/#partenariats`} class="dropdown-item">{t.aboutDropdown.partnerships}</a>
+              <a href={`${base}/qui-sommes-nous/#temoignages`} class="dropdown-item">{t.aboutDropdown.testimonials}</a>
             </div>
           </div>
 
           <div class="nav-group">
-            <a href="/inscription/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Inscription <span class="arrow" aria-hidden="true">▾</span>
-            </a>
-
-            <div class="nav-dropdown">
-              <a href="/inscription/hamilton/" class="dropdown-item">Le Ballon Rouge — Hamilton</a>
-              <a href="/inscription/brantford/" class="dropdown-item">Le Ballon Rouge — Brantford</a>
-            </div>
-          </div>
-
-          <div class="nav-group">
-            <a href="/espace-parents/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Espace Parents <span class="arrow" aria-hidden="true">▾</span>
-            </button>
-            <div class="nav-dropdown">
-              <a href="/espace-parents/#guide" class="dropdown-item">Guide des parents</a>
-              <a href="/espace-parents/#frais" class="dropdown-item">Frais et subventions</a>
-              <a href="/espace-parents/#menu" class="dropdown-item">Menu</a>
-              <a href="/espace-parents/#ressources" class="dropdown-item">Ressources pour les parents</a>
-            </div>
-          </div>
-
-          <div class="nav-group">
-            <a href="/programmes/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Programmes <span class="arrow" aria-hidden="true">▾</span>
-            </a>
-              <div class="nav-dropdown">
-                <a href="/programmes/#enonce" class="dropdown-item">Énoncé de programme</a>
-                <a href="/programmes/#qualite" class="dropdown-item">Qualité</a>
-                <a href="/programmes/#evenements" class="dropdown-item">Événements</a>
-              </div>
-          </div>
-
-          <div class="nav-group">
-            <a href="/personnel/" class="nav-trigger px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-              Personnel <span class="arrow" aria-hidden="true">▾</span>
+            <a href={`${base}/inscription/`} class="nav-trigger">
+              {t.inscription} <span class="arrow" aria-hidden="true">▾</span>
             </a>
             <div class="nav-dropdown">
-              <a href="/personnel/#reconnaissances" class="dropdown-item">Reconnaissances des employés</a>
-              <a href="/personnel/#emplois" class="dropdown-item">Offres d’emploi</a>
-              <a href="/personnel/#rejoignez" class="dropdown-item">Rejoignez notre équipe</a>
+              <a href={`${base}/inscription/hamilton/`} class="dropdown-item">Le Ballon Rouge — Hamilton</a>
+              <a href={`${base}/inscription/brantford/`} class="dropdown-item">Le Ballon Rouge — Brantford</a>
             </div>
           </div>
-
-          <a href="/gouvernance/" class="px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-            Gouvernance
-          </a>
 
           <div class="nav-group">
-          <a href="/centres/" class="px-3 py-2 text-sm font-extrabold text-slate-800 hover:text-red-700">
-            Centres
-          </a>
-
+            <a href={`${base}/espace-parents/`} class="nav-trigger">
+              {t.parents} <span class="arrow" aria-hidden="true">▾</span>
+            </a>
             <div class="nav-dropdown">
-              <a href="/centres/brantford/" class="dropdown-item">Le Ballon Rouge Brantford</a>
-              <a href="/centres/hamilton/" class="dropdown-item">Le Ballon Rouge Hamilton</a>
+              <a href={`${base}/espace-parents/#guide`} class="dropdown-item">{t.parentsDropdown.guide}</a>
+              <a href={`${base}/espace-parents/#frais`} class="dropdown-item">{t.parentsDropdown.fees}</a>
+              <a href={`${base}/espace-parents/#menu`} class="dropdown-item">{t.parentsDropdown.menu}</a>
+              <a href={`${base}/espace-parents/#ressources`} class="dropdown-item">{t.parentsDropdown.resources}</a>
             </div>
           </div>
+
+          <div class="nav-group">
+            <a href={`${base}/programmes/`} class="nav-trigger">
+              {t.programmes} <span class="arrow" aria-hidden="true">▾</span>
+            </a>
+            <div class="nav-dropdown">
+              <a href={`${base}/programmes/#enonce`} class="dropdown-item">{t.programmesDropdown.statement}</a>
+              <a href={`${base}/programmes/#qualite`} class="dropdown-item">{t.programmesDropdown.quality}</a>
+              <a href={`${base}/programmes/#evenements`} class="dropdown-item">{t.programmesDropdown.events}</a>
+            </div>
+          </div>
+
+          <div class="nav-group">
+            <a href={`${base}/personnel/`} class="nav-trigger">
+              {t.personnel} <span class="arrow" aria-hidden="true">▾</span>
+            </a>
+            <div class="nav-dropdown">
+              <a href={`${base}/personnel/#reconnaissances`} class="dropdown-item">{t.personnelDropdown.recognition}</a>
+              <a href={`${base}/personnel/#emplois`} class="dropdown-item">{t.personnelDropdown.jobs}</a>
+              <a href={`${base}/personnel/#rejoignez`} class="dropdown-item">{t.personnelDropdown.join}</a>
+            </div>
+          </div>
+
+          <div class="nav-group">
+            <a href={`${base}/gouvernance/`} class="nav-trigger">{t.gouvernance}</a>
+          </div>
+
+          <div class="nav-group">
+            <a href={`${base}/contact/`} class="nav-trigger">{t.contact}</a>
+          </div>
+
+          <div class="nav-group">
+            <a href={`${base}/centres/`} class="nav-trigger">
+              {t.centres}
+            </a>
+          </div>
+
         </div>
       </nav>
 
       <!-- Right side -->
-      <div class="flex items-center gap-4">
-        <button id="langToggle" type="button"
-          class="relative z-[9999] rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold hover:bg-slate-50">
-          EN
-        </button>
+      <div class="flex items-center gap-2 md:gap-3">
 
-        <a href="/inscription/"
-          class="hidden md:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25">
-          Inscription <span aria-hidden="true">→</span>
+        <!-- Language switcher -->
+        <div class="nav-group">
+          <button
+            type="button"
+            class="nav-trigger lang-trigger cursor-pointer"
+            id="langToggle"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label={t.ariaLang}
+          >
+            <span class="lang-current" data-lang={lang}>
+              <img src={`/assets/flags/${lang}.svg`} alt={t.langLabel} width="22" height="16" class="w-5 h-4 rounded-sm" />
+              <span class="hidden sm:inline">{t.langLabel}</span>
+            </span>
+            <span class="arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="nav-dropdown lang-dropdown">
+            <a id="lang-opt-fr" href="/" class="dropdown-item lang-option" data-lang="fr">
+              <img src="/assets/flags/fr.svg" alt="Français" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
+              Français
+            </a>
+            <a id="lang-opt-en" href="/en/" class="dropdown-item lang-option" data-lang="en">
+              <img src="/assets/flags/en.svg" alt="English" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
+              English
+            </a>
+          </div>
+        </div>
+
+        <!-- Desktop CTA -->
+        <a
+          href={`${base}/inscription/`}
+          class="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25 transition-all duration-150"
+        >
+          {t.cta} <span aria-hidden="true">→</span>
         </a>
 
-        <button id="menuBtn" type="button"
-          class="lg:hidden rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold hover:bg-slate-50"
-          aria-expanded="false" aria-controls="mobileMenu">
-          Menu
+        <!-- Mobile hamburger -->
+        <button
+          id="menuBtn"
+          type="button"
+          class="mobile-menu-btn flex cursor-pointer items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-extrabold text-slate-700 hover:bg-slate-50 active:bg-slate-100 select-none transition-colors duration-150"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+          aria-label="Menu"
+        >
+          <svg id="menuIconOpen" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menuIconClose" class="h-4 w-4 icon-hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+          <span id="menuLabel">{t.menu}</span>
         </button>
+
       </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobileMenu" class="hidden border-t border-slate-200 bg-white">
-    <div class="mx-auto max-w-7xl px-4 py-4">
-      <nav class="grid grid-cols-2 gap-2">
-        <a href="/qui-sommes-nous/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Qui sommes-nous?</a>
-        <a href="/inscription/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Inscription</a>
-        <a href="/espace-parents/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Espace parents</a>
-        <a href="/centres/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Centres</a>
-        <a href="/programmes/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Programmes</a>
-        <a href="/personnel/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Personnel</a>
-        <a href="/gouvernance/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Gouvernance</a>
-        <a href="/contact/" class="rounded-lg p-3 text-sm font-bold hover:bg-slate-50">Contact</a>
-      </nav>
+  <!-- Mobile menu panel -->
+  <div id="mobileMenu" class="mobile-menu-panel" aria-hidden="true">
+    <div class="border-t border-slate-100 bg-white/98 backdrop-blur-xl shadow-2xl shadow-black/10">
+      <div class="mx-auto max-w-7xl px-4 pb-6 pt-4">
+
+        <p class="mb-3 text-[10px] font-black uppercase tracking-[0.15em] text-slate-400">Navigation</p>
+
+        <nav aria-label="Mobile navigation" class="grid grid-cols-2 gap-2">
+          <a href={`${base}/qui-sommes-nous/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.about}
+          </a>
+          <a href={`${base}/inscription/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.inscription}
+          </a>
+          <a href={`${base}/espace-parents/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.parents}
+          </a>
+          <a href={`${base}/centres/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.centres}
+          </a>
+          <a href={`${base}/programmes/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.programmes}
+          </a>
+          <a href={`${base}/personnel/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.personnel}
+          </a>
+          <a href={`${base}/gouvernance/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.gouvernance}
+          </a>
+          <a href={`${base}/contact/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            {t.contact}
+          </a>
+        </nav>
+
+        <div class="my-4 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a href={`${base}/inscription/`} class="flex flex-1 items-center justify-center gap-2 rounded-full bg-red-700 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 transition-all duration-150 hover:bg-red-800">
+            {t.cta} →
+          </a>
+          <a href={`${base}/centres/`} class="flex flex-1 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white py-3 text-sm font-extrabold text-slate-700 shadow-sm transition-all duration-150 hover:bg-slate-50">
+            {t.centres}
+          </a>
+        </div>
+
+        <p class="mt-4 text-center text-[11px] font-semibold text-slate-400">
+          {lang === "en" ? "Serving since" : "En service depuis"} <strong class="text-slate-500">1986</strong> · Hamilton &amp; Brantford
+        </p>
+
+      </div>
     </div>
   </div>
+
 </header>
+
+<script is:inline>
+  function initMobileMenu() {
+    var menuBtn    = document.getElementById('menuBtn');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    if (!menuBtn || !mobileMenu) return;
+
+    var iconOpen  = menuBtn.querySelector('svg:first-of-type');
+    var iconClose = menuBtn.querySelector('svg:last-of-type');
+    var menuLabel = menuBtn.querySelector('#menuLabel');
+
+    // Hard reset state
+    mobileMenu.className = 'mobile-menu-panel';
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (iconOpen)  iconOpen.classList.remove('icon-hidden');
+    if (iconClose) iconClose.classList.add('icon-hidden');
+
+    var originalLabel = menuLabel ? menuLabel.textContent.trim() : 'Menu';
+    var isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      mobileMenu.className = 'mobile-menu-panel is-open';
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      if (iconOpen)  iconOpen.classList.add('icon-hidden');
+      if (iconClose) iconClose.classList.remove('icon-hidden');
+      if (menuLabel) menuLabel.textContent = 'Fermer';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      mobileMenu.className = 'mobile-menu-panel';
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      if (iconOpen)  iconOpen.classList.remove('icon-hidden');
+      if (iconClose) iconClose.classList.add('icon-hidden');
+      if (menuLabel) menuLabel.textContent = originalLabel;
+      document.body.style.overflow = '';
+    }
+
+    // Strip old listeners by replacing the button
+    var newBtn = menuBtn.cloneNode(true);
+    menuBtn.parentNode.replaceChild(newBtn, menuBtn);
+
+    // Re-grab refs from the new button
+    iconOpen  = newBtn.querySelector('svg:first-of-type');
+    iconClose = newBtn.querySelector('svg:last-of-type');
+    menuLabel = newBtn.querySelector('#menuLabel');
+
+    newBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function(e) {
+      if (isOpen && !newBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isOpen) {
+        closeMenu();
+        newBtn.focus();
+      }
+    });
+
+    // -------------------------------------------------------
+    // Touch-friendly lang dropdown for mobile
+    // -------------------------------------------------------
+    document.querySelectorAll('.nav-group').forEach(function(group) {
+      var trigger = group.querySelector('.lang-trigger');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var alreadyOpen = group.classList.contains('is-open');
+        // Close all open dropdowns first
+        document.querySelectorAll('.nav-group.is-open').forEach(function(g) {
+          g.classList.remove('is-open');
+        });
+        if (!alreadyOpen) group.classList.add('is-open');
+      });
+    });
+
+    // Close lang dropdown when clicking anywhere else
+    document.addEventListener('click', function() {
+      document.querySelectorAll('.nav-group.is-open').forEach(function(g) {
+        g.classList.remove('is-open');
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

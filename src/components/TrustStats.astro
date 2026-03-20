@@ -1,21 +1,68 @@
-    <!-- Trust Stats -->
-<section class="mx-auto max-w-6xl px-4 py-20 bg-gradient-to-r from-red-50 to-orange-50">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">1986</div>
-        <p class="text-lg font-semibold text-slate-700">En service depuis</p>
-        </div>
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">2</div>
-        <p class="text-lg font-semibold text-slate-700">Centres francophones</p>
-        </div>
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">100%</div>
-        <p class="text-lg font-semibold text-slate-700">Agréé Ministère</p>
-        </div>
-        <div>
-        <div class="text-4xl md:text-5xl font-black text-red-700 mb-2">FR</div>
-        <p class="text-lg font-semibold text-slate-700">Immersion quotidienne</p>
-        </div>
+---
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const { lang = "fr" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang).trueStats;
+
+const stats = [
+  {
+    value: "1986",
+    label: t.stat1,
+    badge: lang === "fr" ? "En service depuis" : "Serving since",
+  },
+  {
+    value: "2",
+    label: t.stat2,
+    badge: lang === "fr" ? "Centres francophones" : "Francophone centres",
+  },
+  {
+    value: "100%",
+    label: t.stat3,
+    badge: lang === "fr" ? "Agréé Ministère" : "Ministry licensed",
+  },
+  {
+    value: "FR",
+    label: t.stat4,
+    badge: lang === "fr" ? "Immersion quotidienne" : "Daily immersion",
+  },
+];
+---
+
+<section id="en-chiffres" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+  <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      {lang === "fr" ? "Le Ballon Rouge en chiffres" : "Le Ballon Rouge by the numbers"}
     </div>
+
+    <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+      {stats.map((s) => (
+        <div class="group relative flex flex-col items-center overflow-hidden rounded-[28px] border border-black/5 bg-white px-5 py-8 text-center shadow-lg shadow-black/5 transition duration-200 hover:-translate-y-1 hover:shadow-xl">
+
+          <!-- Soft red glow behind number -->
+          <div class="pointer-events-none absolute -top-6 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-red-100 opacity-60 blur-2xl"></div>
+
+          <!-- Badge pill -->
+          <span class="relative mb-4 inline-flex items-center rounded-full border border-black/5 bg-slate-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
+            {s.badge}
+          </span>
+
+          <!-- Big number -->
+          <div class="relative text-5xl font-black leading-none tracking-tight text-red-700 md:text-6xl">
+            {s.value}
+          </div>
+
+          <!-- Divider -->
+          <div class="mt-4 h-[2px] w-8 rounded-full bg-red-100"></div>
+
+          <!-- Label -->
+          <p class="mt-3 text-sm font-semibold leading-snug text-slate-600">
+            {s.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
 </section>

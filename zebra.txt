@@ -1,0 +1,51 @@
+## 1. Instructions
+
+
+## 2. Identity
+
+[2025-04-03] - User was born on May 24, 2004, and grew up in a middle-class family in Morocco for 18 years.
+
+[2025-04-03] - User's mother was overprotective and enforced strict rules, often resorting to physical and verbal abuse as discipline. They were restricted from going outside, expressing themselves freely, or experimenting with things out of fear something bad might happen. As a result, they turned to video games, cartoons, and their laptop to fill boredom.
+
+[2025-04-03] - User's father worked a lot and was initially present but became more distant after their younger siblings were born, giving more attention to their sister. Over time, the user felt neglected by their father and developed a complicated bond with their mother, who would release her anger on them, believing it would 'fix' their behavior. This led the user to develop habits of deception to avoid punishment.
+
+[2025-04-03] - User had a tendency to lie frequently as a child, often for external validation or out of fear of punishment. They lied about grades to avoid consequences, and over time, this escalated into lying to themselves to escape difficult emotions or harsh realities. They also lie to friends out of fear of judgment and to family to prevent interference in their life. While they try to be honest, their brain’s first instinct in certain situations is to lie, even when the lie is not believable. This habit has significantly affected them.
+
+[2025-04-03] - User feels alienated in social interactions and struggles to connect with others deeply. In their first relationship, they initially felt happy and connected but later lost those feelings and broke up, a decision they regret. Since then, they have struggled to connect with others and feel like their ex filled a void that returned even deeper after the breakup. They have been feeling this way for a year and a half.
+
+[2025-04-03] - User suspects they may have ADHD and experiences symptoms related to impulse control. Their aunt has pointed it out, but they have not been formally diagnosed. They sometimes feel conscious of their actions but act unconsciously. They struggle with executive function challenges, including impulsivity, blurting things out, interrupting, and making quick decisions they regret. They have been trying to change these behaviors for over two years but find their efforts feel futile, as they tend to forget past mistakes as if they never happened. They are unsure if this is due to neglect, confusion, or another factor.
+
+[2025-04-03] - User was once very talkative and loved sharing their knowledge, but after experiencing neglect and repulsion from family members (e.g., an uncle ignoring their attempts to talk about video games), they closed themselves off. Now, they can talk for hours with people they are comfortable with but struggle to make new connections and communicate freely.
+
+[2025-04-03] - User struggles with reading people's body language and social cues in real-time. In social situations, their mind is often preoccupied, making it difficult to analyze the environment or consider others' perspectives before acting. They have noticed a pattern of acting impulsively as if they are the 'main character,' prioritizing their immediate desires without fully considering the impact on others. They recognize this behavior and want to understand and change it.
+
+[2025-04-03] - User finds it very difficult to process and understand their own emotions, which in turn makes it hard for them to understand others.
+
+[2025-04-03] - User's focus tends to change rapidly.
+
+[2025-04-03] - User feels strong emotions deeply. When experiencing deep sadness, they may cry intensely, seek external solutions (such as smoking), or distract themselves with unrelated thoughts. Their rapidly shifting focus often leads them to forget what they were upset about.
+
+[2025-04-03] - At 18, the user moved from Morocco to Canada to study and now lives with their aunt. They are 20 years old and feel confused about what they are supposed to do as an adult. This confusion affects their social interactions, friendships, and relationships. They struggle to create genuine bonds and find it challenging to make new friends, despite having had an easier time making acquaintances in school. They believe they are the problem in these struggles.
+
+[2025-04-03] - User's parents have an old-fashioned mindset, shaped by growing up in the 80s-90s, which gives them a completely different view of the world.
+
+[2025-04-26] - User has been dealing with addiction for two years, with cannabis and nicotine. Their tolerance for both has been up and down, but they have controlled it and lowered it now. They tried liquor but didn't like it and only had it occasionally with friends. They tried magic mushrooms twice but decided not to continue using them.
+
+[2025-07-30] - User lives in Hamilton, Canada, while their mother lives in Morocco. They feel frustrated because their mother is very involved in their personal life, often asking for detailed information about their daily activities and expressing dissatisfaction if they don't follow her expectations, such as coming straight home after work. This behavior has been present since childhood and has intensified now that the user is living abroad in Canada. The user feels that their mother’s old-fashioned mindset and lack of understanding of their life in Canada create tension. The user desires more independence and freedom, as the strict and excessive concern from their mother leads to stress and burnout. Despite reassuring her that they are safe and responsible, the mother still interprets any push for independence as a sign of neglect or lack of love. User's mother still views them as needing protection, even though they are now living independently in Canada and are an adult. She has a very old-fashioned mindset and interprets any attempt at setting boundaries as disrespectful or a sign that they no longer care about her. This creates a lot of tension and frustration for the user, especially now that they want to explore and experience more independence, which their mother’s behavior makes more difficult. The user is eager to enjoy new experiences and freedoms, but their mother’s interference makes it complicated.
+
+
+## 3. Career
+
+[2025-12-17] - User is in the Computer Systems Technology – Software Support (program 548) at Mohawk College.
+
+
+## 4. Projects
+
+[2025-04-11] - User is working on an Expo React Native TODO list app with a Node.js backend using Redis, for a school assignment with strict requirements on features, folder structure, and submission format.
+
+[2025-04-30] - Momentum app project. User finalized the Momentum app project plan with a development roadmap divided into six clear phases, covering setup, core features, gamification, personalized suggestions, UI polish, and deployment. User wants to use a backend setup with Node.js (Express), Redis for real-time features, MongoDB/SQLite for habit data storage, and JWT or session-based authentication for their Momentum app.
+
+
+## 5. Preferences
+
+[2025-04-03] - User's focus tends to change rapidly, so they prefer receiving one question at a time when discussing complex topics.
