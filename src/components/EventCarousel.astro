@@ -1,63 +1,96 @@
 ---
-const slides = [
-  {
-    emoji: "🎉",
-    title: "Fête de fin d'année",
-    description: "Rejoignez-nous pour célébrer une magnifique année ensemble!",
-    date: "Juin 2026",
-    cta: { label: "En savoir plus", href: "/programmes/#evenements" },
-    bg: "from-red-600 to-red-800",
-    badge: "Événement à venir",
+interface Props {
+  lang?: "fr" | "en";
+}
+
+const { lang = "fr" } = Astro.props;
+
+const slidesData = {
+  fr: [
+    {
+      emoji: "🎉",
+      title: "Fête de fin d'année",
+      description: "Rejoignez-nous pour célébrer une magnifique année ensemble!",
+      date: "Juin 2026",
+      cta: { label: "En savoir plus", href: "/programmes/#evenements" },
+      bg: "from-red-600 to-red-800",
+      badge: "Événement à venir",
+    },
+    {
+      emoji: "🌸",
+      title: "Journée portes ouvertes",
+      description: "Venez découvrir nos centres, rencontrer l'équipe et visiter les locaux.",
+      date: "Mai 2026",
+      cta: { label: "Demander une place", href: "/inscription/" },
+      bg: "from-orange-500 to-red-600",
+      badge: "Portes ouvertes",
+    },
+    {
+      emoji: "🎨",
+      title: "Semaine de l'art francophone",
+      description: "Une semaine dédiée à la créativité, à la culture et à la langue française.",
+      date: "Avril 2026",
+      cta: { label: "Voir les programmes", href: "/programmes/" },
+      bg: "from-amber-500 to-orange-600",
+      badge: "Activité spéciale",
+    },
+  ],
+  en: [
+    {
+      emoji: "🎉",
+      title: "End-of-Year Celebration",
+      description: "Join us to celebrate a wonderful year together!",
+      date: "June 2026",
+      cta: { label: "Learn more", href: "/en/programmes/#evenements" },
+      bg: "from-red-600 to-red-800",
+      badge: "Upcoming event",
+    },
+    {
+      emoji: "🌸",
+      title: "Open House",
+      description: "Come discover our centres, meet the team and tour our spaces.",
+      date: "May 2026",
+      cta: { label: "Request a spot", href: "/en/inscription/" },
+      bg: "from-orange-500 to-red-600",
+      badge: "Open house",
+    },
+    {
+      emoji: "🎨",
+      title: "Francophone Arts Week",
+      description: "A week dedicated to creativity, culture and the French language.",
+      date: "April 2026",
+      cta: { label: "View programs", href: "/en/programmes/" },
+      bg: "from-amber-500 to-orange-600",
+      badge: "Special activity",
+    },
+  ],
+};
+
+const slides = slidesData[lang];
+
+const labels = {
+  fr: {
+    prevSlide: "Diapositive précédente",
+    nextSlide: "Diapositive suivante",
+    selectSlide: "Sélectionner une diapositive",
+    slideLabel: (i: number) => `Diapositive ${i + 1}`,
+    ariaLabel: "Événements et célébrations",
   },
-  {
-    emoji: "🌸",
-    title: "Journée portes ouvertes",
-    description: "Venez découvrir nos centres, rencontrer l'équipe et visiter les locaux.",
-    date: "Mai 2026",
-    cta: { label: "Demander une place", href: "/inscription/" },
-    bg: "from-orange-500 to-red-600",
-    badge: "Portes ouvertes",
+  en: {
+    prevSlide: "Previous slide",
+    nextSlide: "Next slide",
+    selectSlide: "Select a slide",
+    slideLabel: (i: number) => `Slide ${i + 1}`,
+    ariaLabel: "Events and celebrations",
   },
-  {
-    emoji: "🎨",
-    title: "Semaine de l'art francophone",
-    description: "Une semaine dédiée à la créativité, à la culture et à la langue française.",
-    date: "Avril 2026",
-    cta: { label: "Voir les programmes", href: "/programmes/" },
-    bg: "from-amber-500 to-orange-600",
-    badge: "Activité spéciale",
-  },
-];
+};
+
+const l = labels[lang];
 ---
-
-<!--
-  =========================================================
-  EVENT CAROUSEL — text/emoji version
-  When you're ready to use real images, replace each slide's
-  emoji + gradient background with an <img> tag like this:
-
-  STEP 1: Add your image to /public/assets/images/events/
-  STEP 2: Replace the emoji block with:
-
-  <div class="relative h-full w-full">
-    <img
-      src="/assets/images/events/YOUR-IMAGE.jpg"
-      alt="Description of event"
-      class="absolute inset-0 h-full w-full object-cover"
-      loading="lazy"
-      decoding="async"
-    />
-    <div class="absolute inset-0 bg-black/40"></div>
-  </div>
-
-  STEP 3: Change text colors from text-white to text-white (already set)
-  STEP 4: Remove the `bg` gradient class from the slide wrapper div
-  =========================================================
--->
 
 <section
   id="event-carousel"
-  aria-label="Événements et célébrations"
+  aria-label={l.ariaLabel}
   class="relative overflow-hidden"
 >
   <!-- Slides wrapper -->
@@ -75,10 +108,6 @@ const slides = [
 
           <!-- Emoji / image placeholder -->
           <div class="flex-shrink-0">
-            <!--
-              IMAGE SWAP POINT — replace this div with your <img> tag
-              when real event photos are ready (see instructions above)
-            -->
             <div class="flex h-24 w-24 items-center justify-center rounded-3xl bg-white/20 shadow-xl backdrop-blur-sm md:h-28 md:w-28">
               <span class="text-5xl md:text-6xl" aria-hidden="true">{slide.emoji}</span>
             </div>
@@ -108,7 +137,7 @@ const slides = [
 
           <!-- Slide number -->
           <div class="hidden flex-shrink-0 md:block">
-            <span class="text-6xl font-black text-white/10 select-none">
+            <span class="select-none text-6xl font-black text-white/10">
               0{i + 1}
             </span>
           </div>
@@ -121,7 +150,7 @@ const slides = [
   <!-- Prev / Next buttons -->
   <button
     id="carousel-prev"
-    aria-label="Diapositive précédente"
+    aria-label={l.prevSlide}
     class="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
@@ -131,7 +160,7 @@ const slides = [
 
   <button
     id="carousel-next"
-    aria-label="Diapositive suivante"
+    aria-label={l.nextSlide}
     class="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition hover:bg-white/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
@@ -144,13 +173,13 @@ const slides = [
     id="carousel-dots"
     class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2"
     role="tablist"
-    aria-label="Sélectionner une diapositive"
+    aria-label={l.selectSlide}
   >
     {slides.map((_, i) => (
       <button
         role="tab"
         aria-selected={i === 0 ? "true" : "false"}
-        aria-label={`Diapositive ${i + 1}`}
+        aria-label={l.slideLabel(i)}
         data-index={i}
         class={`carousel-dot h-2 rounded-full transition-all duration-300 ${i === 0 ? "w-6 bg-white" : "w-2 bg-white/40"}`}
       />
@@ -171,15 +200,11 @@ const slides = [
     var DELAY   = 5000;
 
     function goTo(index) {
-      // Wrap around
       current = (index + total) % total;
-
       track.style.transform = 'translateX(-' + (current * 100) + '%)';
-
       slides.forEach(function (s, i) {
         s.setAttribute('aria-hidden', i !== current ? 'true' : 'false');
       });
-
       dots.forEach(function (d, i) {
         var active = i === current;
         d.setAttribute('aria-selected', active ? 'true' : 'false');
@@ -193,20 +218,10 @@ const slides = [
       timer = setInterval(function () { goTo(current + 1); }, DELAY);
     }
 
-    function stopAuto() {
-      clearInterval(timer);
-    }
+    function stopAuto() { clearInterval(timer); }
 
-    // Controls
-    prev.addEventListener('click', function () {
-      goTo(current - 1);
-      stopAuto(); startAuto();
-    });
-
-    next.addEventListener('click', function () {
-      goTo(current + 1);
-      stopAuto(); startAuto();
-    });
+    prev.addEventListener('click', function () { goTo(current - 1); stopAuto(); startAuto(); });
+    next.addEventListener('click', function () { goTo(current + 1); stopAuto(); startAuto(); });
 
     dots.forEach(function (d) {
       d.addEventListener('click', function () {
@@ -215,17 +230,14 @@ const slides = [
       });
     });
 
-    // Pause on hover
     track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', startAuto);
 
-    // Keyboard support
     document.getElementById('event-carousel').addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft')  { goTo(current - 1); stopAuto(); startAuto(); }
       if (e.key === 'ArrowRight') { goTo(current + 1); stopAuto(); startAuto(); }
     });
 
-    // Reduced motion — disable auto-play
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       track.style.transition = 'none';
     } else {

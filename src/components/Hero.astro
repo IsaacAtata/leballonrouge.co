@@ -57,7 +57,6 @@ const base = lang === "en" ? "/en" : "";
           class="group inline-flex items-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-xl shadow-red-700/20 transition-all duration-150 hover:-translate-y-0.5 hover:bg-red-800 md:px-7 md:py-3.5"
         >
           {lang === "en" ? "Request a spot" : "Demander une place"}
-          <!-- Arrow nudges right on hover via group-hover -->
           <span class="transition-transform duration-150 group-hover:translate-x-1">→</span>
         </a>
         <a
@@ -75,30 +74,47 @@ const base = lang === "en" ? "/en" : "";
         {lang === "en" ? "French" : "Français"} <strong class="text-slate-600">100%</strong> {lang === "en" ? "of the time" : "du temps"}
       </p>
 
+      <!-- Anchor nav pills -->
+      <div class="flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+        <a href="#notre-histoire"  class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">
+          {lang === "en" ? "Our story"      : "Notre histoire"}
+        </a>
+        <a href="#centres-preview" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">
+          {lang === "en" ? "Our centres"    : "Nos centres"}
+        </a>
+        <a href="#en-chiffres"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">
+          {lang === "en" ? "By the numbers" : "En chiffres"}
+        </a>
+        <a href="#temoignages"     class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">
+          {lang === "en" ? "Testimonials"   : "Témoignages"}
+        </a>
+        <a href="#faq" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 text-xs hover:bg-white">
+          FAQ
+        </a>
+      </div>
+
     </div>
 
     <!-- Right: image -->
     <div class="flex flex-col gap-4">
 
-      <!-- Skeleton placeholder with warm shimmer + floating balloon.
-           When real photo is ready, remove this entire block and replace with:
-           <img
-             src="/assets/images/hero-children.jpg"
-             alt="Enfants jouant au Ballon Rouge"
-             class="w-full rounded-[28px] object-cover aspect-[16/9]"
-             loading="eager"
-             decoding="async"
-             width="1280"
-             height="720"
-           /> -->
       <div class="relative">
         <!-- Ambient red glow behind the card -->
         <div class="pointer-events-none absolute -inset-4 rounded-[36px] bg-red-500/10 blur-2xl"></div>
 
-        <!-- Skeleton card: shimmer sweep + floating balloon -->
+        <!-- Skeleton card: shimmer sweep + floating balloon.
+             When real photo is ready, remove this entire block and replace with:
+             <img
+               src="/assets/images/hero-children.jpg"
+               alt="Enfants jouant au Ballon Rouge"
+               class="w-full rounded-[28px] object-cover aspect-[16/9]"
+               loading="eager"
+               decoding="async"
+               width="1280"
+               height="720"
+             /> -->
         <div class="hero-img-skeleton">
           <div class="hero-img-skeleton-content">
-            <!-- Balloon bobs up and down independently of shimmer -->
             <div class="hero-img-balloon">🎈</div>
             <p class="hero-img-label">
               {lang === "en" ? "Children's photo" : "Photo des enfants"}

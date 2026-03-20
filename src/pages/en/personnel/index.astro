@@ -1,7 +1,28 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
-const lang = "en";
+const offres: {
+  titre: string;
+  centre: string;
+  type: string;
+  description: string;
+  dateAffichage: string;
+}[] = [
+  {
+    titre: "Qualified Early Childhood Educator",
+    centre: "Hamilton",
+    type: "Full-time",
+    description: "We are looking for a qualified early childhood educator to join our Hamilton team...",
+    dateAffichage: "March 2026",
+  },
+  {
+    titre: "Early Childhood Educator Assistant",
+    centre: "Brantford",
+    type: "Part-time",
+    description: "Early childhood educator assistant position available in Brantford...",
+    dateAffichage: "March 2026",
+  },
+];
 
 const recognitions = [
   {
@@ -23,24 +44,27 @@ const recognitions = [
 ---
 
 <BaseLayout
-  lang={lang}
+  lang="en"
   title="Staff – Le Ballon Rouge"
-  description="Meet the qualified and caring team at Le Ballon Rouge. Learn about our hiring approach, staff recognition, job openings and how to join our team."
+  description="Meet the qualified and caring team at Le Ballon Rouge. Learn about our hiring approach, org chart, job openings and how to join our team in Hamilton and Brantford."
 >
 
   <!-- Hero -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-    <h1 class="text-3xl font-black tracking-tight md:text-5xl">Staff</h1>
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Hamilton &amp; Brantford
+    </div>
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Staff</h1>
     <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
       A warm and qualified team, committed to the well-being, safety and learning of every child.
     </p>
 
     <div class="mt-6 flex flex-wrap gap-3">
       <a
-        href="/en/personnel/#reconnaissances"
+        href="#equipe"
         class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
       >
-        Employee recognition
+        Our team →
       </a>
       <a
         href="#emplois"
@@ -55,48 +79,156 @@ const recognitions = [
         Join our team
       </a>
     </div>
+
+    <!-- Anchor nav -->
+    <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
+      <a href="#equipe"          class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Our team</a>
+      <a href="#organigramme"    class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Org chart</a>
+      <a href="#reconnaissances" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Recognition</a>
+      <a href="#emplois"         class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Job openings</a>
+      <a href="#rejoignez"       class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Join us</a>
+    </div>
   </section>
 
   <!-- Intro / who we hire -->
-  <section class="mx-auto max-w-6xl px-4 pb-12">
+  <section id="equipe" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <h2 class="text-xl font-black tracking-tight md:text-2xl">A qualified team</h2>
-      <p class="mt-3 leading-7 text-slate-600">
-        Le Ballon Rouge hires qualified early childhood educators as well as early childhood educator assistants, based on enrollment numbers
-        and the Ministry's educator-to-child ratio requirements.
-      </p>
-      <p class="mt-3 leading-7 text-slate-600">
-        From time to time, we welcome students from Early Childhood Education (college) programs to complete a placement at the daycare,
-        enriching their professional experience. Before joining our programs, they review our internal policies and provide all required documentation.
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Who we are
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">A qualified team</h2>
+
+      <div class="mt-4 grid gap-5 md:grid-cols-2">
+        <div class="space-y-4 leading-7 text-slate-600">
+          <p>
+            Le Ballon Rouge hires qualified early childhood educators as well as early childhood educator assistants, based on enrollment numbers and the Ministry's educator-to-child ratio requirements.
+          </p>
+          <p>
+            From time to time, we welcome students from Early Childhood Education (college) programs to complete a placement at the daycare, enriching their professional experience.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-amber-100 bg-amber-50/60 p-5">
+          <p class="text-sm font-extrabold text-amber-800">📋 Note for placement students</p>
+          <p class="mt-2 text-sm font-semibold leading-6 text-amber-700">
+            Before joining our programs, all students must review our internal policies and provide all documentation required by the Ministry.
+          </p>
+        </div>
+      </div>
+
+      <!-- Roles grid -->
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        {[
+          { icon: "👩‍🏫", title: "Early Childhood Educators", body: "Qualified staff trained in early childhood education, meeting the requirements of the Ontario Ministry of Education." },
+          { icon: "🤲", title: "ECE Assistants", body: "Support qualified educators in supervising groups, in compliance with the prescribed ratios." },
+          { icon: "🎓", title: "Placement students", body: "Students from Early Childhood Education programs welcomed to enrich their professional experience." },
+        ].map((role) => (
+          <article class="rounded-2xl border border-black/10 bg-white/60 p-5">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
+              <span aria-hidden="true" class="text-lg">{role.icon}</span>
+            </div>
+            <h3 class="mt-3 font-black text-slate-900">{role.title}</h3>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{role.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Org chart -->
+  <section id="organigramme" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Structure
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Org chart</h2>
+      <p class="mt-2 leading-7 text-slate-600">
+        Le Ballon Rouge's organizational structure ensures clear governance and quality supervision at every level.
       </p>
 
-      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-        <h3 class="text-lg font-black">Parents: you are always welcome</h3>
-        <p class="mt-2 leading-7 text-slate-600">
-          Parent participation is always welcome, and the invitation extends to other family members as well. Come play with us, attend activities,
-          take part in a special celebration, share your feedback or sit on the board of directors.
-        </p>
-        <a
-          href="/en/gouvernance/#joindre"
-          class="mt-4 inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold shadow-sm hover:bg-white/80"
-        >
-          Join the board of directors
-        </a>
+      <!-- Org chart -->
+      <div class="mt-8 flex flex-col items-center gap-0">
+
+        <!-- Tier 1 -->
+        <div class="flex justify-center">
+          <div class="rounded-2xl border border-red-200 bg-red-50 px-6 py-4 text-center shadow-sm">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-red-500">Governance</p>
+            <p class="mt-1 font-black text-slate-900">Board of Directors</p>
+            <p class="text-xs font-semibold text-slate-500">Garderie Française de Hamilton Inc.</p>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="h-6 w-px bg-black/15"></div>
+
+        <!-- Tier 2 -->
+        <div class="flex justify-center">
+          <div class="rounded-2xl border border-black/10 bg-white/80 px-6 py-4 text-center shadow-sm">
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Management</p>
+            <p class="mt-1 font-black text-slate-900">Executive Director</p>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="h-6 w-px bg-black/15"></div>
+
+        <!-- Tier 3 — two supervisors -->
+        <div class="flex w-full max-w-lg justify-center gap-4">
+          <div class="relative flex-1">
+            <div class="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-black/15"></div>
+            <div class="rounded-2xl border border-black/10 bg-white/80 p-4 text-center shadow-sm">
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Supervision</p>
+              <p class="mt-1 font-black text-slate-900">Supervisor</p>
+              <p class="text-xs font-semibold text-red-700">Hamilton</p>
+            </div>
+          </div>
+          <div class="relative flex-1">
+            <div class="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-black/15"></div>
+            <div class="rounded-2xl border border-black/10 bg-white/80 p-4 text-center shadow-sm">
+              <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">Supervision</p>
+              <p class="mt-1 font-black text-slate-900">Supervisor</p>
+              <p class="text-xs font-semibold text-red-700">Brantford</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="h-6 w-px bg-black/15"></div>
+
+        <!-- Tier 4 — staff -->
+        <div class="flex w-full max-w-2xl flex-wrap justify-center gap-3">
+          {[
+            { role: "Early Childhood Educators", icon: "👩‍🏫" },
+            { role: "ECE Assistants", icon: "🤲" },
+            { role: "Placement students", icon: "🎓" },
+          ].map((s) => (
+            <div class="relative">
+              <div class="absolute -top-6 left-1/2 h-6 w-px -translate-x-1/2 bg-black/15"></div>
+              <div class="rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-center shadow-sm">
+                <span aria-hidden="true" class="text-lg">{s.icon}</span>
+                <p class="mt-1 text-sm font-black text-slate-700">{s.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
+
+      <p class="mt-6 text-center text-xs font-semibold text-slate-400">
+        Simplified org chart — structure applies to both centres.
+      </p>
     </div>
   </section>
 
   <!-- Employee recognition -->
   <section id="reconnaissances" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <div class="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-        <div>
-          <h2 class="text-xl font-black tracking-tight md:text-2xl">Employee recognition</h2>
-          <p class="mt-2 max-w-prose leading-7 text-slate-600">
-            We value the dedication of our team and their continuous professional growth.
-          </p>
-        </div>
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Our commitment
       </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Employee recognition</h2>
+      <p class="mt-2 max-w-prose leading-7 text-slate-600">
+        We value the dedication of our team and their continuous professional growth.
+      </p>
 
       <div class="mt-6 grid gap-5 md:grid-cols-3">
         {recognitions.map((r) => (
@@ -109,37 +241,95 @@ const recognitions = [
           </article>
         ))}
       </div>
-
-      <div class="mt-8 rounded-2xl border border-dashed border-black/15 bg-white/50 p-5">
-        <p class="font-extrabold text-slate-900">To add (optional)</p>
-        <p class="mt-2 leading-7 text-slate-600">
-          You can display here: years of service, acknowledgements, completed training, and recognition messages (without sensitive personal data).
-        </p>
-      </div>
     </div>
   </section>
 
   <!-- Job openings -->
   <section id="emplois" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <h2 class="text-xl font-black tracking-tight md:text-2xl">Job openings</h2>
-      <p class="mt-3 leading-7 text-slate-600">
-        Posted positions vary based on centre needs and ratio requirements. To apply, please check the listings below or contact us directly.
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Careers
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Job openings</h2>
+      <p class="mt-2 leading-7 text-slate-600">
+        Posted positions vary based on centre needs and ratio requirements. Check the listings below or send us an unsolicited application.
       </p>
 
-      <div class="mt-6 rounded-2xl border border-black/10 bg-white/70 p-5">
-        <p class="font-extrabold text-slate-900">No openings posted at this time</p>
-        <p class="mt-2 leading-7 text-slate-600">
-          You are still welcome to send us an unsolicited application using the form below.
-        </p>
+      {offres.length === 0 ? (
+        <div class="mt-6 rounded-2xl border border-dashed border-black/15 bg-white/50 p-6 text-center">
+          <span class="text-3xl">📭</span>
+          <p class="mt-3 font-extrabold text-slate-900">No openings posted at this time</p>
+          <p class="mt-2 text-sm font-semibold text-slate-500">
+            You are still welcome to send us an unsolicited application.
+          </p>
+          <a
+            href="#rejoignez"
+            class="mt-4 inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          >
+            Send an unsolicited application →
+          </a>
+        </div>
+      ) : (
+        <div class="mt-6 grid gap-4">
+          {offres.map((o) => (
+            <article class="rounded-2xl border border-black/10 bg-white/60 p-6">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-extrabold text-slate-600">{o.centre}</span>
+                    <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-extrabold text-slate-600">{o.type}</span>
+                    <span class="rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold text-slate-400">Posted: {o.dateAffichage}</span>
+                  </div>
+                  <h3 class="mt-2 text-lg font-black text-slate-900">{o.titre}</h3>
+                  <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{o.description}</p>
+                </div>
+                <a
+                  href="#rejoignez"
+                  class="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+                >
+                  Apply →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Join our team -->
+  <section id="rejoignez" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
+    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+        Apply
+      </div>
+      <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Join our team</h2>
+      <p class="mt-2 leading-7 text-slate-600">
+        Would you like to be part of the Le Ballon Rouge team? Check out our dedicated section to submit an unsolicited application or learn more about available positions.
+      </p>
+
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        {[
+          { icon: "👩‍🏫", title: "Early Childhood Educator", body: "You hold a diploma in early childhood education and want to work in a warm French-language environment." },
+          { icon: "🤲", title: "ECE Assistant", body: "You want to support a team of qualified educators and contribute to children's daily development." },
+          { icon: "🎓", title: "Placement", body: "You are a student in early childhood education looking for a meaningful placement experience in French." },
+        ].map((r) => (
+          <article class="rounded-2xl border border-black/10 bg-white/60 p-5">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-black/10 bg-white shadow-sm">
+              <span aria-hidden="true" class="text-lg">{r.icon}</span>
+            </div>
+            <h3 class="mt-3 font-black text-slate-900">{r.title}</h3>
+            <p class="mt-2 text-sm font-semibold leading-6 text-slate-600">{r.body}</p>
+          </article>
+        ))}
       </div>
 
       <div class="mt-6 flex flex-wrap gap-3">
         <a
-          href="#rejoignez"
-          class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+          href="/en/gouvernance/#rejoignez"
+          class="inline-flex items-center gap-2 rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
         >
-          Send an unsolicited application
+          Submit my application →
         </a>
         <a
           href="/en/contact/"
@@ -151,84 +341,28 @@ const recognitions = [
     </div>
   </section>
 
-  <!-- Join our team -->
-  <section id="rejoignez" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
-    <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-      <h2 class="text-xl font-black tracking-tight md:text-2xl">Join our team</h2>
-      <p class="mt-3 leading-7 text-slate-600">
-        Send us your application. We will reach out if a position matching your profile becomes available.
+  <!-- CTA -->
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
+      <p class="text-4xl font-black text-white">🎈</p>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Be part of the family!</h2>
+      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
+        Join a team passionate about early childhood, committed to French-language education and the development of every child.
       </p>
-
-      <form class="mt-6 grid gap-4" onsubmit="event.preventDefault(); alert('Thank you! (demo)');">
-        <div class="grid gap-4 md:grid-cols-2">
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Full name</label>
-            <input
-              name="fullName"
-              required
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-        </div>
-
-        <div class="grid gap-4 md:grid-cols-2">
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Phone</label>
-            <input
-              name="phone"
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-          <div>
-            <label class="text-sm font-extrabold text-slate-700">Preferred centre (optional)</label>
-            <select
-              name="preferredCentre"
-              class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            >
-              <option value="">No preference</option>
-              <option>Hamilton</option>
-              <option>Brantford</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="text-sm font-extrabold text-slate-700">Message</label>
-          <textarea
-            name="message"
-            class="mt-2 min-h-[140px] w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-            placeholder="Introduce yourself and indicate the type of position you are looking for (educator, assistant, placement, etc.)."
-          ></textarea>
-        </div>
-
-        <div>
-          <label class="text-sm font-extrabold text-slate-700">Résumé (optional)</label>
-          <input
-            type="file"
-            name="cv"
-            accept=".pdf,.doc,.docx"
-            class="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 shadow-sm"
-          />
-          <p class="mt-2 text-xs font-semibold text-slate-500">
-            (The file will only be submitted once the form is connected to a submission service.)
-          </p>
-        </div>
-
-        <button
-          class="mt-2 inline-flex justify-center rounded-2xl bg-red-700 px-5 py-3 text-sm font-extrabold text-white hover:bg-red-800"
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href="/en/gouvernance/#rejoignez"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
         >
-          Send my application
-        </button>
-      </form>
+          Apply now →
+        </a>
+        <a
+          href="/en/contact/"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
+        >
+          Contact us
+        </a>
+      </div>
     </div>
   </section>
 
