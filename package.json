@@ -11,6 +11,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.17.1",
+    "astro-tunnel": "^0.1.9",
     "bootstrap": "^5.3.8",
     "tailwindcss": "^4.1.18"
   }
