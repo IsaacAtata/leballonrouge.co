@@ -991,4 +991,169 @@
     }
   }
 
+  .staff-accordion {
+    display: flex;
+    gap: 0.85rem;
+    min-height: 460px;
+  }
+
+  .staff-panel {
+    position: relative;
+    flex: 1 1 0%;
+    overflow: hidden;
+    border-radius: 24px;
+    min-width: 72px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    transition:
+      flex 520ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 280ms ease,
+      box-shadow 280ms ease,
+      filter 280ms ease;
+    box-shadow:
+      0 20px 25px -5px rgba(15, 23, 42, 0.06),
+      0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    isolation: isolate;
+  }
+
+  .staff-panel:hover,
+  .staff-panel:focus-visible {
+  flex: 3.6 1 0%;
+  }
+
+  .staff-accordion:hover .staff-panel:not(:hover) {
+    filter: saturate(0.82) brightness(0.92);
+  }
+
+  .staff-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 280ms ease;
+  }
+
+  .staff-panel:hover .staff-image,
+  .staff-panel:focus-visible .staff-image {
+    transform: scale(1.03);
+  }
+
+  .staff-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.28) 38%, rgba(15, 23, 42, 0.06) 68%, rgba(15, 23, 42, 0.02) 100%);
+    opacity: 0.95;
+    transition: opacity 320ms ease;
+  }
+
+  .staff-panel:not(:hover):not(:focus-visible) .staff-overlay {
+    opacity: 0.55;
+  }
+
+  .staff-copy {
+    position: absolute;
+    left: 1.15rem;
+    bottom: 1.15rem;
+    z-index: 2;
+    max-width: min(280px, 78%);
+    color: white;
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 260ms ease,
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .staff-panel:hover .staff-copy,
+  .staff-panel:focus-visible .staff-copy {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .staff-kicker {
+    margin: 0 0 0.25rem;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.72);
+  }
+
+  .staff-name {
+    margin: 0;
+    font-size: clamp(1.15rem, 1rem + 0.8vw, 1.85rem);
+    line-height: 1.05;
+    font-weight: 900;
+    color: white;
+  }
+
+  .staff-role {
+    margin: 0.35rem 0 0;
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .staff-bio {
+    margin: 0.6rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    max-width: 30ch;
+  }
+
+  @media (max-width: 900px) {
+    .staff-accordion {
+      min-height: 380px;
+      gap: 0.65rem;
+    }
+
+    .staff-panel:hover,
+    .staff-panel:focus-within,
+    .staff-panel.is-featured {
+      flex: 2.8 1 0%;
+    }
+
+    .staff-copy {
+      left: 0.95rem;
+      right: 0.95rem;
+      max-width: 85%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .staff-accordion {
+      flex-direction: column;
+      min-height: auto;
+    }
+
+    .staff-panel,
+    .staff-panel:hover,
+    .staff-panel:focus-visible {
+      flex: unset;
+      min-height: 280px;
+    }
+
+    .staff-copy {
+      opacity: 1;
+      transform: none;
+    }
+
+    .staff-overlay {
+      opacity: 0.88;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .staff-panel,
+    .staff-image,
+    .staff-copy,
+    .staff-overlay {
+      transition: none !important;
+      animation: none !important;
+    }
+  } 
+
 }

@@ -7,6 +7,11 @@ interface Props { lang?: Lang; }
 const { lang = "fr" } = Astro.props;
 const t = useTranslations(lang).nav;
 const base = lang === "en" ? "/en" : "";
+
+const centreLinks = {
+  hamilton: `${base}/centres/hamilton/`,
+  brantford: `${base}/centres/brantford/`,
+};
 ---
 
 <header class="border-b border-black/10 bg-white/95 backdrop-blur-xl">
@@ -99,8 +104,12 @@ const base = lang === "en" ? "/en" : "";
 
           <div class="nav-group">
             <a href={`${base}/centres/`} class="nav-trigger">
-              {t.centres}
+              {t.centres} <span class="arrow" aria-hidden="true">▾</span>
             </a>
+            <div class="nav-dropdown">
+              <a href={centreLinks.hamilton} class="dropdown-item">Le Ballon Rouge — Hamilton</a>
+              <a href={centreLinks.brantford} class="dropdown-item">Le Ballon Rouge — Brantford</a>
+            </div>
           </div>
 
         </div>
@@ -109,7 +118,6 @@ const base = lang === "en" ? "/en" : "";
       <!-- Right side -->
       <div class="flex items-center gap-2 md:gap-3">
 
-        <!-- Language switcher -->
         <div class="nav-group">
           <button
             type="button"
@@ -137,7 +145,6 @@ const base = lang === "en" ? "/en" : "";
           </div>
         </div>
 
-        <!-- Desktop CTA -->
         <a
           href={`${base}/inscription/`}
           class="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25 transition-all duration-150"
@@ -145,7 +152,6 @@ const base = lang === "en" ? "/en" : "";
           {t.cta} <span aria-hidden="true">→</span>
         </a>
 
-        <!-- Mobile hamburger -->
         <button
           id="menuBtn"
           type="button"
@@ -191,6 +197,14 @@ const base = lang === "en" ? "/en" : "";
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
             {t.centres}
           </a>
+          <a href={centreLinks.hamilton} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            Le Ballon Rouge — Hamilton
+          </a>
+          <a href={centreLinks.brantford} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+            Le Ballon Rouge — Brantford
+          </a>
           <a href={`${base}/programmes/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
             {t.programmes}
@@ -204,138 +218,3 @@ const base = lang === "en" ? "/en" : "";
             {t.gouvernance}
           </a>
           <a href={`${base}/contact/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
-            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.contact}
-          </a>
-        </nav>
-
-        <div class="my-4 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-
-        <div class="flex flex-col gap-3 sm:flex-row">
-          <a href={`${base}/inscription/`} class="flex flex-1 items-center justify-center gap-2 rounded-full bg-red-700 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 transition-all duration-150 hover:bg-red-800">
-            {t.cta} →
-          </a>
-          <a href={`${base}/centres/`} class="flex flex-1 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white py-3 text-sm font-extrabold text-slate-700 shadow-sm transition-all duration-150 hover:bg-slate-50">
-            {t.centres}
-          </a>
-        </div>
-
-        <p class="mt-4 text-center text-[11px] font-semibold text-slate-400">
-          {lang === "en" ? "Serving since" : "En service depuis"} <strong class="text-slate-500">1986</strong> · Hamilton &amp; Brantford
-        </p>
-
-      </div>
-    </div>
-  </div>
-
-</header>
-
-<script is:inline>
-  function initMobileMenu() {
-    var menuBtn    = document.getElementById('menuBtn');
-    var mobileMenu = document.getElementById('mobileMenu');
-
-    if (!menuBtn || !mobileMenu) return;
-
-    var iconOpen  = menuBtn.querySelector('svg:first-of-type');
-    var iconClose = menuBtn.querySelector('svg:last-of-type');
-    var menuLabel = menuBtn.querySelector('#menuLabel');
-
-    // Hard reset state
-    mobileMenu.className = 'mobile-menu-panel';
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    menuBtn.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    if (iconOpen)  iconOpen.classList.remove('icon-hidden');
-    if (iconClose) iconClose.classList.add('icon-hidden');
-
-    var originalLabel = menuLabel ? menuLabel.textContent.trim() : 'Menu';
-    var isOpen = false;
-
-    function openMenu() {
-      isOpen = true;
-      mobileMenu.className = 'mobile-menu-panel is-open';
-      mobileMenu.setAttribute('aria-hidden', 'false');
-      menuBtn.setAttribute('aria-expanded', 'true');
-      if (iconOpen)  iconOpen.classList.add('icon-hidden');
-      if (iconClose) iconClose.classList.remove('icon-hidden');
-      if (menuLabel) menuLabel.textContent = 'Fermer';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-      isOpen = false;
-      mobileMenu.className = 'mobile-menu-panel';
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      if (iconOpen)  iconOpen.classList.remove('icon-hidden');
-      if (iconClose) iconClose.classList.add('icon-hidden');
-      if (menuLabel) menuLabel.textContent = originalLabel;
-      document.body.style.overflow = '';
-    }
-
-    // Strip old listeners by replacing the button
-    var newBtn = menuBtn.cloneNode(true);
-    menuBtn.parentNode.replaceChild(newBtn, menuBtn);
-
-    // Re-grab refs from the new button
-    iconOpen  = newBtn.querySelector('svg:first-of-type');
-    iconClose = newBtn.querySelector('svg:last-of-type');
-    menuLabel = newBtn.querySelector('#menuLabel');
-
-    newBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      isOpen ? closeMenu() : openMenu();
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', closeMenu);
-    });
-
-    document.addEventListener('click', function(e) {
-      if (isOpen && !newBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-        closeMenu();
-      }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && isOpen) {
-        closeMenu();
-        newBtn.focus();
-      }
-    });
-
-    // -------------------------------------------------------
-    // Touch-friendly lang dropdown for mobile
-    // -------------------------------------------------------
-    document.querySelectorAll('.nav-group').forEach(function(group) {
-      var trigger = group.querySelector('.lang-trigger');
-      if (!trigger) return;
-
-      trigger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var alreadyOpen = group.classList.contains('is-open');
-        // Close all open dropdowns first
-        document.querySelectorAll('.nav-group.is-open').forEach(function(g) {
-          g.classList.remove('is-open');
-        });
-        if (!alreadyOpen) group.classList.add('is-open');
-      });
-    });
-
-    // Close lang dropdown when clicking anywhere else
-    document.addEventListener('click', function() {
-      document.querySelectorAll('.nav-group.is-open').forEach(function(g) {
-        g.classList.remove('is-open');
-      });
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMobileMenu);
-  } else {
-    initMobileMenu();
-  }
-
-  document.addEventListener('astro:after-swap', initMobileMenu);
-</script>
