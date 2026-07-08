@@ -109,9 +109,9 @@ export default {
     body: "C'est en 1986 qu'un groupe de parents incorpore la Garderie Française de Hamilton Inc. et que la garderie Le Ballon Rouge ouvre ses portes dans l'école élémentaire catholique Monseigneur-de-Laval (Hamilton). En 2011, un deuxième centre ouvre à Brantford en partenariat avec le CSC Mon Avenir. Notre environnement intérieur et extérieur évolue constamment pour répondre aux besoins des enfants.",
     learnMore: "En savoir plus",
     visionTitle: "Vision",
-    visionBody: "Un environnement francophone de qualité axé sur l'apprentissage par le jeu et l'exploration, au Ballon Rouge le ciel est la limite!",
+    visionBody: "réparer des générations d'enfants à une scolarité réussie en français.",
     missionTitle: "Mission",
-    missionBody: "Offrir un service de garde de qualité en français et développer la francophonie locale en partenariat avec les municipalités et les conseils scolaires francophones.",
+    missionBody: "Offrir des expériences éducatives francophones de qualité qui favorisent l'épanouissement et l'autonomie des enfants, soutiennent les familles et contribuent au développement d'une communauté francophone forte et inclusive.",
     valuesTitle: "Valeurs",
     values: [
       "Bienveillance",

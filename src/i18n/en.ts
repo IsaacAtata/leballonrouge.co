@@ -109,9 +109,9 @@ export default {
     body: "In 1986, a group of parents incorporated La Garderie Française de Hamilton Inc. and Le Ballon Rouge opened its doors at École élémentaire catholique Monseigneur-de-Laval (Hamilton). In 2011, a second centre opened in Brantford in partnership with CSC Mon Avenir. Our indoor and outdoor environments continuously evolve to meet the needs of children.",
     learnMore: "Learn more",
     visionTitle: "Vision",
-    visionBody: "A quality French-language environment focused on learning through play and exploration — at Le Ballon Rouge, the sky is the limit!",
+    visionBody: "Preparing generations of children for successful schooling in French.",
     missionTitle: "Mission",
-    missionBody: "To provide quality French-language childcare and develop the local Francophone community in partnership with municipalities and French-language school boards.",
+    missionBody: "To provide quality French-language educational experiences that foster children's growth and independence, support families, and contribute to building a strong, inclusive Francophone community.",
     valuesTitle: "Values",
     values: [
       "Kindness",

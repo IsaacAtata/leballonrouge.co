@@ -5,8 +5,15 @@ import tailwindcss from '@tailwindcss/vite';
 import tunnel from "astro-tunnel";
 
 export default defineConfig({
+  devToolbar: {
+    enabled: false
+  },
+
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      allowedHosts: ['.ngrok-free.dev']
+    }
   },
 
   i18n: {

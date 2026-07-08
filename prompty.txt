@@ -1,0 +1,780 @@
+1. src/pages/centres/index.astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+type StaffMember = {
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+};
+
+type ActivityItem = {
+  image: string;
+  alt: string;
+  title: string;
+  caption: string;
+};
+
+type Centre = {
+  slug: string;
+  city: string;
+  name: string;
+  address: string;
+  hours: string;
+  phone: string;
+  phoneTel: string;
+  email: string;
+  supervisor: string;
+  school: string;
+  programs: string[];
+  inscriptionHref: string;
+  mapsQuery: string;
+  googlePlaceUrl: string;
+  staff: StaffMember[];
+  activities: ActivityItem[];
+};
+
+const centres: Centre[] = [
+  {
+    slug: "hamilton",
+    city: "Hamilton",
+    name: "Le Ballon Rouge Hamilton",
+    address: "135 Bendamere Ave, Hamilton, ON L9C 1N4",
+    hours: "Lundi au Vendredi 7h00 — 17h30",
+    phone: "905-383-8371",
+    phoneTel: "19053838371",
+    email: "leballonrouge@cscmonavenir.ca",
+    supervisor: "Pierangela Lattuca",
+    school: "École élémentaire Mon Seigneur de Laval",
+    programs: ["Bambins", "Préscolaires", "Avant et Après école"],
+    inscriptionHref: "/inscription/hamilton/",
+    mapsQuery: encodeURIComponent("135 Bendamere Ave, Hamilton, ON L9C 1N4"),
+    googlePlaceUrl:
+      "https://www.google.com/maps/place/Le+Ballon+Rouge/@43.2340612,-79.8920059,17z/data=!4m15!1m8!3m7!1s0x882c9b19663e1913:0x3b7c4b5e166434dc!2s135+Bendamere+Ave,+Hamilton,+ON+L9C+1N4!3b1!8m2!3d43.2341417!4d-79.892331!16s%2Fg%2F11bw41tzwd!3m5!1s0x882c9b19663e1913:0x5fe06c0c04a1ded3!8m2!3d43.2340319!4d-79.8917385!16s%2Fg%2F1vrqb8ch?entry=ttu",
+    staff: [
+      {
+        name: "Alice",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Alice.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Fadwa",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Fadwa.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Feriel",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Feriel.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Jeanne",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Jeanne.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Michelle",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Michelle.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Nicole",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Nicole.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Rawia",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Rawia.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Souad",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/Souad.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Hamilton/IMG_6123.jpg",
+        bio: "Membre de l’équipe éducative du centre de Hamilton.",
+      },
+    ],
+    activities: [
+      {
+        image: "/assets/images/Activities - Hamilton/IMG_0080.JPG",
+        alt: "Activité au centre de Hamilton",
+        title: "Moments au quotidien",
+        caption: "Un milieu chaleureux, éducatif et francophone pour grandir et s’épanouir.",
+      },
+      {
+        image: "/assets/images/Activities - Hamilton/IMG_0172.JPG",
+        alt: "Moment d’activité au centre de Hamilton",
+        title: "Découverte et jeu",
+        caption: "Des activités variées qui encouragent l’exploration, la créativité et la participation.",
+      },
+      {
+        image: "/assets/images/Activities - Hamilton/IMG_0202.JPG",
+        alt: "Enfants en activité au centre de Hamilton",
+        title: "Apprentissage actif",
+        caption: "Chaque journée propose des expériences adaptées à l’âge, au rythme et aux intérêts des enfants.",
+      },
+      {
+        image: "/assets/images/Activities - Hamilton/IMG_0080.JPG",
+        alt: "Aperçu de la vie au centre de Hamilton",
+        title: "Vie francophone au centre",
+        caption: "Un environnement stimulant où les enfants jouent, apprennent et communiquent en français.",
+      },
+    ],
+  },
+  {
+    slug: "brantford",
+    city: "Brantford",
+    name: "Le Ballon Rouge Brantford",
+    address: "60 Clench Ave, Brantford, ON N3T 1B8",
+    hours: "Lundi au Vendredi 7h30 — 17h30",
+    phone: "519-753-6541",
+    phoneTel: "15197536541",
+    email: "leballonrougebrantford@cscmonavenir.ca",
+    supervisor: "Awatef Belghiti",
+    school: "École élémentaire Sainte Marguerite Bourgeoys",
+    programs: ["Bambins", "Préscolaires", "Avant et Après école"],
+    inscriptionHref: "/inscription/brantford/",
+    mapsQuery: encodeURIComponent("60 Clench Ave, Brantford, ON N3T 1B8"),
+    googlePlaceUrl:
+      "https://www.google.com/maps/place/Ballon+Rouge+Brantford+Le/@43.1249678,-80.2692262,17z/data=!3m1!5s0x882c66224ef0d12b:0x7c74146ac0ce288b!4m15!1m8!3m7!1s0x882c662250f94ca7:0xa61c9f61580b00a2!2s60+Clench+Ave,+Brantford,+ON+N3T+1B9!3b1!8m2!3d43.1249678!4d-80.2692262!16s%2Fg%2F11c0vpmtmg!3m5!1s0x882c662248959271:0x878929e7f1c7180b!8m2!3d43.1249728!4d-80.2692683!16s%2Fg%2F1hc0sm54k?entry=ttu",
+    staff: [
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_4771.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_4776.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_4780.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_4794.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_6018.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_6078.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_6094.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+      {
+        name: "Membre de l’équipe",
+        role: "Éducatrice",
+        image: "/assets/images/Staff Brantford/IMG_6096.jpg",
+        bio: "Membre de l’équipe éducative du centre de Brantford.",
+      },
+    ],
+    activities: [
+      {
+        image: "/assets/images/Activities - Brantford/activity-1.jpg",
+        alt: "Activité au centre de Brantford",
+        title: "Moments au quotidien",
+        caption: "Un environnement francophone accueillant, stimulant et adapté aux tout-petits.",
+      },
+      {
+        image: "/assets/images/Activities - Brantford/activity-2.jpg",
+        alt: "Moment d’activité au centre de Brantford",
+        title: "Équipe attentionnée",
+        caption: "Une équipe présente pour soutenir l’éveil, la sécurité et le bien-être des enfants.",
+      },
+      {
+        image: "/assets/images/Activities - Brantford/activity-3.jpg",
+        alt: "Enfants en activité au centre de Brantford",
+        title: "Découverte et exploration",
+        caption: "Des expériences de jeu et d’apprentissage qui encouragent la curiosité des enfants.",
+      },
+      {
+        image: "/assets/images/Activities - Brantford/activity-4.jpg",
+        alt: "Aperçu du centre francophone de Brantford",
+        title: "Cadre chaleureux",
+        caption: "Un milieu bienveillant où chaque enfant peut apprendre, jouer et grandir à son rythme.",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  lang="fr"
+  title="Centres — Le Ballon Rouge"
+  description="Découvrez les deux centres francophones du Ballon Rouge à Hamilton et Brantford, en Ontario."
+>
+  <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
+    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+      Ontario · 2 centres
+    </div>
+
+    <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Nos centres</h1>
+
+    <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
+      Deux centres francophones en Ontario — Hamilton et Brantford — offrant des programmes agréés pour les bambins, préscolaires et le parascolaire.
+    </p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a
+        href="/inscription/"
+        class="inline-flex items-center justify-center rounded-full bg-red-700 px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+      >
+        Comment s'inscrire →
+      </a>
+
+      <a
+        href="#hamilton"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-slate-50"
+      >
+        📍 Hamilton
+      </a>
+
+      <a
+        href="#brantford"
+        class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-slate-50"
+      >
+        📍 Brantford
+      </a>
+    </div>
+  </section>
+
+  {centres.map((c: Centre) => (
+    <section id={c.slug} class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-20">
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
+            📍 {c.city}
+          </div>
+
+          <h2 class="mt-2 text-2xl font-black tracking-tight md:text-3xl">{c.name}</h2>
+
+          <p class="mt-1 text-sm font-semibold text-slate-500">
+            {c.address} · {c.hours}
+          </p>
+        </div>
+
+        <a
+          href={c.inscriptionHref}
+          class="inline-flex flex-shrink-0 items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+        >
+          Inscription — {c.city} →
+        </a>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        <article class="rounded-[28px] border border-black/10 bg-white p-6 shadow-xl shadow-black/5 md:p-8">
+          <h3 class="text-lg font-black tracking-tight">Coordonnées</h3>
+
+          <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">📍</span>
+              <span>{c.address}</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">🕐</span>
+              <span>{c.hours}</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">👩‍🏫</span>
+              <span><span class="font-extrabold text-slate-900">Superviseure:</span> {c.supervisor}</span>
+            </li>
+
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 text-base">🏫</span>
+              <span><span class="font-extrabold text-slate-900">École:</span> {c.school}</span>
+            </li>
+          </ul>
+
+          <div class="mt-5 space-y-2">
+            <a
+              href={`tel:${c.phoneTel}`}
+              class="flex items-center gap-3 rounded-2xl border border-black/10 bg-slate-50 px-4 py-3 text-sm font-extrabold text-slate-800 hover:bg-white"
+            >
+              📞 {c.phone}
+            </a>
+
+            <a
+              href={`mailto:${c.email}`}
+              class="flex items-center gap-3 rounded-2xl border border-black/10 bg-slate-50 px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-white"
+            >
+              ✉️ {c.email}
+            </a>
+          </div>
+
+          <div class="mt-5">
+            <p class="text-sm font-extrabold text-slate-900">Programmes offerts</p>
+
+            <div class="mt-2 flex flex-wrap gap-2">
+              {c.programs.map((p: string) => (
+                <span class="rounded-full border border-black/10 bg-white px-3 py-1.5 text-xs font-extrabold text-slate-700">
+                  {p}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a
+              href={c.inscriptionHref}
+              class="inline-flex items-center justify-center rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
+            >
+              S'inscrire →
+            </a>
+
+            <a
+              href="/programmes/"
+              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-slate-50"
+            >
+              Nos programmes
+            </a>
+
+            <a
+              href="/contact/"
+              class="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-5 py-2.5 text-sm font-extrabold text-slate-800 shadow-sm hover:bg-slate-50"
+            >
+              Nous contacter
+            </a>
+          </div>
+        </article>
+
+        <div class="rounded-[28px] border border-black/10 bg-white p-3 shadow-xl shadow-black/5">
+          <div class="aspect-[4/3] overflow-hidden rounded-2xl border border-black/10 bg-white">
+            <iframe
+              title={`Carte — Centre ${c.city}`}
+              class="h-full w-full"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps?q=${c.mapsQuery}&output=embed`}
+            />
+          </div>
+
+          <div class="mt-3 flex flex-wrap gap-2 px-2 pb-2">
+            <a
+              href={c.googlePlaceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-slate-50"
+            >
+              🗺️ Ouvrir dans Google Maps
+            </a>
+
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${c.mapsQuery}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-extrabold shadow-sm hover:bg-slate-50"
+            >
+              🧭 Obtenir l'itinéraire
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-[28px] border border-black/10 bg-white p-5 shadow-xl shadow-black/5 md:p-6">
+        <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h3 class="text-lg font-black tracking-tight text-slate-900">Notre équipe</h3>
+            <p class="mt-1 text-sm font-semibold text-slate-500">
+              Une équipe chaleureuse, bienveillante et engagée auprès des enfants.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {c.staff.map((member: StaffMember) => (
+            <article class="staff-card overflow-hidden rounded-[24px] border border-black/10 bg-white">
+              <div class="grid md:grid-cols-[220px_minmax(0,1fr)]">
+                <div class="staff-media bg-slate-100">
+                  <img
+                    src={member.image}
+                    alt={`${member.name} — ${member.role}`}
+                    width="520"
+                    height="620"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover"
+                  />
+                </div>
+
+                <div class="flex flex-col justify-center p-5 md:p-6">
+                  <p class="text-xs font-black uppercase tracking-[0.18em] text-red-700">
+                    {c.city}
+                  </p>
+                  <h4 class="mt-2 text-xl font-black tracking-tight text-slate-900">
+                    {member.name}
+                  </h4>
+                  <p class="mt-1 text-sm font-extrabold text-slate-600">
+                    {member.role}
+                  </p>
+                  <p class="mt-3 text-sm font-medium leading-7 text-slate-600">
+                    {member.bio}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-6 rounded-[28px] border border-black/10 bg-white p-5 shadow-xl shadow-black/5 md:p-6">
+        <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h3 class="text-lg font-black tracking-tight text-slate-900">La vie au centre</h3>
+            <p class="mt-1 text-sm font-semibold text-slate-500">
+              Un aperçu de nos activités, de nos moments de découverte et de notre quotidien.
+            </p>
+          </div>
+        </div>
+
+        <div class="activity-grid">
+          {c.activities.map((item: ActivityItem, index: number) => (
+            <article
+              class:list={[
+                "activity-card group",
+                index === 0 && "activity-card--large",
+              ]}
+            >
+              <img
+                src={item.image}
+                alt={item.alt}
+                width="900"
+                height="700"
+                loading="lazy"
+                decoding="async"
+                class="activity-image"
+              />
+
+              <div class="activity-overlay">
+                <div class="activity-copy">
+                  <h4 class="activity-title">{item.title}</h4>
+                  <p class="activity-caption">{item.caption}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="mx-auto max-w-6xl px-4 pb-16">
+    <div class="rounded-[28px] bg-gradient-to-br from-red-700 to-red-900 p-8 text-center shadow-2xl shadow-red-900/30 md:p-12">
+      <p class="text-4xl font-black text-white">🎈</p>
+      <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">Prêt à rejoindre le Ballon Rouge?</h2>
+      <p class="mx-auto mt-3 max-w-prose text-base font-semibold leading-7 text-white/80">
+        Inscrivez votre enfant dès aujourd'hui et offrez-lui un milieu d'apprentissage francophone, chaleureux et stimulant.
+      </p>
+
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href="/inscription/hamilton/"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-extrabold text-red-700 shadow-lg hover:bg-red-50"
+        >
+          Inscription Hamilton →
+        </a>
+
+        <a
+          href="/inscription/brantford/"
+          class="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-extrabold text-white hover:bg-white/10"
+        >
+          Inscription Brantford →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .staff-card {
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    box-shadow:
+      0 12px 24px rgba(15, 23, 42, 0.05),
+      0 4px 10px rgba(15, 23, 42, 0.04);
+  }
+
+  .staff-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(185, 28, 28, 0.14);
+    box-shadow:
+      0 18px 34px rgba(15, 23, 42, 0.08),
+      0 8px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  .staff-media {
+    min-height: 260px;
+  }
+
+  .activity-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1.15fr 1fr;
+  }
+
+  .activity-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    min-height: 260px;
+    background: #e2e8f0;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .activity-card--large {
+    grid-row: span 2;
+    min-height: 540px;
+  }
+
+  .activity-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 220ms ease;
+  }
+
+  .activity-card:hover .activity-image {
+    transform: scale(1.02);
+  }
+
+  .activity-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: end;
+    padding: 1rem;
+    background: linear-gradient(
+      to top,
+      rgba(15, 23, 42, 0.72) 0%,
+      rgba(15, 23, 42, 0.28) 45%,
+      rgba(15, 23, 42, 0.04) 100%
+    );
+  }
+
+  .activity-copy {
+    max-width: 32ch;
+    color: white;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .activity-card:hover .activity-copy {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .activity-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 900;
+    line-height: 1.15;
+    color: white;
+  }
+
+  .activity-caption {
+    margin: 0.35rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.88);
+  }
+
+  @media (max-width: 900px) {
+    .activity-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .activity-card--large {
+      grid-row: span 1;
+      min-height: 320px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .staff-card > div {
+      grid-template-columns: 1fr;
+    }
+
+    .staff-media {
+      min-height: 240px;
+    }
+
+    .activity-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .activity-card,
+    .activity-card--large {
+      min-height: 260px;
+    }
+
+    .activity-copy {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+2. the Centres dropdown snippet for BaseLayout.astro
+---
+import "../styles/global.css";
+import Nav from "../components/nav.astro";
+import Footer from "../components/Footer.astro";
+import BackToTop from "../components/BackToTop.astro";
+import Toast from "../components/Toast.astro";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n";
+
+const {
+  title = "TODO: Page title",
+  lang = "fr",
+  description = "TODO: Page description",
+} = Astro.props as { title?: string; lang?: Lang; description?: string };
+
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>{title} | Le Ballon Rouge</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={`https://leballonrouge.ca${Astro.url.pathname}`} />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+    <meta property="og:type"         content="website" />
+    <meta property="og:site_name"    content="Le Ballon Rouge" />
+    <meta property="og:title"        content={`${title} | Le Ballon Rouge`} />
+    <meta property="og:description"  content={description} />
+    <meta property="og:url"          content={`https://leballonrouge.ca${Astro.url.pathname}`} />
+    <meta property="og:image"        content="https://leballonrouge.ca/og-image.jpg" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"       content={lang === "en" ? "en_CA" : "fr_CA"} />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={`${title} | Le Ballon Rouge`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content="https://leballonrouge.ca/og-image.jpg" />
+
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.1/iconify.min.js" defer></script>
+  </head>
+
+  <body class="min-h-screen text-slate-800 antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only fixed left-4 top-4 z-50 rounded-xl bg-white px-3 py-2 shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+    >
+      {lang === "en" ? t.layout.skipLinkEn : t.layout.skipLinkFr}
+    </a>
+
+    <Nav lang={lang} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+    <BackToTop />
+    <Toast />
+
+    <!-- Smart sticky nav — hides on scroll down, reappears on scroll up -->
+    <script is:inline>
+      (function () {
+        var header = document.querySelector('header');
+        if (!header) return;
+
+        /* ── Body padding ── */
+        function setBodyPadding() {
+          var h = header.offsetHeight;
+          if (h > 0) document.body.style.paddingTop = h + 'px';
+        }
+
+        requestAnimationFrame(setBodyPadding);
+        window.addEventListener('load',   setBodyPadding, { passive: true });
+        window.addEventListener('resize', setBodyPadding, { passive: true });
+
+        /* ── Scroll hide / show ── */
+        var lastY     = window.scrollY;
+        var ticking   = false;
+        var THRESHOLD = 80;
+
+        function update() {
+          var currentY = window.scrollY;
+
+          header.classList.toggle('is-scrolled', currentY > 10);
+
+          if (currentY > THRESHOLD) {
+            header.classList.toggle('nav-hidden', currentY > lastY);
+          } else {
+            header.classList.remove('nav-hidden');
+          }
+
+          lastY   = currentY;
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', function () {
+          if (!ticking) { requestAnimationFrame(update); ticking = true; }
+        }, { passive: true });
+
+        /* ── Astro page transitions ── */
+        document.addEventListener('astro:after-swap', function () {
+          setBodyPadding();
+          lastY = window.scrollY;
+          header.classList.remove('nav-hidden', 'is-scrolled');
+        });
+      })();
+    </script>
+
+    <!-- legacy.js — restored with is:inline to prevent Astro bundler 500 error -->
+    <script is:inline src="/assets/scripts/legacy.js"></script>
+  </body>
+</html>
+
+3. src/pages/centres/hamilton/index.astro
+empty 
+
+4. src/pages/centres/brantford/index.astro
+empty
