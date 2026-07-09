@@ -53,9 +53,6 @@ const faqUid = `faq-home`;
             <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
             Brantford
           </span>
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1.5 text-xs font-extrabold text-red-600">
-            Agréé Ministère
-          </span>
         </div>
 
         <!-- Heading -->
@@ -69,7 +66,7 @@ const faqUid = `faq-home`;
 
         <!-- Subtitle -->
         <p class="text-sm font-medium leading-relaxed text-slate-500 sm:text-base">
-          Service de garde francophone à Hamilton et Brantford — apprentissage par le jeu, routines sécurisantes et immersion française au quotidien.
+          Environnement francophone vivant où chaque enfant apprend, explore et s'épanouit !
         </p>
 
         <!-- CTAs -->
@@ -106,25 +103,25 @@ const faqUid = `faq-home`;
         </div>
       </div>
 
-      <!-- Right: image skeleton + stat chips -->
+      <!-- Right: hero image + stat chips -->
       <div class="flex flex-col gap-4">
         <div class="relative">
           <div class="pointer-events-none absolute -inset-4 rounded-[36px] bg-red-500/10 blur-2xl"></div>
-          <div class="hero-img-skeleton">
-            <div class="hero-img-skeleton-content">
-              <div class="hero-img-balloon">🎈</div>
-              <p class="hero-img-label">Photo des enfants</p>
-              <p class="hero-img-size">1280 × 720 px</p>
-            </div>
+          <div class="overflow-hidden rounded-[28px] border border-black/5 shadow-2xl shadow-red-900/10">
+            <img
+              src="/assets/images/original-891365FE-C4D3-44AD-B83E-3DE2EC0784BF.jpeg"
+              alt="Enfants au Ballon Rouge"
+              class="aspect-[16/9] w-full object-cover"
+              loading="eager"
+            />
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+        <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
           {[
             { val: "40+",  sub: "ans" },
             { val: "2",    sub: "centres" },
             { val: "100%", sub: "Français" },
-            { val: "FR",   sub: "immersion" },
           ].map((s) => (
             <div class="rounded-2xl border border-black/5 bg-white p-3 text-center shadow-sm">
               <p class="text-xl font-black text-red-700">{s.val}</p>

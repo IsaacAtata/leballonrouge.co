@@ -16,28 +16,29 @@ const c = {
   mapsQuery: encodeURIComponent("60 Clench Ave, Brantford, ON N3T 1B8"),
   googlePlaceUrl: "https://www.google.com/maps/place/Ballon+Rouge+Brantford+Le/@43.1249678,-80.2692262,17z/data=!3m1!5s0x882c66224ef0d12b:0x7c74146ac0ce288b!4m15!1m8!3m7!1s0x882c662250f94ca7:0xa61c9f61580b00a2!2s60+Clench+Ave,+Brantford,+ON+N3T+1B9!3b1!8m2!3d43.1249678!4d-80.2692262!16s%2Fg%2F11c0vpmtmg!3m5!1s0x882c662248959271:0x878929e7f1c7180b!8m2!3d43.1249728!4d-80.2692683!16s%2Fg%2F1hc0sm54k?entry=ttu",
 
-  // 👇 REPLACE "FILENAME1.jpg" etc with your real filenames from:
+  // 👇 REPLACE name and role for each staff member. Photos already point to real files in:
   // public/assets/images/Staff Brantford/
   staff: [
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_4776.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_6078.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_6094.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_6018.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_6096.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_4771.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_4780.jpg" },
-    { name: "", role:"", photo: "/assets/images/Staff Brantford/IMG_4794.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_4776.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_6078.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_6094.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_6018.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_6096.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_4771.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_4780.jpg" },
+    { name: "", role: "", photo: "/assets/images/Staff Brantford/IMG_4794.jpg" },
   ],
 
-  // 👇 REPLACE "FILENAME1.jpg" etc with your real filenames from:
+  // 👇 NO ACTIVITY PHOTOS YET — leave src: "" until you add real files to:
   // public/assets/images/Activities - Brantford/
+  // Once you have them, just fill in src like: "/assets/images/Activities - Brantford/FILENAME.jpg"
   activities: [
-    { src: "/assets/images/Activities - Brantford/FILENAME1.jpg", alt: "Bricolage en groupe" },
-    { src: "/assets/images/Activities - Brantford/FILENAME2.jpg", alt: "Jeux extérieurs" },
-    { src: "/assets/images/Activities - Brantford/FILENAME3.jpg", alt: "Cercle de lecture" },
-    { src: "/assets/images/Activities - Brantford/FILENAME4.jpg", alt: "Activité musicale" },
-    { src: "/assets/images/Activities - Brantford/FILENAME5.jpg", alt: "Atelier créatif" },
-    { src: "/assets/images/Activities - Brantford/FILENAME6.jpg", alt: "Sortie éducative" },
+    { src: "", alt: "Bricolage en groupe" },
+    { src: "", alt: "Jeux extérieurs" },
+    { src: "", alt: "Cercle de lecture" },
+    { src: "", alt: "Activité musicale" },
+    { src: "", alt: "Atelier créatif" },
+    { src: "", alt: "Sortie éducative" },
   ],
 };
 ---
@@ -133,11 +134,24 @@ const c = {
     <p class="mb-6 text-sm font-medium text-slate-500">Un aperçu des activités quotidiennes de nos petits à {c.city}.</p>
     <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {c.activities.map((img) => (
-        <div class="aspect-square overflow-hidden rounded-2xl border border-black/10 bg-slate-100 shadow-sm">
-          <img src={img.src} alt={img.alt} class="h-full w-full object-cover" loading="lazy" />
+        <div class="aspect-square overflow-hidden rounded-2xl">
+          {img.src ? (
+            // ✅ Real photo — renders once you fill in img.src above
+            <img src={img.src} alt={img.alt} class="h-full w-full object-cover" loading="lazy" />
+          ) : (
+            // 🎈 Placeholder — shows automatically while img.src is empty
+            <div class="hero-img-skeleton h-full w-full">
+              <div class="hero-img-skeleton-content">
+                <span class="hero-img-balloon">🎈</span>
+                <p class="hero-img-label px-3 text-center">{img.alt}</p>
+                <p class="hero-img-size">Photo à venir</p>
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>
+    <p class="mt-3 text-xs font-semibold text-slate-400">Photos à venir — activités et sorties du centre {c.city}.</p>
   </section>
 
 </BaseLayout>
