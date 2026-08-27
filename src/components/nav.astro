@@ -90,7 +90,6 @@ const centreLinks = {
             <div class="nav-dropdown">
               <a href={`${base}/personnel/#reconnaissances`} class="dropdown-item">{t.personnelDropdown.recognition}</a>
               <a href={`${base}/personnel/#emplois`} class="dropdown-item">{t.personnelDropdown.jobs}</a>
-              <a href={`${base}/personnel/#rejoignez`} class="dropdown-item">{t.personnelDropdown.join}</a>
             </div>
           </div>
 
@@ -117,7 +116,6 @@ const centreLinks = {
 
       <!-- Right side -->
       <div class="flex items-center gap-2 md:gap-3">
-
         <div class="nav-group">
           <button
             type="button"
@@ -127,19 +125,16 @@ const centreLinks = {
             aria-expanded="false"
             aria-label={t.ariaLang}
           >
-            <span class="lang-current" data-lang={lang}>
-              <img src={`/assets/flags/${lang}.svg`} alt={t.langLabel} width="22" height="16" class="w-5 h-4 rounded-sm" />
-              <span class="hidden sm:inline">{t.langLabel}</span>
+            <span class="lang-current font-bold" data-lang={lang}>
+              {t.langLabel}
             </span>
             <span class="arrow" aria-hidden="true">▾</span>
           </button>
           <div class="nav-dropdown lang-dropdown">
             <a id="lang-opt-fr" href="/" class="dropdown-item lang-option" data-lang="fr">
-              <img src="/assets/flags/fr.svg" alt="Français" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
               Français
             </a>
             <a id="lang-opt-en" href="/en/" class="dropdown-item lang-option" data-lang="en">
-              <img src="/assets/flags/en.svg" alt="English" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
               English
             </a>
           </div>
@@ -166,7 +161,7 @@ const centreLinks = {
           <svg id="menuIconClose" class="h-4 w-4 icon-hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
-          <span id="menuLabel">{t.menu}</span>
+          <span id="menuLabel">{t.menu}</span> 
         </button>
 
       </div>
