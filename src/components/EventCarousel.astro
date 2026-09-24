@@ -8,60 +8,60 @@ const { lang = "fr" } = Astro.props;
 const slidesData = {
   fr: [
     {
-      emoji: "🎉",
-      title: "Fête de fin d'année",
-      description: "Rejoignez-nous pour célébrer une magnifique année ensemble!",
-      date: "Juin 2026",
-      cta: { label: "En savoir plus", href: "/programmes/#evenements" },
-      bg: "from-red-600 to-red-800",
-      badge: "Événement à venir",
-    },
-    {
-      emoji: "🌸",
-      title: "Journée portes ouvertes",
-      description: "Venez découvrir nos centres, rencontrer l'équipe et visiter les locaux.",
-      date: "Mai 2026",
-      cta: { label: "Demander une place", href: "/inscription/" },
-      bg: "from-orange-500 to-red-600",
-      badge: "Portes ouvertes",
-    },
-    {
       emoji: "🎨",
-      title: "Semaine de l'art francophone",
-      description: "Une semaine dédiée à la créativité, à la culture et à la langue française.",
-      date: "Avril 2026",
+      title: "Semaine des arts créatifs",
+      description: "Une semaine dédiée à l'expression artistique : peinture, bricolage, musique et danse pour éveiller la créativité de chaque enfant dans un environnement francophone.",
+      date: "Octobre 2026",
       cta: { label: "Voir les programmes", href: "/programmes/" },
       bg: "from-amber-500 to-orange-600",
       badge: "Activité spéciale",
     },
+    {
+      emoji: "🍂",
+      title: "Fête de l'automne en famille",
+      description: "Venez célébrer l'automne avec nous ! Activités extérieures, récolte de pommes, contes d'automne et collation saisonnière pour toute la famille.",
+      date: "Novembre 2026",
+      cta: { label: "En savoir plus", href: "/programmes/#evenements" },
+      bg: "from-red-600 to-red-800",
+      badge: "Événement communautaire",
+    },
+    {
+      emoji: "❄️",
+      title: "Journée portes ouvertes hivernale",
+      description: "Découvrez nos centres, rencontrez notre équipe passionnée et visitez nos locaux chaleureux. Une occasion idéale pour poser vos questions sur l'immersion française.",
+      date: "Janvier 2027",
+      cta: { label: "Demander une place", href: "/inscription/" },
+      bg: "from-sky-500 to-blue-700",
+      badge: "Portes ouvertes",
+    },
   ],
   en: [
     {
-      emoji: "🎉",
-      title: "End-of-Year Celebration",
-      description: "Join us to celebrate a wonderful year together!",
-      date: "June 2026",
-      cta: { label: "Learn more", href: "/en/programmes/#evenements" },
-      bg: "from-red-600 to-red-800",
-      badge: "Upcoming event",
-    },
-    {
-      emoji: "🌸",
-      title: "Open House",
-      description: "Come discover our centres, meet the team and tour our spaces.",
-      date: "May 2026",
-      cta: { label: "Request a spot", href: "/en/inscription/" },
-      bg: "from-orange-500 to-red-600",
-      badge: "Open house",
-    },
-    {
-      emoji: "🎨",
-      title: "Francophone Arts Week",
-      description: "A week dedicated to creativity, culture and the French language.",
-      date: "April 2026",
+      emoji: "",
+      title: "Creative Arts Week",
+      description: "A week dedicated to artistic expression: painting, crafts, music and dance to awaken every child's creativity in a French-language environment.",
+      date: "October 2026",
       cta: { label: "View programs", href: "/en/programmes/" },
       bg: "from-amber-500 to-orange-600",
       badge: "Special activity",
+    },
+    {
+      emoji: "🍂",
+      title: "Fall Family Festival",
+      description: "Come celebrate autumn with us! Outdoor activities, apple picking, fall stories and seasonal snacks for the whole family.",
+      date: "November 2026",
+      cta: { label: "Learn more", href: "/en/programmes/#evenements" },
+      bg: "from-red-600 to-red-800",
+      badge: "Community event",
+    },
+    {
+      emoji: "️",
+      title: "Winter Open House",
+      description: "Discover our centres, meet our passionate team and tour our warm spaces. A perfect opportunity to ask questions about French immersion.",
+      date: "January 2027",
+      cta: { label: "Request a spot", href: "/en/inscription/" },
+      bg: "from-sky-500 to-blue-700",
+      badge: "Open house",
     },
   ],
 };
@@ -91,7 +91,7 @@ const l = labels[lang];
 <section
   id="event-carousel"
   aria-label={l.ariaLabel}
-  class="relative overflow-hidden"
+  class="relative overflow-hidden rounded-[28px] mx-auto max-w-7xl my-8 shadow-xl shadow-black/5"
 >
   <!-- Slides wrapper -->
   <div
@@ -188,23 +188,31 @@ const l = labels[lang];
 </section>
 
 <script is:inline>
-  (function () {
+  // Wrap in DOMContentLoaded to ensure HTML exists before JS runs
+  document.addEventListener('DOMContentLoaded', function () {
     var track   = document.getElementById('carousel-track');
     var dots    = document.querySelectorAll('.carousel-dot');
     var slides  = document.querySelectorAll('.carousel-slide');
     var prev    = document.getElementById('carousel-prev');
     var next    = document.getElementById('carousel-next');
+    var carousel = document.getElementById('event-carousel');
+
+    // Safety check: if elements don't exist, stop execution
+    if (!track || !prev || !next || !carousel || slides.length === 0) return;
+
     var total   = slides.length;
     var current = 0;
     var timer   = null;
-    var DELAY   = 5000;
+    var DELAY   = 5000; // 5 seconds
 
     function goTo(index) {
       current = (index + total) % total;
       track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      
       slides.forEach(function (s, i) {
         s.setAttribute('aria-hidden', i !== current ? 'true' : 'false');
       });
+      
       dots.forEach(function (d, i) {
         var active = i === current;
         d.setAttribute('aria-selected', active ? 'true' : 'false');
@@ -218,8 +226,11 @@ const l = labels[lang];
       timer = setInterval(function () { goTo(current + 1); }, DELAY);
     }
 
-    function stopAuto() { clearInterval(timer); }
+    function stopAuto() { 
+      clearInterval(timer); 
+    }
 
+    // Event listeners
     prev.addEventListener('click', function () { goTo(current - 1); stopAuto(); startAuto(); });
     next.addEventListener('click', function () { goTo(current + 1); stopAuto(); startAuto(); });
 
@@ -230,18 +241,21 @@ const l = labels[lang];
       });
     });
 
+    // Pause on hover
     track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', startAuto);
 
-    document.getElementById('event-carousel').addEventListener('keydown', function (e) {
+    // Keyboard navigation
+    carousel.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft')  { goTo(current - 1); stopAuto(); startAuto(); }
       if (e.key === 'ArrowRight') { goTo(current + 1); stopAuto(); startAuto(); }
     });
 
+    // Start auto-play (respecting reduced motion preference)
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       track.style.transition = 'none';
     } else {
       startAuto();
     }
-  })();
+  });
 </script>

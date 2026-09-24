@@ -1,0 +1,51 @@
+<script>
+  // 1. Define the type for window.supabase so TS stops complaining
+  declare global {
+    interface Window {
+      supabase: any;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const imgId = '{imageId}';
+    
+    // 2. Use type assertions (!) or explicit checks to satisfy "possibly null" errors
+    const overlay = document.getElementById(`blur-overlay-${imgId}`);
+    const img = document.getElementById(`actual-img-${imgId}`) as HTMLImageElement | null;
+
+    // Safety check remains essential at runtime
+    if (!overlay || !img || !window.supabase) return;
+
+    async function checkAuthAndLoad() {
+      try {
+        // Now TS knows window.supabase exists
+        const { data: { session } } = await window.supabase.auth.getSession();
+        
+        if (session) {
+          const { data } = await window.supabase.storage
+            .from('children-photos')
+            .createSignedUrl(`${imgId}.jpg`, 60);
+          
+          if (data?.signedUrl && img) {
+            img.src = data.signedUrl;
+            img.onload = () => {
+              if (overlay) overlay.style.opacity = '0';
+              setTimeout(() => {
+                if (overlay) overlay.remove();
+              }, 500);
+              img!.style.opacity = '1';
+            };
+          }
+        }
+      } catch (err) {
+        console.error('SecureImage Error:', err);
+      }
+    }
+
+    checkAuthAndLoad();
+    
+    window.supabase.auth.onAuthStateChange((event: string) => {
+      if (event === 'SIGNED_IN') checkAuthAndLoad();
+    });
+  });
+</script>

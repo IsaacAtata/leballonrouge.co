@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import EventCarousel from "../../components/EventCarousel.astro";
+import EventAccordionCard from "../../components/EventAccordionCard.astro";
+import StrategySection from "../../components/StrategySection.astro";
 
 const strategies = [
   {
@@ -170,9 +172,6 @@ const evenements = [
 
   <!-- Hero intro -->
   <section class="mx-auto max-w-6xl px-4 pb-10 pt-8 md:pt-12">
-    <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-      Agréés · 100% français
-    </div>
     <h1 class="mt-4 text-3xl font-black tracking-tight md:text-5xl">Programmes</h1>
     <p class="mt-3 max-w-prose text-base font-medium leading-7 text-slate-600 md:text-lg">
       Des programmes agréés, en français, axés sur l'exploration et le jeu — pour chaque enfant, à chaque étape.
@@ -215,14 +214,14 @@ const evenements = [
         {[
           {
             icon: "🌟",
-            age: "18 mois – 4 ans",
+            age: "18 mois – 2.5 ans",
             title: "Bambin",
             subtitle: "Grandir au Ballon Rouge",
             body: "Prêt ou pas, me voilà! Tous mes sens sont en éveil pour explorer, ressentir, goûter et comprendre le monde qui m'entoure. Je suis accueilli avec bienveillance, j'exprime mes premières phrases et j'affirme ma personnalité. Chaque jour, j'apprends de nouveaux gestes et j'explore de nouvelles capacités.",
           },
           {
             icon: "🔭",
-            age: "2,5 – 4 ans",
+            age: "2.5 – 4 ans",
             title: "Préscolaire",
             subtitle: "Prêt à explorer!",
             body: "Je suis encouragé à explorer le monde qui m'entoure. Je développe mes premières compétences en m'exprimant, en manipulant des objets, en imitant des gestes et en observant le monde avec émerveillement. Au Ballon Rouge, je développe des habiletés qui me rendent plus autonome: je m'habille seul, je manipule des outils et je m'organise dans des tâches simples.",
@@ -297,38 +296,7 @@ const evenements = [
 
   <!-- Strategies -->
   <section id="strategies" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
-    <div class="mb-6">
-      <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        Notre programme vise à
-      </div>
-      <h2 class="mt-3 text-2xl font-black tracking-tight md:text-3xl">Les stratégies mises en œuvre</h2>
-      <p class="mt-2 max-w-2xl text-slate-600 md:text-lg">
-        Onze stratégies encadrées par l'énoncé de programme, couvrant tous les aspects du développement de l'enfant.
-      </p>
-    </div>
-
-    <div class="space-y-4">
-      {strategies.map((s) => (
-        <article class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
-          <div class="flex items-start gap-4">
-            <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border border-red-200 bg-red-50 text-sm font-black text-red-700">
-              {s.letter}
-            </div>
-            <div class="flex-1">
-              <h3 class="text-lg font-black text-slate-900">{s.title}</h3>
-              <ul class="mt-3 space-y-3">
-                {s.items.map((item) => (
-                  <li class="flex items-start gap-3">
-                    <span class="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>
-                    <p class="text-sm font-semibold leading-7 text-slate-600">{item}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
+    <StrategySection strategies={strategies} />
   </section>
 
   <!-- Qualité -->
@@ -433,7 +401,7 @@ const evenements = [
           </div>
           <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Événements</h2>
           <p class="mt-2 max-w-prose leading-7 text-slate-600">
-            Au Ballon Rouge, nous aimons créer des occasions où enfants, familles et membres de l'équipe peuvent se retrouver, célébrer et s'amuser ensemble. Tout au long de l'année, nous organisons une variété d'événements festifs: fêtes saisonnières, journées thématiques, spectacles, ateliers créatifs, et plus encore.
+            Au Ballon Rouge, nous aimons créer des occasions où enfants, familles et membres de l'équipe peuvent se retrouver, célébrer et s'amuser ensemble.
           </p>
         </div>
         <a
@@ -444,48 +412,20 @@ const evenements = [
         </a>
       </div>
 
-      <div class="mt-8 grid gap-5">
+      <!-- Accordion Event Cards -->
+      <div class="mt-8 flex flex-col gap-4">
         {evenements.map((ev) => (
-          <article class={`group relative overflow-hidden rounded-[26px] border border-black/10 bg-gradient-to-br ${ev.gradient} p-6 shadow-lg shadow-black/5 transition hover:-translate-y-0.5 hover:shadow-xl`}>
-            <div class={`absolute -right-12 -top-12 h-40 w-40 rounded-full ${ev.blob} blur-2xl`}></div>
-            <div class="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
-              <div class="flex items-center gap-3 md:flex-col md:items-start">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-black/10 bg-white shadow-sm">
-                  <span aria-hidden="true" class="text-xl">{ev.icon}</span>
-                </div>
-                <div>
-                  <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500">{ev.tag}</p>
-                  <h3 class="text-lg font-black text-slate-900">{ev.title}</h3>
-                </div>
-              </div>
-              <div class="flex-1">
-                <p class="leading-7 text-slate-600">{ev.body}</p>
-                <div class="mt-4 flex flex-wrap gap-2 text-xs font-extrabold">
-                  {ev.pills.map((pill) => (
-                    <span class="rounded-full border border-black/10 bg-white px-3 py-2 text-slate-700">{pill}</span>
-                  ))}
-                </div>
-                <ul class="mt-4 space-y-2 font-semibold text-slate-700">
-                  {ev.bullets.map((b) => (
-                    <li class="flex items-start gap-2">
-                      <span class="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-600"></span>
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <div class="mt-5">
-                  <a
-                    href={ev.href}
-                    target="_blank"
-                    rel="noopener"
-                    class="inline-flex items-center gap-2 rounded-full bg-red-700 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-red-700/20 hover:bg-red-800"
-                  >
-                    📄 Voir le document →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </article>
+          <EventAccordionCard
+            icon={ev.icon}
+            tag={ev.tag}
+            title={ev.title}
+            body={ev.body}
+            pills={ev.pills}
+            bullets={ev.bullets}
+            href={ev.href}
+            gradient={ev.gradient}
+            blob={ev.blob}
+          />
         ))}
       </div>
 
@@ -522,5 +462,47 @@ const evenements = [
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    document.querySelectorAll("details.event-item").forEach((details) => {
+      const summary = details.querySelector("summary");
+      const body = details.querySelector(".event-body");
+      if (!summary || !body) return;
+
+      // 1. Force all cards to start completely closed on load
+      details.removeAttribute("open");
+      body.style.display = "none";
+      body.style.gridTemplateRows = "0fr";
+
+      // 2. Handle clicks
+      summary.addEventListener("click", (e) => {
+        e.preventDefault(); // Stop native browser toggle
+        
+        const isOpen = details.hasAttribute("open");
+
+        if (isOpen) {
+          // --- CLOSING ---
+          body.style.gridTemplateRows = "0fr";
+          
+          // Wait for the CSS transition to finish, then hide it
+          const finishClose = () => {
+            details.removeAttribute("open");
+            body.style.display = "none";
+            body.removeEventListener("transitionend", finishClose);
+          };
+          body.addEventListener("transitionend", finishClose);
+        } else {
+          // --- OPENING ---
+          details.setAttribute("open", "");
+          body.style.display = "grid";
+          
+          // Force browser reflow so it knows it's 'grid' before animating height
+          void body.offsetHeight; 
+          
+          body.style.gridTemplateRows = "1fr";
+        }
+      });
+    });
+  </script>
 
 </BaseLayout>
