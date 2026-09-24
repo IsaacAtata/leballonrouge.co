@@ -29,7 +29,7 @@ const t = useTranslations(lang);
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={`https://leballonrouge.ca${Astro.url.pathname}`} />
 
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp previews) -->
+    <!-- Open Graph -->
     <meta property="og:type"         content="website" />
     <meta property="og:site_name"    content="Le Ballon Rouge" />
     <meta property="og:title"        content={`${title} | Le Ballon Rouge`} />
@@ -48,6 +48,15 @@ const t = useTranslations(lang);
 
     <!-- Iconify -->
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js" defer></script>
+    
+    <!-- Global Type Declaration for window.supabase -->
+    <script is:inline>
+      /** @type {any} */
+      window.supabase = null;
+    </script>
+    
+    <!-- Supabase Client -->
+    <script type="module" src="/assets/scripts/supabase-client.js" defer></script>
   </head>
 
   <body class="min-h-screen text-slate-800 antialiased">
@@ -68,13 +77,12 @@ const t = useTranslations(lang);
     <BackToTop />
     <Toast />
 
-    <!-- Smart sticky nav — hides on scroll down, reappears on scroll up -->
+    <!-- Smart sticky nav script (Existing) -->
     <script is:inline>
       (function () {
         var header = document.querySelector('header');
         if (!header) return;
 
-        /* ── Body padding ── */
         function setBodyPadding() {
           var h = header.offsetHeight;
           if (h > 0) document.body.style.paddingTop = h + 'px';
@@ -84,22 +92,18 @@ const t = useTranslations(lang);
         window.addEventListener('load',   setBodyPadding, { passive: true });
         window.addEventListener('resize', setBodyPadding, { passive: true });
 
-        /* ── Scroll hide / show ── */
         var lastY     = window.scrollY;
         var ticking   = false;
         var THRESHOLD = 80;
 
         function update() {
           var currentY = window.scrollY;
-
           header.classList.toggle('is-scrolled', currentY > 10);
-
           if (currentY > THRESHOLD) {
             header.classList.toggle('nav-hidden', currentY > lastY);
           } else {
             header.classList.remove('nav-hidden');
           }
-
           lastY   = currentY;
           ticking = false;
         }
@@ -108,7 +112,6 @@ const t = useTranslations(lang);
           if (!ticking) { requestAnimationFrame(update); ticking = true; }
         }, { passive: true });
 
-        /* ── Astro page transitions ── */
         document.addEventListener('astro:after-swap', function () {
           setBodyPadding();
           lastY = window.scrollY;
@@ -117,7 +120,82 @@ const t = useTranslations(lang);
       })();
     </script>
 
-    <!-- legacy.js — restored with is:inline to prevent Astro bundler 500 error -->
+    <!-- PRIVACY GUARD: Blurs protected content when not logged in -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', async function() {
+        // Wait for Supabase client to load
+        if (!window.supabase) return;
+        
+        try {
+          const { data: { session } } = await window.supabase.auth.getSession();
+          const isLoggedIn = !!session;
+          
+          // Find all protected elements
+          const protectedItems = document.querySelectorAll('.protected-media, .protected-content');
+          
+          protectedItems.forEach(el => {
+            if (isLoggedIn) {
+              el.classList.remove('blurred', 'locked-overlay');
+              el.removeAttribute('aria-hidden');
+              // Remove lock overlay if exists
+              const overlay = el.querySelector('.lock-overlay');
+              if (overlay) overlay.remove();
+            } else {
+              el.classList.add('blurred');
+              el.setAttribute('aria-hidden', 'true');
+              
+              // Add lock overlay if not present
+              if (!el.querySelector('.lock-overlay')) {
+                const overlay = document.createElement('div');
+                overlay.className = 'lock-overlay absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-sm z-10 rounded-[28px] cursor-pointer';
+                overlay.innerHTML = `
+                  <div class="text-center p-4 pointer-events-none">
+                    <span class="text-3xl mb-2 block">🔒</span>
+                    <p class="text-sm font-bold text-slate-700">Contenu réservé aux familles</p>
+                    <a href="/espace-parents/login" class="mt-2 inline-block text-xs font-extrabold text-red-700 hover:underline pointer-events-auto">Se connecter →</a>
+                  </div>
+                `;
+                el.style.position = 'relative';
+                el.appendChild(overlay);
+              }
+            }
+          });
+
+          // Update Nav Button if exists
+          const loginBtn = document.getElementById('global-login-btn');
+          if (loginBtn) {
+            loginBtn.textContent = isLoggedIn ? 'Mon Compte' : 'Espace Parents';
+            loginBtn.href = isLoggedIn ? '/espace-parents/dashboard' : '/espace-parents/login';
+          }
+        } catch (err) {
+          console.error('Privacy Guard Error:', err);
+        }
+      });
+    </script>
+
+    <!-- Global Styles for Protected Content -->
+    <style is:global>
+      .protected-media, .protected-content {
+        transition: filter 0.3s ease, opacity 0.3s ease;
+        position: relative;
+      }
+      
+      .blurred {
+        filter: blur(12px) grayscale(80%);
+        pointer-events: none;
+        user-select: none;
+      }
+      
+      .blurred img, .blurred video {
+        pointer-events: none;
+      }
+      
+      .lock-overlay {
+        transition: opacity 0.3s ease;
+      }
+    </style>
+
+    <!-- legacy.js -->
     <script is:inline src="/assets/scripts/legacy.js"></script>
   </body>
 </html>

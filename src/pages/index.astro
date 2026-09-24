@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BackToTop from "../components/BackToTop.astro";
+import EventCarousel from "../components/EventCarousel.astro"; // <-- ADDED
 import { useTranslations } from "../i18n";
 
 const lang = "fr";
@@ -135,6 +136,11 @@ const faqUid = `faq-home`;
   </section>
 
   <!-- ═══════════════════════════════════════════════
+       EVENT CAROUSEL (NEW - Added here)
+  ══════════════════════════════════════════════ -->
+  <EventCarousel lang="fr" />
+
+  <!-- ═══════════════════════════════════════════════
        INFO CARDS (3 pillars) — original solid-card style
   ═══════════════════════════════════════════════ -->
   <section class="mx-auto max-w-7xl px-4 py-16">
@@ -149,8 +155,8 @@ const faqUid = `faq-home`;
 
     <div class="grid gap-8 md:grid-cols-3">
       {[
-        { icon: "🌍", tag: t.cards.card1.tag, title: t.cards.card1.title, body: t.cards.card1.body, link: t.cards.card1.link, href: "/programmes/" },
-        { icon: "👨‍👩‍👧‍👦", tag: t.cards.card2.tag, title: t.cards.card2.title, body: t.cards.card2.body, link: t.cards.card2.link, href: "/centres/" },
+        { icon: "", tag: t.cards.card1.tag, title: t.cards.card1.title, body: t.cards.card1.body, link: t.cards.card1.link, href: "/programmes/" },
+        { icon: "👨‍👩‍‍👦", tag: t.cards.card2.tag, title: t.cards.card2.title, body: t.cards.card2.body, link: t.cards.card2.link, href: "/centres/" },
         { icon: "🍎", tag: t.cards.card3.tag, title: t.cards.card3.title, body: t.cards.card3.body, link: t.cards.card3.link, href: "/espace-parents/" },
       ].map((c) => (
         <div class="solid-card group">
