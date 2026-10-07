@@ -2,7 +2,11 @@
 import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async ({ cookies, redirect }) => {
+  // Clear all auth cookies
   cookies.delete('sb-access-token', { path: '/' });
   cookies.delete('sb-refresh-token', { path: '/' });
-  return redirect('/login');
+  cookies.delete('csrf-token', { path: '/' });
+  
+  // ✅ Redirect to home page after logout
+  return redirect('/');
 };

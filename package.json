@@ -9,9 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^8.3.4",
     "@supabase/supabase-js": "^2.117.2",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^6.1.4",
+    "astro": "^4.16.19",
     "astro-tunnel": "^0.1.9",
     "bootstrap": "^5.3.8"
   },

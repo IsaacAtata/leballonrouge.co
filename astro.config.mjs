@@ -1,10 +1,8 @@
 // astro.config.mjs
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite'; // Correct import for Tailwind v4
-// import node from '@astrojs/node'; // Uncomment if deploying to VPS/self-hosted
-// import vercel from '@astrojs/vercel'; // Uncomment if deploying to Vercel
-import tunnel from "astro-tunnel";
+import tailwindcss from '@tailwindcss/vite'; 
+import node from '@astrojs/node'; // ✅ Use Node instead of Vercel
 
 export default defineConfig({
   devToolbar: {
@@ -13,6 +11,11 @@ export default defineConfig({
   
   // CRITICAL: Enables SSR so middleware and cookies work
   output: 'server', 
+
+  // ✅ Point to the Node standalone adapter
+  adapter: node({
+    mode: 'standalone',
+  }),
   
   vite: {
     plugins: [tailwindcss()],
@@ -29,6 +32,5 @@ export default defineConfig({
     }
   },
 
-  // Combine ALL integrations into ONE array
-  integrations: [tunnel()]
+  integrations: []
 });

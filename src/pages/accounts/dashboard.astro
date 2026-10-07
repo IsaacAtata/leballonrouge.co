@@ -2,94 +2,105 @@
 // src/pages/accounts/dashboard.astro
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const { user } = Astro.locals;
+// ✅ SERVER-SIDE AUTH CHECK
+const accessToken = Astro.cookies.get('sb-access-token');
 
-// Middleware already redirects if no user, but double-check for safety
-if (!user) {
-  return Astro.redirect('/accounts/login');
+if (!accessToken) {
+  return Astro.redirect('/accounts/login?error=missing_token');
+}
+
+let user = null;
+let displayName = 'Parent';
+
+try {
+  const { createClient } = await import('@supabase/supabase-js');
+  const supabase = createClient(
+    import.meta.env.SUPABASE_URL!,
+    import.meta.env.SUPABASE_ANON_KEY!
+  );
+  
+  const { data, error } = await supabase.auth.getUser(accessToken.value);
+  
+  if (error || !data.user) {
+    Astro.cookies.delete('sb-access-token', { path: '/' });
+    Astro.cookies.delete('sb-refresh-token', { path: '/' });
+    return Astro.redirect('/accounts/login?error=invalid_session');
+  }
+
+  user = {
+    id: data.user.id,
+    email: data.user.email,
+    role: 'parent',
+  };
+
+  // ✅ SMART NAME DISPLAY LOGIC
+  const metaName = data.user.user_metadata?.full_name || data.user.user_metadata?.name;
+  displayName = metaName 
+    ? metaName.split(' ')[0]
+    : (data.user.email?.split('@')[0] || 'Parent');
+
+} catch (err) {
+  console.error('[DASHBOARD AUTH ERROR]', err);
+  return Astro.redirect('/accounts/login?error=server_error');
 }
 ---
 
-<BaseLayout title={`Tableau de bord - ${user.email}`}>
-  <section class="dashboard-page">
-    <div class="dashboard-container">
-      <div class="dashboard-header">
-        <h1>Bonjour </h1>
-        <p class="dashboard-email">{user.email}</p>
+<BaseLayout title="Tableau de Bord - Le Ballon Rouge">
+  <div class="min-h-screen bg-[#fef9f0] p-6 md:p-12">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Clean Header (No Logout Button) -->
+      <div class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-black text-slate-900">Bienvenue, {displayName} 👋</h1>
+        <p class="text-slate-600 mt-2">Votre espace sécurisé est prêt.</p>
       </div>
 
-      <div class="dashboard-cards">
-        <div class="dash-card">
-          <h3>📋 Mes inscriptions</h3>
-          <p>Gérez les inscriptions de vos enfants</p>
-          <a href="/inscription" class="dash-link">Voir →</a>
-        </div>
+      <!-- Quick Access Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Card 1: Photos & Activities -->
+        <a href="/centres/" class="group bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md hover:border-red-200 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📸</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">Photos & Activités</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Voir les moments capturés et les activités quotidiennes de vos enfants.</p>
+        </a>
 
-        <div class="dash-card">
-          <h3>📅 Événements</h3>
-          <p>Consultez les activités à venir</p>
-          <a href="/programmes" class="dash-link">Voir →</a>
-        </div>
+        <!-- Card 2: Registration / Info -->
+        <a href="/inscription/" class="group bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md hover:border-red-200 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📋</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">Inscriptions</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Gérer les inscriptions, consulter les formulaires et les disponibilités.</p>
+        </a>
 
-        <div class="dash-card">
-          <h3>👤 Mon profil</h3>
-          <p>Mettez à jour vos informations</p>
-          <span class="dash-link disabled">Bientôt →</span>
-        </div>
-      </div>
+        <!-- Card 3: Programs & Events -->
+        <a href="/programmes/" class="group bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md hover:border-red-200 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📅</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">Programmes & Événements</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Consulter le calendrier, les sorties éducatives et les programmes offerts.</p>
+        </a>
 
-      <div class="dashboard-footer">
-        <a href="/api/auth/signout" class="btn-logout">Se déconnecter</a>
+        <!-- Card 4: Contact / Support -->
+        <a href="/contact/" class="group bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md hover:border-red-200 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">💬</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">Nous Contacter</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Poser une question à l'équipe ou signaler un absentéisme.</p>
+        </a>
+
+        <!-- Card 5: Parent Resources -->
+        <a href="/espace-parents/" class="group bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md hover:border-red-200 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🏠</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">Espace Parents</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Guides, menus hebdomadaires et ressources pour la maison.</p>
+        </a>
+
+        <!-- Card 6: Centers Info -->
+        <a href="/centres/" class="group bg-white p-6 rounded-2xl shadow-sm border border-black/5 hover:shadow-md hover:border-red-200 transition-all duration-200">
+          <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📍</div>
+          <h3 class="font-bold text-lg text-slate-900 mb-2">Nos Centres</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Informations sur Hamilton et Brantford, horaires et équipes.</p>
+        </a>
+
       </div>
     </div>
-  </section>
+  </div>
 </BaseLayout>
-
-<style>
-  .dashboard-page {
-    min-height: 80vh;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, #fef9f0 0%, #fff5eb 100%);
-  }
-  .dashboard-container { max-width: 800px; margin: 0 auto; }
-  .dashboard-header { margin-bottom: 2rem; }
-  .dashboard-header h1 { font-size: 2rem; color: #2d2d2d; }
-  .dashboard-email { color: #6b6b6b; font-size: 1rem; margin-top: 0.25rem; }
-  .dashboard-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  .dash-card {
-    background: white;
-    border-radius: 14px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .dash-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-  .dash-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #2d2d2d; }
-  .dash-card p { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 1rem; }
-  .dash-link {
-    color: #e74c3c;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 0.95rem;
-  }
-  .dash-link:hover { text-decoration: underline; }
-  .dash-link.disabled { color: #aaa; cursor: default; }
-  .dashboard-footer { text-align: center; margin-top: 1rem; }
-  .btn-logout {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    background: transparent;
-    border: 2px solid #e74c3c;
-    color: #e74c3c;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-logout:hover { background: #e74c3c; color: white; }
-</style>

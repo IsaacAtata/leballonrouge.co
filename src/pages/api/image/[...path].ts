@@ -2,7 +2,7 @@
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 import { readFileSync, existsSync } from 'fs';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
 import { fileURLToPath } from 'url';
 
 // 1. SAFE PATH RESOLUTION FOR ASTRO SSR
@@ -23,10 +23,7 @@ export const GET: APIRoute = async ({ params, cookies }) => {
     import.meta.env.SUPABASE_ANON_KEY!
   );
 
-  const { data: { user }, error } = await supabase.auth.setSession({
-    access_token: accessToken.value,
-    refresh_token: refreshToken.value,
-  });
+  const { data: { user }, error } = await supabase.auth.getUser(accessToken.value);
 
   if (error || !user) {
     return new Response(null, { status: 401 });

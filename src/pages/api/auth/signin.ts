@@ -3,46 +3,44 @@ import type { APIRoute } from 'astro';
 import { supabase } from '../../../db/supabase';
 
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
-  const formData = await request.formData();
-  const email = formData.get('email')?.toString()?.trim();
-  const password = formData.get('password')?.toString();
+  try {
+    const formData = await request.formData();
+    const email = formData.get('email')?.toString()?.trim();
+    const password = formData.get('password')?.toString();
 
-  if (!email || !password) {
-    return new Response(JSON.stringify({ error: 'Email and password are required' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
+    if (!email || !password) {
+      return redirect('/accounts/login?error=missing_fields');
+    }
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
     });
+
+    if (error || !data.session) {
+      console.error('[SIGNIN ERROR]', error?.message);
+      return redirect(`/accounts/login?error=${encodeURIComponent(error?.message || 'Invalid credentials')}`);
+    }
+
+    // ✅ FIX: Use ONLY the access_token. Ignore the broken refresh_token.
+    const token = data.session.access_token;
+
+    // Set BOTH cookies to the valid access token
+    const cookieOptions = {
+      path: '/',
+      httpOnly: true,
+      secure: false, // Keep false for localhost!
+      sameSite: 'lax' as const,
+    };
+
+    cookies.set('sb-access-token', token, { ...cookieOptions, maxAge: 60 * 60 * 24 * 7 });
+    cookies.set('sb-refresh-token', token, { ...cookieOptions, maxAge: 60 * 60 * 24 * 30 });
+
+    console.log('[SIGNIN SUCCESS] Valid token set for:', email);
+    return redirect('/accounts/dashboard');
+
+  } catch (err) {
+    console.error('[SIGNIN EXCEPTION]', err);
+    return redirect('/accounts/login?error=server_error');
   }
-
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  const { access_token, refresh_token } = data.session;
-
-  cookies.set('sb-access-token', access_token, {
-    path: '/',
-    httpOnly: true,
-    secure: true,
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
-  });
-
-  cookies.set('sb-refresh-token', refresh_token, {
-    path: '/',
-    httpOnly: true,
-    secure: true,
-    sameSite: 'lax',
-    maxAge: 60 * 60 * 24 * 30, // 30 days
-  });
-
-  return redirect('/accounts/dashboard');
 };
