@@ -1,0 +1,165 @@
+---
+// src/pages/accounts/login.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const { user } = Astro.locals;
+if (user) {
+  return Astro.redirect('/accounts/dashboard');
+}
+
+const searchParams = new URL(Astro.request.url).searchParams;
+const registered = searchParams.get('registered');
+const errorMsg = searchParams.get('error');
+---
+
+<BaseLayout title="Connexion - Le Ballon Rouge">
+  <section class="auth-page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <img src="/assets/images/LBR_logo_001.png" alt="Le Ballon Rouge" class="auth-logo" />
+        <h1>Connexion</h1>
+        <p class="auth-subtitle">Accédez à votre espace personnel</p>
+
+        {registered && (
+          <div class="auth-success">
+            Inscription réussie ! Vérifiez votre courriel pour confirmer votre compte.
+          </div>
+        )}
+
+        {errorMsg && (
+          <div class="auth-error">{decodeURIComponent(errorMsg)}</div>
+        )}
+
+        <form action="/api/auth/signin" method="POST" class="auth-form">
+          <div class="form-group">
+            <label for="email">Courriel</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="votre@courriel.com"
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="••••••••"
+              autocomplete="current-password"
+              minlength="8"
+            />
+          </div>
+
+          <button type="submit" class="btn-auth">Se connecter</button>
+        </form>
+
+        <p class="auth-footer">
+          Pas encore de compte ? <a href="/accounts/register">S'inscrire</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .auth-page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #fef9f0 0%, #fff5eb 100%);
+  }
+  .auth-container { width: 100%; max-width: 420px; }
+  .auth-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  .auth-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+  .auth-card h1 {
+    font-size: 1.75rem;
+    color: #2d2d2d;
+    margin-bottom: 0.25rem;
+  }
+  .auth-subtitle {
+    color: #6b6b6b;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+  .auth-success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  .auth-error {
+    background: #fce4ec;
+    color: #c62828;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  .auth-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-group { text-align: left; }
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: #e74c3c;
+  }
+  .btn-auth {
+    width: 100%;
+    padding: 0.85rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-auth:hover { background: #c0392b; }
+  .auth-footer {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  .auth-footer a {
+    color: #e74c3c;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .auth-footer a:hover { text-decoration: underline; }
+</style>

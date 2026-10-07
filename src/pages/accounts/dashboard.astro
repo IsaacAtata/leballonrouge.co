@@ -1,0 +1,95 @@
+---
+// src/pages/accounts/dashboard.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const { user } = Astro.locals;
+
+// Middleware already redirects if no user, but double-check for safety
+if (!user) {
+  return Astro.redirect('/accounts/login');
+}
+---
+
+<BaseLayout title={`Tableau de bord - ${user.email}`}>
+  <section class="dashboard-page">
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Bonjour </h1>
+        <p class="dashboard-email">{user.email}</p>
+      </div>
+
+      <div class="dashboard-cards">
+        <div class="dash-card">
+          <h3>📋 Mes inscriptions</h3>
+          <p>Gérez les inscriptions de vos enfants</p>
+          <a href="/inscription" class="dash-link">Voir →</a>
+        </div>
+
+        <div class="dash-card">
+          <h3>📅 Événements</h3>
+          <p>Consultez les activités à venir</p>
+          <a href="/programmes" class="dash-link">Voir →</a>
+        </div>
+
+        <div class="dash-card">
+          <h3>👤 Mon profil</h3>
+          <p>Mettez à jour vos informations</p>
+          <span class="dash-link disabled">Bientôt →</span>
+        </div>
+      </div>
+
+      <div class="dashboard-footer">
+        <a href="/api/auth/signout" class="btn-logout">Se déconnecter</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dashboard-page {
+    min-height: 80vh;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #fef9f0 0%, #fff5eb 100%);
+  }
+  .dashboard-container { max-width: 800px; margin: 0 auto; }
+  .dashboard-header { margin-bottom: 2rem; }
+  .dashboard-header h1 { font-size: 2rem; color: #2d2d2d; }
+  .dashboard-email { color: #6b6b6b; font-size: 1rem; margin-top: 0.25rem; }
+  .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .dash-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .dash-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  .dash-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #2d2d2d; }
+  .dash-card p { color: #6b6b6b; font-size: 0.9rem; margin-bottom: 1rem; }
+  .dash-link {
+    color: #e74c3c;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .dash-link:hover { text-decoration: underline; }
+  .dash-link.disabled { color: #aaa; cursor: default; }
+  .dashboard-footer { text-align: center; margin-top: 1rem; }
+  .btn-logout {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 2px solid #e74c3c;
+    color: #e74c3c;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-logout:hover { background: #e74c3c; color: white; }
+</style>

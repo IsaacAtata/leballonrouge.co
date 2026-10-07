@@ -1,0 +1,266 @@
+---
+// src/pages/accounts/register.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const { user } = Astro.locals;
+if (user) {
+  return Astro.redirect('/accounts/dashboard');
+}
+---
+
+<BaseLayout title="Inscription - Le Ballon Rouge">
+  <section class="auth-page">
+    <div class="auth-container">
+      <div class="auth-card">
+        <img src="/assets/images/LBR_logo_001.png" alt="Le Ballon Rouge" class="auth-logo" />
+        <h1>Inscription</h1>
+        <p class="auth-subtitle">Créez votre compte parent/staff</p>
+
+        <!-- Success Message Container -->
+        <div id="success-message" class="auth-success" style="display: none;">
+          ✅ Inscription réussie ! Vérifiez votre courriel pour confirmer votre compte.
+        </div>
+
+        <!-- Error Message Container -->
+        <div id="error-message" class="auth-error" style="display: none;"></div>
+
+        <form id="register-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="email">Courriel</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="votre@courriel.com"
+              autocomplete="email"
+            />
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="Minimum 8 caractères"
+                autocomplete="new-password"
+                minlength="8"
+              />
+              <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                <!-- Eye Icon SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            </div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirmer le mot de passe</label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+                placeholder="Retapez le mot de passe"
+                autocomplete="new-password"
+                minlength="8"
+              />
+              <button type="button" class="toggle-password" aria-label="Afficher le mot de passe">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            </div>
+            <span class="field-error" id="confirmPassword-error"></span>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn-auth">S'inscrire</button>
+        </form>
+
+        <p class="auth-footer">
+          Déjà un compte ? <a href="/accounts/login">Se connecter</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ... Keep your existing styles ... */
+  
+  /* New Styles for Inline Validation & Password Toggle */
+  .form-group { position: relative; margin-bottom: 1rem; }
+  
+  .form-group input.input-error {
+    border-color: #e74c3c;
+    background-color: #fff5f5;
+  }
+  
+  .form-group input.input-success {
+    border-color: #2ecc71;
+  }
+
+  .field-error {
+    display: block;
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    min-height: 1.2em; /* Prevents layout jump */
+  }
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .password-wrapper input {
+    width: 100%;
+    padding-right: 2.5rem; /* Space for the eye icon */
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+  }
+
+  .toggle-password:hover { color: #333; }
+  
+  .auth-success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    border-left: 4px solid #4caf50;
+  }
+
+  .auth-error {
+    background: #fce4ec;
+    color: #c62828;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    border-left: 4px solid #f44336;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Use '!' to assert these elements definitely exist
+    const form = document.getElementById('register-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const successMsg = document.getElementById('success-message') as HTMLDivElement;
+    const errorMsg = document.getElementById('error-message') as HTMLDivElement;
+    
+    // Password Toggle Logic
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const input = target.previousElementSibling as HTMLInputElement;
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        target.style.opacity = isPassword ? '1' : '0.5';
+      });
+    });
+
+    // Form Submission Logic
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Reset UI
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+      document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+      document.querySelectorAll('input').forEach(el => {
+        el.classList.remove('input-error', 'input-success');
+      });
+
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const passwordInput = document.getElementById('password') as HTMLInputElement;
+      const confirmInput = document.getElementById('confirmPassword') as HTMLInputElement;
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      const confirmPassword = confirmInput.value;
+      let hasError = false;
+
+      // Client-side Basic Validation
+      if (!email || !email.includes('@')) {
+        showFieldError('email', 'Veuillez entrer une adresse courriel valide.');
+        hasError = true;
+      }
+
+      if (password.length < 8) {
+        showFieldError('password', 'Le mot de passe doit contenir au moins 8 caractères.');
+        hasError = true;
+      }
+
+      if (password !== confirmPassword) {
+        showFieldError('confirmPassword', 'Les mots de passe ne correspondent pas.');
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      // Send to API
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Inscription en cours...';
+
+      try {
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('confirmPassword', confirmPassword);
+
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          if (data.error.includes('User already registered')) {
+            showFieldError('email', 'Un compte existe déjà avec ce courriel.');
+          } else if (data.error.includes('Password should contain')) {
+            showFieldError('password', 'Le mot de passe doit contenir des majuscules, minuscules, chiffres et symboles.');
+          } else {
+            errorMsg.textContent = data.error || 'Une erreur est survenue.';
+            errorMsg.style.display = 'block';
+          }
+        } else {
+          successMsg.style.display = 'block';
+          form.reset();
+          document.querySelector('.auth-card')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Erreur de connexion au serveur.';
+        errorMsg.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "S'inscrire";
+      }
+    });
+
+    function showFieldError(fieldId: string, message: string) {
+      const input = document.getElementById(fieldId) as HTMLInputElement;
+      const errorSpan = document.getElementById(`${fieldId}-error`) as HTMLSpanElement;
+      input.classList.add('input-error');
+      errorSpan.textContent = message;
+    }
+  }); 
+</script>

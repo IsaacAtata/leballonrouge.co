@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import FloatingApplyBtn from "../components/FloatingApplyBtn.astro";
 import Nav from "../components/nav.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
@@ -49,13 +50,13 @@ const t = useTranslations(lang);
     <!-- Iconify -->
     <script src="https://code.iconify.design/3/3.1.1/iconify.min.js" defer></script>
     
-    <!-- Global Type Declaration for window.supabase -->
+    <!-- ✅ FIX: Declare global type FIRST so TS knows window.supabase exists -->
     <script is:inline>
       /** @type {any} */
       window.supabase = null;
     </script>
     
-    <!-- Supabase Client -->
+    <!-- ✅ FIX: Load client module AFTER declaration -->
     <script type="module" src="/assets/scripts/supabase-client.js" defer></script>
   </head>
 
@@ -77,7 +78,7 @@ const t = useTranslations(lang);
     <BackToTop />
     <Toast />
 
-    <!-- Smart sticky nav script (Existing) -->
+    <!-- Smart sticky nav script (Existing - Unchanged) -->
     <script is:inline>
       (function () {
         var header = document.querySelector('header');
@@ -120,14 +121,13 @@ const t = useTranslations(lang);
       })();
     </script>
 
-    <!-- PRIVACY GUARD: Blurs protected content when not logged in -->
+    <!-- ✅ PRIVACY GUARD: Blurs protected content when not logged in -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', async function() {
-        // Wait for Supabase client to load
+      // Wrap in a named function so we can call it on page swaps
+      function initPrivacyGuard() {
         if (!window.supabase) return;
         
-        try {
-          const { data: { session } } = await window.supabase.auth.getSession();
+        window.supabase.auth.getSession().then(({ data: { session } }) => {
           const isLoggedIn = !!session;
           
           // Find all protected elements
@@ -137,14 +137,12 @@ const t = useTranslations(lang);
             if (isLoggedIn) {
               el.classList.remove('blurred', 'locked-overlay');
               el.removeAttribute('aria-hidden');
-              // Remove lock overlay if exists
               const overlay = el.querySelector('.lock-overlay');
               if (overlay) overlay.remove();
             } else {
               el.classList.add('blurred');
               el.setAttribute('aria-hidden', 'true');
               
-              // Add lock overlay if not present
               if (!el.querySelector('.lock-overlay')) {
                 const overlay = document.createElement('div');
                 overlay.className = 'lock-overlay absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-sm z-10 rounded-[28px] cursor-pointer';
@@ -167,10 +165,14 @@ const t = useTranslations(lang);
             loginBtn.textContent = isLoggedIn ? 'Mon Compte' : 'Espace Parents';
             loginBtn.href = isLoggedIn ? '/espace-parents/dashboard' : '/espace-parents/login';
           }
-        } catch (err) {
-          console.error('Privacy Guard Error:', err);
-        }
-      });
+        }).catch(err => console.error('Privacy Guard Error:', err));
+      }
+
+      // Run on initial load
+      document.addEventListener('DOMContentLoaded', initPrivacyGuard);
+      
+      // ✅ CRITICAL: Re-run on Astro page transitions so blur updates without refresh
+      document.addEventListener('astro:after-swap', initPrivacyGuard);
     </script>
 
     <!-- Global Styles for Protected Content -->
@@ -195,7 +197,10 @@ const t = useTranslations(lang);
       }
     </style>
 
-    <!-- legacy.js -->
-    <script is:inline src="/assets/scripts/legacy.js"></script>
+  <!-- legacy.js -->
+  <script is:inline src="/assets/scripts/legacy.js"></script>
+
+  <!-- ✅ NEW: Floating Job Application Button -->
+  <FloatingApplyBtn lang={lang} />
   </body>
 </html>
