@@ -9,10 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^6.1.4",
+    "@astrojs/node": "^8.3.4",
+    "@supabase/supabase-js": "^2.117.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^4.16.19",
     "astro-tunnel": "^0.1.9",
-    "bootstrap": "^5.3.8",
-    "tailwindcss": "^4.1.18"
+    "bootstrap": "^5.3.8"
+  },
+  "overrides": {
+    "vite": "^7.0.0"
   }
 }

@@ -8,6 +8,10 @@ const { lang = "fr" } = Astro.props;
 const t = useTranslations(lang).nav;
 const base = lang === "en" ? "/en" : "";
 
+// ✅ READ AUTH STATE FROM SERVER-SIDE LOCALS
+const { user } = Astro.locals;
+const isAuthenticated = !!user;
+
 const centreLinks = {
   hamilton: `${base}/centres/hamilton/`,
   brantford: `${base}/centres/brantford/`,
@@ -19,7 +23,7 @@ const centreLinks = {
     <div class="flex items-center justify-between">
 
       <!-- Logo -->
-      <a href={`${base}/`} class="flex min-h-0 items-center gap-2 md:gap-3">
+      <a href={`${base}/`} class="flex min-h-0 items-center gap-2 md:gap-3 shrink-0">
         <img
           src="/assets/images/LBR_No_Name.png"
           alt="Le Ballon Rouge"
@@ -29,19 +33,19 @@ const centreLinks = {
           width="44"
           height="44"
         />
-        <div>
+        <div class="hidden sm:block">
           <p class="text-sm font-black text-slate-900 md:text-base">Le Ballon Rouge</p>
           <p class="text-[10px] font-semibold text-slate-600 md:text-xs">{t.tagline}</p>
         </div>
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="hidden lg:block" aria-label={t.ariaNav}>
+      <!-- Desktop nav (Centered) -->
+      <nav class="hidden xl:flex items-center justify-center flex-1 px-4" aria-label={t.ariaNav}>
         <div class="flex items-center gap-1">
 
           <div class="nav-group">
             <a href={`${base}/qui-sommes-nous/`} class="nav-trigger">
-              {t.about} <span class="arrow" aria-hidden="true">▾</span>
+              {t.about} <span class="arrow" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown">
               <a href={`${base}/qui-sommes-nous/#vmv`} class="dropdown-item">{t.aboutDropdown.vmv}</a>
@@ -52,7 +56,7 @@ const centreLinks = {
 
           <div class="nav-group">
             <a href={`${base}/inscription/`} class="nav-trigger">
-              {t.inscription} <span class="arrow" aria-hidden="true">▾</span>
+              {t.inscription} <span class="arrow" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown">
               <a href={`${base}/inscription/hamilton/`} class="dropdown-item">Le Ballon Rouge — Hamilton</a>
@@ -62,7 +66,7 @@ const centreLinks = {
 
           <div class="nav-group">
             <a href={`${base}/espace-parents/`} class="nav-trigger">
-              {t.parents} <span class="arrow" aria-hidden="true">▾</span>
+              {t.parents} <span class="arrow" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown">
               <a href={`${base}/espace-parents/#guide`} class="dropdown-item">{t.parentsDropdown.guide}</a>
@@ -74,7 +78,7 @@ const centreLinks = {
 
           <div class="nav-group">
             <a href={`${base}/programmes/`} class="nav-trigger">
-              {t.programmes} <span class="arrow" aria-hidden="true">▾</span>
+              {t.programmes} <span class="arrow" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown">
               <a href={`${base}/programmes/#enonce`} class="dropdown-item">{t.programmesDropdown.statement}</a>
@@ -90,7 +94,6 @@ const centreLinks = {
             <div class="nav-dropdown">
               <a href={`${base}/personnel/#reconnaissances`} class="dropdown-item">{t.personnelDropdown.recognition}</a>
               <a href={`${base}/personnel/#emplois`} class="dropdown-item">{t.personnelDropdown.jobs}</a>
-              <a href={`${base}/personnel/#rejoignez`} class="dropdown-item">{t.personnelDropdown.join}</a>
             </div>
           </div>
 
@@ -104,7 +107,7 @@ const centreLinks = {
 
           <div class="nav-group">
             <a href={`${base}/centres/`} class="nav-trigger">
-              {t.centres} <span class="arrow" aria-hidden="true">▾</span>
+              {t.centres} <span class="arrow" aria-hidden="true"></span>
             </a>
             <div class="nav-dropdown">
               <a href={centreLinks.hamilton} class="dropdown-item">Le Ballon Rouge — Hamilton</a>
@@ -115,10 +118,11 @@ const centreLinks = {
         </div>
       </nav>
 
-      <!-- Right side -->
-      <div class="flex items-center gap-2 md:gap-3">
-
-        <div class="nav-group">
+      <!-- Right side actions (Far Right) -->
+      <div class="flex items-center gap-2 md:gap-3 shrink-0">
+        
+        <!-- Language Switcher -->
+        <div class="nav-group hidden sm:block">
           <button
             type="button"
             class="nav-trigger lang-trigger cursor-pointer"
@@ -127,31 +131,66 @@ const centreLinks = {
             aria-expanded="false"
             aria-label={t.ariaLang}
           >
-            <span class="lang-current" data-lang={lang}>
-              <img src={`/assets/flags/${lang}.svg`} alt={t.langLabel} width="22" height="16" class="w-5 h-4 rounded-sm" />
-              <span class="hidden sm:inline">{t.langLabel}</span>
+            <span class="lang-current font-bold" data-lang={lang}>
+              {t.langLabel}
             </span>
-            <span class="arrow" aria-hidden="true">▾</span>
+            <span class="arrow" aria-hidden="true"></span>
           </button>
           <div class="nav-dropdown lang-dropdown">
             <a id="lang-opt-fr" href="/" class="dropdown-item lang-option" data-lang="fr">
-              <img src="/assets/flags/fr.svg" alt="Français" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
               Français
             </a>
             <a id="lang-opt-en" href="/en/" class="dropdown-item lang-option" data-lang="en">
-              <img src="/assets/flags/en.svg" alt="English" width="22" height="16" class="w-5 h-4 mr-2 rounded-sm" />
               English
             </a>
           </div>
         </div>
 
+        <!-- Inscription CTA -->
         <a
           href={`${base}/inscription/`}
-          class="hidden sm:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25 transition-all duration-150"
+          class="hidden lg:inline-flex items-center gap-2 rounded-full bg-red-700 px-4 py-2.5 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25 transition-all duration-150"
         >
           {t.cta} <span aria-hidden="true">→</span>
         </a>
 
+        <!-- ✅ AUTH-AWARE PROFILE DROPDOWN / LOGIN BUTTON -->
+        {isAuthenticated ? (
+          <div class="relative group hidden sm:block">
+            <!-- Trigger Button -->
+            <button class="flex items-center gap-2 rounded-full bg-slate-900 pl-1 pr-3 py-1 text-sm font-bold text-white hover:bg-slate-800 transition-all duration-150 cursor-pointer">
+              <div class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-xs font-black">
+                {user.email?.charAt(0).toUpperCase() || 'P'}
+              </div>
+              <span class="max-w-[100px] truncate">{user.email?.split('@')[0]}</span>
+              <svg class="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+
+            <!-- Dropdown Menu (Streamlined: No Profile Link) -->
+            <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-black/5 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right z-50">
+              <a href="/accounts/dashboard" class="block px-4 py-3 text-sm font-bold text-slate-700 hover:bg-red-50 hover:text-red-700 transition-colors">
+                 Tableau de bord
+              </a>
+              <div class="h-px bg-black/5 my-1"></div>
+              <a href="/api/auth/signout" class="block px-4 py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors">
+                 Se déconnecter
+              </a>
+            </div>
+          </div>
+        ) : (
+          <a 
+            id="global-login-btn"
+            href={`${base}/accounts/login`}
+            class="hidden sm:inline-flex items-center gap-2 rounded-full border-2 border-red-700 bg-white px-4 py-2 text-sm font-extrabold text-red-700 hover:bg-red-50 transition-all duration-150"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            Se Connecter!
+          </a>
+        )}
+
+        <!-- Mobile Menu Toggle -->
         <button
           id="menuBtn"
           type="button"
@@ -166,7 +205,7 @@ const centreLinks = {
           <svg id="menuIconClose" class="h-4 w-4 icon-hidden" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
-          <span id="menuLabel">{t.menu}</span>
+          <span id="menuLabel">{t.menu}</span> 
         </button>
 
       </div>
@@ -183,38 +222,108 @@ const centreLinks = {
         <nav aria-label="Mobile navigation" class="grid grid-cols-2 gap-2">
           <a href={`${base}/qui-sommes-nous/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.about}
+             {t.about}
           </a>
           <a href={`${base}/inscription/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.inscription}
+             {t.inscription}
           </a>
           <a href={`${base}/espace-parents/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.parents}
+             {t.parents}
           </a>
           <a href={`${base}/centres/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.centres}
+             {t.centres}
           </a>
           <a href={centreLinks.hamilton} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            Le Ballon Rouge — Hamilton
+             Le Ballon Rouge — Hamilton
           </a>
           <a href={centreLinks.brantford} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            Le Ballon Rouge — Brantford
+             Le Ballon Rouge — Brantford
           </a>
           <a href={`${base}/programmes/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.programmes}
+             {t.programmes}
           </a>
           <a href={`${base}/personnel/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.personnel}
+             {t.personnel}
           </a>
           <a href={`${base}/gouvernance/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
             <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
-            {t.gouvernance}
+             {t.gouvernance}
           </a>
           <a href={`${base}/contact/`} class="mobile-nav-link group flex items-center gap-2 rounded-2xl border border-transparent px-4 py-3.5 text-sm font-bold text-slate-700 transition-all duration-150 hover:border-red-100 hover:bg-red-50 hover:text-red-700">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-300 transition-colors duration-150 group-hover:bg-red-400"></span>
+             {t.contact}
+          </a>
+        </nav>
+
+        <!-- Mobile CTA Buttons -->
+        <div class="mt-6 flex flex-col gap-3">
+          <a
+            href={`${base}/inscription/`}
+            class="flex items-center justify-center gap-2 rounded-full bg-red-700 px-4 py-3 text-sm font-extrabold text-white hover:bg-red-800 shadow-lg shadow-red-700/25 transition-all duration-150"
+          >
+            {t.cta} <span aria-hidden="true">→</span>
+          </a>
+          
+          {isAuthenticated ? (
+            <>
+              <a
+                href="/accounts/dashboard"
+                class="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-3 text-sm font-extrabold text-white hover:bg-slate-800 transition-all duration-150"
+              >
+                 Mon Espace →
+              </a>
+              <a
+                href="/api/auth/signout"
+                class="flex items-center justify-center gap-2 rounded-full border-2 border-red-200 bg-red-50 px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-red-100 transition-all duration-150"
+              >
+                 Se déconnecter
+              </a>
+            </>
+          ) : (
+            <a
+              href={`${base}/accounts/login`}
+              class="flex items-center justify-center gap-2 rounded-full border-2 border-red-700 bg-white px-4 py-3 text-sm font-extrabold text-red-700 hover:bg-red-50 transition-all duration-150"
+            >
+               Espace Parents →
+            </a>
+          )}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav inline script for mobile menu toggle -->
+  <script is:inline>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
+    const menuLabel = document.getElementById('menuLabel');
+
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!isOpen));
+        mobileMenu.setAttribute('aria-hidden', String(isOpen));
+        
+        if (!isOpen) {
+          menuIconOpen.classList.add('icon-hidden');
+          menuIconClose.classList.remove('icon-hidden');
+          mobileMenu.classList.add('open');
+        } else {
+          menuIconOpen.classList.remove('icon-hidden');
+          menuIconClose.classList.add('icon-hidden');
+          mobileMenu.classList.remove('open');
+        }
+      });
+    }
+  </script>
+</header>
