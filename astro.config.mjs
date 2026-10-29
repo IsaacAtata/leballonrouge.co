@@ -1,36 +1,22 @@
 // astro.config.mjs
-// @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite'; 
-import node from '@astrojs/node'; // ✅ Use Node instead of Vercel
+import vercel from '@astrojs/vercel/serverless'; // ✅ CHANGED FROM '@astrojs/node'
 
 export default defineConfig({
-  devToolbar: {
-    enabled: false
-  },
-  
-  // CRITICAL: Enables SSR so middleware and cookies work
+  devToolbar: { enabled: false },
   output: 'server', 
-
-  // ✅ Point to the Node standalone adapter
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(), // ✅ CHANGED FROM node({ mode: 'standalone' })
   
   vite: {
     plugins: [tailwindcss()],
-    server: {
-      allowedHosts: ['.ngrok-free.dev']
-    }
+    server: { allowedHosts: ['.ngrok-free.dev'] }
   },
 
   i18n: {
     defaultLocale: "fr",
     locales: ["fr", "en"],
-    routing: {
-      prefixDefaultLocale: false
-    }
+    routing: { prefixDefaultLocale: false }
   },
-
   integrations: []
 });
