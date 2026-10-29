@@ -1,16 +1,14 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+// UPDATED: Board members for 2026-2027 term based on provided document
 const exec = [
   { role: "Président",         name: "Mathieu Berlaud" },
-  { role: "Vice-présidente",   name: "Cindy Fierbiger" },
-  { role: "Trésorière",        name: "Chantal Giroux-Podstawka" },
-  { role: "Secrétaire",        name: "Josée Guimond" },
-  { role: "Administrateur",    name: "Andrew Zadarnowski" },
-  { role: "Administrateur",    name: "Aurélien Assonna" },
-  { role: "Administratrice",   name: "Dorothée Petit-Pas" },
-  { role: "Administrateur",    name: "Robert Brown" },
-  { role: "Présidente sortante", name: "Angela Wright" },
+  { role: "Vice-président",    name: "Sonia Macaluso" },
+  { role: "Secrétaire",        name: "Narimane Ben Messoud (Parent BR Hamilton)" },
+  { role: "Trésorier",         name: "François Neville (Parent BR Hamilton)" },
+  { role: "Membre",            name: "Aurélien Assonna" },
+  { role: "Membre",            name: "Dorothée Petit-Pas (Représentante CSC Mon Avenir)" },
 ];
 
 const sectors = [
@@ -27,7 +25,7 @@ const sectors = [
 
 const responsabilites = [
   { icon: "📋", title: "Plan stratégique", body: "Mise en œuvre et suivi du plan stratégique de l'organisme." },
-  { icon: "📜", title: "Politiques", body: "Approbation des politiques et procédures du centre de garde." },
+  { icon: "", title: "Politiques", body: "Approbation des politiques et procédures du centre de garde." },
   { icon: "💰", title: "Budget", body: "Analyse et approbation du budget de fonctionnement annuel." },
   { icon: "📊", title: "Évaluation", body: "Évaluation du rendement de la direction générale." },
   { icon: "🗣️", title: "Voix communautaire", body: "Représentation des familles et de la communauté francophone." },
@@ -69,7 +67,7 @@ const responsabilites = [
     <!-- Anchor nav -->
     <div class="mt-5 flex flex-wrap gap-2 text-sm font-bold text-slate-700">
       <a href="#mandat"    class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Mandat</a>
-      <a href="#ca"        class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Membres 2024–2025</a>
+      <a href="#ca"        class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Membres 2026–2027</a>
       <a href="#rejoignez" class="rounded-full border border-black/10 bg-white/60 px-3 py-2 hover:bg-white">Formulaire de candidature</a>
     </div>
   </section>
@@ -136,8 +134,9 @@ const responsabilites = [
   <!-- Board members -->
   <section id="ca" class="scroll-mt-28 mx-auto max-w-6xl px-4 pb-12">
     <div class="rounded-[28px] border border-black/10 bg-white/70 p-6 shadow-xl shadow-black/5 md:p-8">
+      <!-- UPDATED: Badge reflects new term -->
       <div class="inline-flex items-center gap-2 rounded-full bg-red-50 px-3 py-1 text-xs font-black uppercase tracking-widest text-red-700 ring-1 ring-red-100">
-        2024–2025
+        2026–2027
       </div>
       <h2 class="mt-3 text-xl font-black tracking-tight md:text-2xl">Membres de l'exécutif</h2>
       <p class="mt-2 leading-7 text-slate-600">
