@@ -17,7 +17,7 @@ const c = {
   mapsQuery: encodeURIComponent("135 Bendamere Ave, Hamilton, ON L9C 1N4"),
   googlePlaceUrl: "https://www.google.com/maps/place/Le+Ballon+Rouge/@43.2340612,-79.8920059,17z/data=!4m15!1m8!3m7!1s0x882c9b19663e1913:0x3b7c4b5e166434dc!2s135+Bendamere+Ave,+Hamilton,+ON+L9C+1N4!3b1!8m2!3d43.2341417!4d-79.892331!16s%2Fg%2F11bw41tzwd!3m5!1s0x882c9b19663e1913:0x5fe06c0c04a1ded3!8m2!3d43.2340319!4d-79.8917385!16s%2Fg%2F1vrqb8ch?entry=ttu",
 
-  // UPDATED: Removed /assets/images/ prefix. SecureImage handles the base path.
+  // UPDATED: Added new staff members (Akram, Emna, Majida, Ketsia, Marwa)
   staff: [
     { 
       name: "Fadwa Elkhorji", 
@@ -59,14 +59,46 @@ const c = {
       photo: "Staff Hamilton/Jeanne.jpg", 
       description: "Passionnée par la petite enfance, elle aime explorer la nature et la musique. Empathique et bienveillante, elle offre un environnement où les enfants s'épanouissent." 
     },
+    // NEW STAFF MEMBERS BELOW
+    { 
+      name: "Akram", 
+      photo: "Staff Hamilton/Akram.JPG", 
+      description: "Souriant et énergique, il apporte une présence rassurante et ludique. Il encourage les enfants à explorer leur environnement avec curiosité et confiance." 
+    },
+    { 
+      name: "Emna", 
+      photo: "Staff Hamilton/Emna.JPG", 
+      description: "Douce et attentive, elle veille au bien-être émotionnel de chaque enfant. Elle favorise l'expression de soi et le respect mutuel au sein du groupe." 
+    },
+    { 
+      name: "Majida", 
+      photo: "Staff Hamilton/Majida.JPG", 
+      description: "Patiente et dévouée, elle guide les enfants avec une grande douceur. Elle crée des moments d'apprentissage riches en interactions positives." 
+    },
+    { 
+      name: "Ketsia", 
+      photo: "Staff Hamilton/Ketsia.JPG", 
+      description: "Enthousiaste et créative, elle propose des activités stimulantes qui éveillent l'imagination. Elle accompagne chaque enfant avec joie et bienveillance." 
+    },
+    { 
+      name: "Marwa", 
+      photo: "Staff Hamilton/Marwa.JPG", 
+      description: "Organisée et empathique, elle assure un cadre sécurisant propice à l'épanouissement. Elle valorise l'autonomie et la coopération entre les enfants." 
+    },
+
     { 
       name: "Ermeline", 
       photo: "Staff Hamilton/Ermeline.jpg", 
       description: "Étudiante en éducation de la petite enfance au Collège Boréal, elle accompagne les enfants dans leurs découvertes avec bienveillance et patience." 
-    }
+    },
+
+    { 
+      name: "Michelle II.", 
+      photo: "Staff Hamilton/Michelle II.JPG", 
+      description: "Souriante et dévouée, elle apporte une énergie positive au quotidien. Elle veille à ce que chaque enfant se sente valorisé et heureux d'apprendre." 
+    },
   ],
 
-  // UPDATED: Removed /assets/images/ prefix. SecureImage handles the base path.
   activities: [
     { src: "Activities - Hamilton/IMG_2645.jpg", alt: "Bricolage en groupe" },
     { src: "Activities - Hamilton/IMG_5090.jpg", alt: "Jeux extérieurs" },
@@ -111,7 +143,7 @@ const c = {
         <ul class="mt-4 space-y-3 text-sm font-semibold text-slate-700">
           <li class="flex items-start gap-3"><span class="mt-0.5 text-base"></span><span>{c.address}</span></li>
           <li class="flex items-start gap-3"><span class="mt-0.5 text-base">🕐</span><span>{c.hours}</span></li>
-          <li class="flex items-start gap-3"><span class="mt-0.5 text-base">👩💼</span><span><span class="font-extrabold text-slate-900">Superviseure:</span> {c.supervisor}</span></li>
+          <li class="flex items-start gap-3"><span class="mt-0.5 text-base">💼</span><span><span class="font-extrabold text-slate-900">Superviseure:</span> {c.supervisor}</span></li>
           <li class="flex items-start gap-3"><span class="mt-0.5 text-base">🏫</span><span><span class="font-extrabold text-slate-900">École:</span> {c.school}</span></li>
         </ul>
 

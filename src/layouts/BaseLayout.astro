@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import FloatingApplyBtn from "../components/FloatingApplyBtn.astro";
+import FloatingFeedbackBtn from "../components/FloatingFeedbackBtn.astro"; // ✅ NEW: Feedback Button Import
 import Nav from "../components/nav.astro";
 import Footer from "../components/Footer.astro";
 import BackToTop from "../components/BackToTop.astro";
@@ -197,7 +198,11 @@ const t = useTranslations(lang);
   <!-- legacy.js -->
   <script is:inline src="/assets/scripts/legacy.js"></script>
 
-  <!-- ✅ NEW: Floating Job Application Button -->
+  <!-- ✅ EXISTING: Floating Job Application Button -->
   <FloatingApplyBtn lang={lang} />
+
+  <!-- ✅ NEW: Global Feedback Button (Sits above the Apply button) -->
+  <FloatingFeedbackBtn lang={lang} />
+
   </body>
 </html>
